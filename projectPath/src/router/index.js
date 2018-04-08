@@ -7,12 +7,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/vux'
+      redirect: '/today'
     },
     {
-      path: '/vux',
-      name: 'HelloFromVux',
-      component: resolve => require(['../components/HelloFromVux'], resolve)
+      path: '/today',
+      component: resolve => require(['../components/TodayAttendance'], resolve),
+      meta: { title: '今日考勤' }
     }
   ]
 })

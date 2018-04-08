@@ -6,7 +6,7 @@ import App from './App'
 import api from './utils/api'
 import router from './router'
 import Vuex from 'vuex'
-
+Vue.use(require('vue-wechat-title'))
 Vue.use(Vuex)
 Vue.prototype.axios = api
 const store = new Vuex.Store({
