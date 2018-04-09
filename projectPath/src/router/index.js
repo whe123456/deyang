@@ -11,8 +11,14 @@ export default new Router({
     },
     {
       path: '/today',
-      component: resolve => require(['../components/TodayAttendance'], resolve),
-      meta: { title: '今日考勤' }
+      component: resolve => require(['../components/common/Home.vue'], resolve),
+      children: [
+        {
+          path: '/today',
+          component: resolve => require(['../components/TodayAttendance'], resolve),
+          meta: { title: '今日考勤' }
+        }
+      ]
     }
   ]
 })

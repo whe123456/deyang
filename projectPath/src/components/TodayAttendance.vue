@@ -10,6 +10,10 @@
       </cell-box>
       <cell title="考勤制度" value="详情" is-link></cell>
     </group>
+    <group class="qd_group">
+      <cell class="qd_cell" title="签到" inline-desc='09:00' value="签到"></cell>
+      <cell class="qt_cell" title="签退" inline-desc='17:00' value="签退"></cell>
+    </group>
   </div>
 </template>
 <script>
@@ -76,7 +80,27 @@
     font-size: 14px;
     text-align: center;}
   .time_div{    font-size: 35px;line-height: 60px;}
-  .weui-cells{margin-top: 0;}
-  .weui-cell{    padding-top: 30px;
-    padding-bottom: 30px;}
+  .weui-cells{margin-top: 0!important;}
+  .vux-cell-box{    padding-top: 30px!important;padding-bottom: 30px!important;}
+  .qd_group{margin-top: 15px;}
+  .qd_group label{color: #000;
+    font-size: 18px;}
+  .qd_group span{    font-size: 14px;
+    color: #666;}
+  .qd_cell .weui-cell__ft{width: 70px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: #307dcd;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #2c66a1;}
+  .qt_cell .weui-cell__ft{width: 70px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: #f8f8f8;
+    color: #666;
+    border-radius: 5px;
+    border: 1px solid #cecece;}
 </style>
