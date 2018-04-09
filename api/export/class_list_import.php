@@ -87,16 +87,16 @@ if(array_key_exists($ii, $_FILES)===false){
         $cl='';
         foreach ($grs as $k => $al) {
             $sqladd .= '"' . $al . '",';
-            if($k==3){
+            if($k==0){
                 $cl=$al;
             }
         }
-        $sql="SELECT COUNT(*) FROM zjzz_dhbmd WHERE xh=?";
+        $sql="SELECT COUNT(*) FROM zjzz_bj WHERE bj_bm=?";
         $count=Database::ReadoneStr($sql,$conn,array($cl));
         if($count>0){
             continue;
         }
-        $sql = "INSERT INTO zjzz_dhbmd (sjhm,xm,bjbm,xh,cj_time,sf_yz,yzm,yzsj)VALUES($sqladd'$now','0','','')";
+        $sql = "INSERT INTO zjzz_bj (bj_bm,bj_mc,js_bh,js_bm,bz)VALUES($sqladd'')";
         $aac = Database::InsertOrUpdate($sql, $conn,array());
         if ($aac === false) {
             alertExit('导入失败，数据格式错误');

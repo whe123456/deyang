@@ -28,7 +28,7 @@
         <el-input type="textarea" v-model="form.desc" class="width300" autosize></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button type="primary" @click="onSubmit">{{btn_text}}</el-button>
         <el-button type="primary" @click="oncancle">取消</el-button>
       </el-form-item>
     </el-form>
@@ -50,6 +50,7 @@ export default {
       loading: true,
       options: [],
       ClassName: '',
+      btn_text: '立即创建',
       bm: ''
     }
   },
@@ -82,6 +83,7 @@ export default {
     if (this.$route.query.bm !== undefined) {
       this.bm = this.$route.query.bm
       this.ClassName = '班级修改'
+      this.btn_text = '立即修改'
       this.sf_ds = true
     } else {
       this.ClassName = '新增班级'
@@ -95,16 +97,16 @@ export default {
     const url = localStorage.getItem('url')
     const BjBm = this.bm
     const that = this
-    this.axios.get(url + 'api/api_get_class_change.php', { username: usersName, BjBm: BjBm }, function (res) {
+    this.axios.get(url + 'api/api_get_bj_change.php', { username: usersName, BjBm: BjBm }, function (res) {
       that.loading = false
       if (res.state === 'true') {
         that.options = res.list
         if (BjBm !== '') {
-          that.form.BjCode = res.bm.bj_bm
-          that.form.bj_mc = res.bm.bj_mc
-          that.form.js_bh = res.bm.js_bh
-          that.form.desc = res.bm.bz
-          that.form.gl_teacher = res.bm.js_bm
+          that.form.BjCode = res.bmd.bj_bm
+          that.form.bj_mc = res.bmd.bj_mc
+          that.form.js_bh = res.bmd.js_bh
+          that.form.desc = res.bmd.bz
+          that.form.gl_teacher = res.bmd.js_bm
         }
       } else {
         that.$alert(res.msg, '提示', {

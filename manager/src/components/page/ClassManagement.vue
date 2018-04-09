@@ -28,6 +28,18 @@
           <el-button type="primary" @click="oncancle">取消查询</el-button>
         </el-form-item>
         <el-form-item class="right">
+          <el-upload
+            class="upload-demo"
+            :action="address"
+            :limit="1"
+            accept=".xls,.xlsx"
+            :on-progress="on_upload"
+            :on-success="upload_ok"
+            :show-file-list="false"
+            :file-list="fileList">
+            <el-button type="primary">导入文件</el-button>
+          </el-upload>
+          <el-button type="primary" @click="downClass">示例文件下载</el-button>
           <el-button type="primary" @click="AddClass">添加</el-button>
         </el-form-item>
       </el-form>
@@ -38,6 +50,10 @@
         stripe
         v-loading="loading"
         style="width: 100%">
+        <el-table-column
+          prop="bj_bm"
+          label="班级编码">
+        </el-table-column>
         <el-table-column
           prop="bj_mc"
           label="班级名称">
@@ -78,12 +94,23 @@ export default {
         GlTeacher: ''
       },
       loading: true,
+      jz_loading: false,
+      fileList: [],
+      address: '',
       page: 5,
       total: 0,
       now_page: 1
     }
   },
   methods: {
+    on_upload () {
+      this.jz_loading = true
+    },
+    upload_ok () {
+      this.jz_loading = false
+      this.fileList = []
+      getList(1, this)
+    },
     onSubmit () {
       getList(1, this)
     },
@@ -100,6 +127,10 @@ export default {
     },
     AddClass () {
       this.$router.push({path: '/change'})
+    },
+    downClass () {
+      const url = localStorage.getItem('url')
+      window.open(url + 'api/demo/class_demo_list.xlsx')
     },
     delClick (e) {
       const usersName = localStorage.getItem('ms_username')
@@ -124,6 +155,8 @@ export default {
   mounted () {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
     const that = this
+    const url = localStorage.getItem('url')
+    this.address = url + 'api/export/class_list_import.php'
     getList(1, that)
   }
 }
@@ -162,4 +195,5 @@ const getList = function (page, that) {
   .el-pagination{text-align: center;}
   .sr_input{width: 200px;}
   .right{float:right;}
+  .upload-demo{display: inline-block;}
 </style>

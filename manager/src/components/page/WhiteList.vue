@@ -40,6 +40,7 @@
               :file-list="fileList">
               <el-button type="primary">导入文件</el-button>
             </el-upload>
+            <el-button type="primary" @click="downClass">示例文件下载</el-button>
             <el-button type="primary" @click="AddClass">添加</el-button>
           </el-form-item>
         </el-form>
@@ -137,6 +138,7 @@ export default {
     },
     upload_ok () {
       this.jz_loading = false
+      this.fileList = []
       getList(1, this)
     },
     handleCurrentChange (e) {
@@ -148,8 +150,9 @@ export default {
     AddClass () {
       this.$router.push({path: '/whiteadd'})
     },
-    AddMore () {
-      this.$router.push({path: '/whiteimport'})
+    downClass () {
+      const url = localStorage.getItem('url')
+      window.open(url + 'api/demo/white_demo_list.xlsx')
     },
     delClick (e) {
       const usersName = localStorage.getItem('ms_username')

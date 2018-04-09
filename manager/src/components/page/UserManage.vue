@@ -18,6 +18,18 @@
           <el-button type="primary" @click="oncancle">取消查询</el-button>
         </el-form-item>
         <el-form-item class="right">
+          <el-upload
+            class="upload-demo"
+            :action="address"
+            :limit="1"
+            accept=".xls,.xlsx"
+            :on-progress="on_upload"
+            :on-success="upload_ok"
+            :show-file-list="false"
+            :file-list="fileList">
+            <el-button type="primary">导入文件</el-button>
+          </el-upload>
+          <el-button type="primary" @click="downClass">示例文件下载</el-button>
           <el-button type="primary" @click="onExcel">导出</el-button>
           <el-button type="primary" @click="onAdd">新增</el-button>
         </el-form-item>
@@ -84,6 +96,9 @@ export default {
         bh: ''
       },
       tableData: [],
+      jz_loading: false,
+      fileList: [],
+      address: '',
       page: 5,
       total: 0,
       UserId: '',
@@ -92,6 +107,18 @@ export default {
     }
   },
   methods: {
+    on_upload () {
+      this.jz_loading = true
+    },
+    upload_ok () {
+      this.jz_loading = false
+      this.fileList = []
+      getList(1, this)
+    },
+    downClass () {
+      const url = localStorage.getItem('url')
+      window.open(url + 'api/demo/teacher_demo_list.xlsx')
+    },
     onSubmit () {
       getList(1, this)
     },
@@ -151,6 +178,8 @@ export default {
   mounted () {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
     const that = this
+    const url = localStorage.getItem('url')
+    this.address = url + 'api/export/teacher_list_import.php'
     getList(1, that)
   }
 }
@@ -189,4 +218,5 @@ const getList = function (page, that) {
   .el-input {
     width: 200px;
   }
+  .upload-demo{display: inline-block;}
 </style>
