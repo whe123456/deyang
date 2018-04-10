@@ -4,17 +4,17 @@
       <router-view></router-view>
     </transition>
     <tabbar>
-      <tabbar-item selected link="/today">
+      <tabbar-item link="/today" :selected="$route.path == '/today'">
         <img slot="icon" src="../../assets/banner/ic_tabbar_home.png">
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_home_select.png">
         <span slot="label">今日考勤</span>
       </tabbar-item>
-      <tabbar-item link="/list">
+      <tabbar-item link="/list" :selected="$route.path == '/list'">
         <img slot="icon" src="../../assets/banner/ic_tabbar_notification.png">
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_notification_select.png">
         <span slot="label">我的考勤</span>
       </tabbar-item>
-      <tabbar-item>
+      <tabbar-item :selected="$route.path == '/me'">
         <img slot="icon" src="../../assets/banner/ic_tabbar_profile.png">
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_profile_select.png">
         <span slot="label">相关</span>

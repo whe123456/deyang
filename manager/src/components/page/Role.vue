@@ -45,8 +45,10 @@
           prop="coin"
           label="操作">
           <template slot-scope="scope">
-            <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
-            <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
+            <div v-if="scope.row.id !== 1 && scope.row.id !== 4">
+              <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
+              <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
+            </div>
           </template>
         </el-table-column>
       </el-table>

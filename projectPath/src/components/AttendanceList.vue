@@ -8,9 +8,9 @@
       isHideOtherday=true
     ></Calendar>
 
-    <group>
+    <group class="top_15">
       <cell title="4月1日 星期日"></cell>
-      <cell title="暂无考勤记录"></cell>
+      <cell class="weui_cell_dz" title="暂无考勤记录"></cell>
     </group>
   </div>
 </template>
@@ -66,4 +66,9 @@
   .wh_top_changge li>div{border-color:#ccc;}
   .wh_content_all>div:nth-of-type(2){background: #f1f1f1;}
   .wh_content_item{color: #858585;}
+  .top_15{margin-top: 15px;}
+  .weui_cell_dz{    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #666;
+    font-size: 16px;}
 </style>
