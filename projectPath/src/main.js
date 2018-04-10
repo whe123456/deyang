@@ -6,7 +6,9 @@ import App from './App'
 import api from './utils/api'
 import router from './router'
 import Vuex from 'vuex'
+import Calendar from 'vue-calendar-component'
 Vue.use(require('vue-wechat-title'))
+Vue.use(Calendar)
 Vue.use(Vuex)
 Vue.prototype.axios = api
 const store = new Vuex.Store({

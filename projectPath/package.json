@@ -16,6 +16,7 @@
   "dependencies": {
     "fastclick": "^1.0.6",
     "vue": "^2.5.2",
+    "vue-calendar-component": "^2.4.5",
     "vue-router": "^3.0.1",
     "vue-wechat-title": "^2.0.4",
     "vuex": "^2.1.1",

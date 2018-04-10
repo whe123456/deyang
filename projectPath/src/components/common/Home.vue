@@ -4,12 +4,12 @@
       <router-view></router-view>
     </transition>
     <tabbar>
-      <tabbar-item selected>
+      <tabbar-item selected link="/today">
         <img slot="icon" src="../../assets/banner/ic_tabbar_home.png">
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_home_select.png">
         <span slot="label">今日考勤</span>
       </tabbar-item>
-      <tabbar-item>
+      <tabbar-item link="/list">
         <img slot="icon" src="../../assets/banner/ic_tabbar_notification.png">
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_notification_select.png">
         <span slot="label">我的考勤</span>
@@ -30,6 +30,10 @@
     components: {
       Tabbar,
       TabbarItem
+    },
+    mounted () {
+      // localStorage.setItem('url', 'http://127.0.0.1:8180/')
+      localStorage.setItem('url', 'http://192.168.0.188:8880/')
     }
   }
 </script>

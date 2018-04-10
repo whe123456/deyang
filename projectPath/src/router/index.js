@@ -17,6 +17,11 @@ export default new Router({
           path: '/today',
           component: resolve => require(['../components/TodayAttendance'], resolve),
           meta: { title: '今日考勤' }
+        },
+        {
+          path: '/list',
+          component: resolve => require(['../components/AttendanceList'], resolve),
+          meta: { title: '我的考勤' }
         }
       ]
     }
