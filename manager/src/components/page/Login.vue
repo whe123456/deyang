@@ -46,6 +46,7 @@ export default {
           self.axios.get(url + 'api/api_login.php', { username: self.ruleForm.username, password: self.ruleForm.password }, function (res) {
             if (res.state === 'true') {
               localStorage.setItem('ms_username', self.ruleForm.username)
+              localStorage.setItem('js_id', res.user.js_id)
               self.$router.push('/' + res.user.page)
             } else {
               self.$alert(res.msg, '提示', {

@@ -37,9 +37,9 @@
             :on-success="upload_ok"
             :show-file-list="false"
             :file-list="fileList">
-            <el-button type="primary">导入文件</el-button>
+            <el-button type="primary" v-if="js_id != 1">导入文件</el-button>
           </el-upload>
-          <el-button type="primary" @click="downClass">示例文件下载</el-button>
+          <el-button type="primary" @click="downClass" v-if="js_id != 1">示例文件下载</el-button>
           <el-button type="primary" @click="AddClass">添加</el-button>
         </el-form-item>
       </el-form>
@@ -70,8 +70,9 @@
           prop="coin"
           label="功能">
           <template slot-scope="scope">
-            <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
-            <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
+            <el-button @click="lookClick(scope.row)" type="text" size="small">查看班级成员</el-button>
+            <el-button @click="ChangeClick(scope.row)" type="text" size="small" v-if="js_id != 1">修改</el-button>
+            <el-button @click="delClick(scope.row)" type="text" size="small" v-if="js_id != 1">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -99,7 +100,8 @@ export default {
       address: '',
       page: 5,
       total: 0,
-      now_page: 1
+      now_page: 1,
+      js_id: 0
     }
   },
   methods: {
@@ -150,12 +152,16 @@ export default {
           })
         }
       })
+    },
+    lookClick (e) {
+      this.$router.push({path: '/cuser', query: { bm: e.bj_bm }})
     }
   },
   mounted () {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
     const that = this
     const url = localStorage.getItem('url')
+    this.js_id = localStorage.getItem('js_id')
     this.address = url + 'api/export/class_list_import.php'
     getList(1, that)
   }
@@ -178,6 +184,9 @@ const getList = function (page, that) {
       that.total = res.count
       if (res.list !== false) {
         that.tableData = res.list
+        if (res.count === 1) {
+          that.$router.push({path: '/cuser', query: { bm: res.list[0].bj_bm }})
+        }
       } else {
         that.tableData = []
       }

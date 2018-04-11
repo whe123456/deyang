@@ -22,6 +22,10 @@ export default new Router({
           component: resolve => require(['../components/page/ChangeClass.vue'], resolve)
         },
         {
+          path: '/cuser',
+          component: resolve => require(['../components/page/ClassUser.vue'], resolve)
+        },
+        {
           path: '/white',
           component: resolve => require(['../components/page/WhiteList.vue'], resolve)
         },

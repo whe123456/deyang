@@ -14,12 +14,16 @@ checkRequestKeyHtml("username", "用户名不能为空");
 $page=empty($_REQUEST['page'])?0:$_REQUEST['page']-1;
 $name=empty($_REQUEST['name'])?'':$_REQUEST['name'];
 $xh=empty($_REQUEST['xh'])?'':$_REQUEST['xh'];
+$bm=empty($_REQUEST['bj_bm'])?'':$_REQUEST['bj_bm'];
 $where=' 1=1';
 if($name!=''){
     $where.=" AND xm LIKE '%$name%' ";
 }
 if($xh!=''){
     $where.=" AND xh LIKE '%$xh%'";
+}
+if($bm!=''){
+    $where.=" AND bjbm = '$bm'";
 }
 $page_count=10;
 $conn=Database::Connect();

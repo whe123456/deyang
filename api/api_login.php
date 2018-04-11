@@ -23,4 +23,4 @@ if(!$user){
 if(md5($password)!=$user['dl_mm'])alertExitHtml("密码错误");
 $qx_list=Database::ReadoneStr("SELECT qx_list from zjzz_juese where id=?",$conn,array($user['js_id']));
 $page=explode(',', $qx_list);
-echo json_encode(array('state'=>'true','user'=>array('id'=>$user['id'],'name'=>$username,'page'=>$page[0])));
+echo json_encode(array('state'=>'true','user'=>array('id'=>$user['id'],'name'=>$username,'page'=>$page[0],'js_id'=>$user['js_id'])));

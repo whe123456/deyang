@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-wechat-title="$route.meta.title"></div>
-    <group>
+    <group class="td_group">
       <cell-box class="cell_box_kq">
         <div class="date_div">
           <div class="time_div">{{time}}</div>
@@ -80,7 +80,6 @@
     font-size: 14px;
     text-align: center;}
   .time_div{    font-size: 35px;line-height: 60px;}
-  .weui-cells{margin-top: 0!important;}
   .cell_box_kq{    padding-top: 30px!important;padding-bottom: 30px!important;}
   .qd_group{margin-top: 15px;}
   .qd_group label{color: #000;

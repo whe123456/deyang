@@ -7,31 +7,27 @@
       <x-input placeholder="请输入请假标题"></x-input>
       <x-textarea :max="200" name="description" placeholder="请输入请假内容"></x-textarea>
       <uploader
-        :max="varmax"
-        :images="images"
-        :handle-click="true"
+        :max="max_number"
+        :images="xz_img"
         :show-header="false"
-        :readonly="true"
         :upload-url="uploadUrl"
         name="img"
-        :params="params"
         size="small"
         @preview="previewMethod"
         @add-image="addImageMethod"
         @remove-image="removeImageMethod"
       ></uploader>
+      <!--../assets/downing.png-->
     </group>
     <group>
-      <datetime v-model="value" placeholder="请选择开始时间" clear-text="today" @on-clear="setToday":start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" @on-change="change" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
-      <datetime v-model="value1" placeholder="请选择截止时间" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" @on-change="change" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
-
+      <datetime v-model="value" placeholder="请选择开始时间" clear-text="today" @on-clear="setToday":start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+      <datetime v-model="value1" placeholder="请选择截止时间" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
     </group>
   </div>
 </template>
 <script>
   import { XTextarea, Group, XInput, PopupRadio, DatetimeRange, Datetime } from 'vux'
   import Uploader from 'vux-uploader'
-
   export default {
     components: {
       XTextarea,
@@ -48,13 +44,16 @@
         value1: '',
         option: '',
         options: [{
-          key: 'A',
-          value: 'label A'
+          key: '1',
+          value: '事假'
         }, {
-          key: 'B',
-          value: 'label B'
+          key: '2',
+          value: '病假'
         }],
-        start_date: ''
+        start_date: '',
+        uploadUrl: '',
+        xz_img: [],
+        max_number: 3
       }
     },
     mounted () {
@@ -74,16 +73,16 @@
       this.start_date = clock
     },
     methods: {
-      change (e) {
+      previewMethod (e) {
         console.log('change', e)
       },
-      onChange (val) {
+      addImageMethod (val) {
         console.log('change', val)
       },
-      onChange1 (val) {
+      removeImageMethod (val) {
 
       },
-      setToday (value) {
+      setToday () {
         let now = new Date()
         let cmonth = now.getMonth() + 1
         let day = now.getDate()
@@ -100,7 +99,6 @@
 </script>
 
 <style>
-  .td_group>div{margin-top: 0!important;}
   .jd_dw_div{position: absolute;
   padding: 10px 15px;    top: 0;}
 </style>
