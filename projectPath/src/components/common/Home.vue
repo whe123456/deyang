@@ -14,10 +14,10 @@
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_notification_select.png">
         <span slot="label">我的考勤</span>
       </tabbar-item>
-      <tabbar-item :selected="$route.path == '/me'">
+      <tabbar-item link="/leave" :selected="$route.path == '/leave'">
         <img slot="icon" src="../../assets/banner/ic_tabbar_profile.png">
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_profile_select.png">
-        <span slot="label">相关</span>
+        <span slot="label">请假申请</span>
       </tabbar-item>
     </tabbar>
   </div>

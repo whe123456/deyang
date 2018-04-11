@@ -2,7 +2,7 @@
   <div>
     <div v-wechat-title="$route.meta.title"></div>
     <group>
-      <cell-box>
+      <cell-box class="cell_box_kq">
         <div class="date_div">
           <div class="time_div">{{time}}</div>
           <div>考勤日：{{date+week}}</div>
@@ -81,7 +81,7 @@
     text-align: center;}
   .time_div{    font-size: 35px;line-height: 60px;}
   .weui-cells{margin-top: 0!important;}
-  .vux-cell-box{    padding-top: 30px!important;padding-bottom: 30px!important;}
+  .cell_box_kq{    padding-top: 30px!important;padding-bottom: 30px!important;}
   .qd_group{margin-top: 15px;}
   .qd_group label{color: #000;
     font-size: 18px;}

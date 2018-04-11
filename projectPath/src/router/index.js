@@ -22,6 +22,11 @@ export default new Router({
           path: '/list',
           component: resolve => require(['../components/AttendanceList'], resolve),
           meta: { title: '我的考勤' }
+        },
+        {
+          path: '/leave',
+          component: resolve => require(['../components/LeaveApply'], resolve),
+          meta: { title: '请假申请' }
         }
       ]
     }
