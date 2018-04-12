@@ -27,6 +27,11 @@ export default new Router({
           path: '/leave',
           component: resolve => require(['../components/LeaveApply'], resolve),
           meta: { title: '请假申请' }
+        },
+        {
+          path: '/leavelist',
+          component: resolve => require(['../components/LeaveList'], resolve),
+          meta: { title: '申请列表' }
         }
       ]
     }

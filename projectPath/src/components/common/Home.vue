@@ -19,6 +19,11 @@
         <img slot="icon-active" src="../../assets/banner/ic_tabbar_profile_select.png">
         <span slot="label">请假申请</span>
       </tabbar-item>
+      <tabbar-item link="/leavelist" :selected="$route.path == '/leavelist'">
+        <img slot="icon" src="../../assets/banner/ic_tabbar_notification.png">
+        <img slot="icon-active" src="../../assets/banner/ic_tabbar_notification_select.png">
+        <span slot="label">请假记录</span>
+      </tabbar-item>
     </tabbar>
   </div>
 </template>

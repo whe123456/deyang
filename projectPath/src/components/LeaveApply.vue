@@ -20,13 +20,30 @@
       <!--../assets/downing.png-->
     </group>
     <group>
-      <datetime v-model="value" placeholder="请选择开始时间" clear-text="today" @on-clear="setToday":start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
-      <datetime v-model="value1" placeholder="请选择截止时间" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+      <datetime v-model="value" placeholder="请选择开始时间" @on-change="change" clear-text="today" @on-clear="setToday":start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+      <datetime v-model="value1" placeholder="请选择截止时间" @on-change="change1" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+      <cell title="申请时长" class="weui_start">
+        <div>
+          <div class="margin_bottom"><span>{{xc_date}}</span> 天 <span>{{xc_ts}}</span> 小时</div>
+          <div class="bottom_div">本次申请{{z_sq}}天</div>
+        </div>
+      </cell>
     </group>
+    <group>
+      <popup-radio title="审批人" :options="teacher_list" v-model="teacher" placeholder="请选择老师"></popup-radio>
+    </group>
+    <flexbox class="margin_top">
+      <flexbox-item>
+        <x-button type="default">保存草稿</x-button>
+      </flexbox-item>
+      <flexbox-item>
+        <x-button type="primary">提交申请</x-button>
+      </flexbox-item>
+    </flexbox>
   </div>
 </template>
 <script>
-  import { XTextarea, Group, XInput, PopupRadio, DatetimeRange, Datetime } from 'vux'
+  import { XTextarea, Group, XInput, PopupRadio, DatetimeRange, Cell, Datetime, Flexbox, FlexboxItem, XButton } from 'vux'
   import Uploader from 'vux-uploader'
   export default {
     components: {
@@ -36,10 +53,22 @@
       PopupRadio,
       DatetimeRange,
       Datetime,
-      Uploader
+      Uploader,
+      Cell,
+      Flexbox,
+      FlexboxItem,
+      XButton
     },
     data () {
       return {
+        teacher_list: [{
+          key: '1',
+          value: '事假'
+        }, {
+          key: '2',
+          value: '病假'
+        }],
+        teacher: '2',
         value: '',
         value1: '',
         option: '',
@@ -53,7 +82,12 @@
         start_date: '',
         uploadUrl: '',
         xz_img: [],
-        max_number: 3
+        max_number: 3,
+        val_date: '',
+        val_date1: '',
+        xc_date: '0',
+        xc_ts: '0',
+        z_sq: '0.00'
       }
     },
     mounted () {
@@ -93,6 +127,27 @@
         if (hh < 10) hh = '0' + hh
         if (mm < 10) mm = '0' + mm
         this.value = now.getFullYear() + '-' + cmonth + '-' + day + ' ' + hh + ':' + mm
+      },
+      change (e) {
+        this.val_date = new Date(e)
+        this.datedifference()
+      },
+      change1 (e) {
+        this.val_date1 = new Date(e)
+        this.datedifference()
+      },
+      datedifference () {
+        if (this.val_date === '' || this.val_date1 === '') {
+          return false
+        }
+        let sDate1 = Date.parse(this.val_date)
+        let sDate2 = Date.parse(this.val_date1)
+        let DateSpan = sDate2 - sDate1
+        DateSpan = Math.abs(DateSpan)
+        let IDays = Math.floor(DateSpan / (3600 * 1000))
+        this.z_sq = Math.round(parseFloat(IDays / 24) * 100) / 100
+        this.xc_date = Math.round(IDays / 24)
+        this.xc_ts = Math.round(IDays % 24)
       }
     }
   }
@@ -101,4 +156,12 @@
 <style>
   .jd_dw_div{position: absolute;
   padding: 10px 15px;    top: 0;}
+  .weui_start{    align-items: flex-start!important;}
+  .margin_bottom{margin-bottom:20px;}
+  .margin_bottom>span{color: #000;
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin: 0 10px;}
+  .bottom_div{font-size: 15px;}
+  .margin_top{margin-top: 20px;}
 </style>
