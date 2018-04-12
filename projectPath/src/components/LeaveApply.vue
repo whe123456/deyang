@@ -22,7 +22,7 @@
     <group>
       <datetime v-model="value" placeholder="请选择开始时间" @on-change="change" clear-text="today" @on-clear="setToday":start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
       <datetime v-model="value1" placeholder="请选择截止时间" @on-change="change1" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
-      <cell title="申请时长" class="weui_start">
+      <cell title="申请时长" align-items="flex-start">
         <div>
           <div class="margin_bottom"><span>{{xc_date}}</span> 天 <span>{{xc_ts}}</span> 小时</div>
           <div class="bottom_div">本次申请{{z_sq}}天</div>
@@ -156,7 +156,6 @@
 <style>
   .jd_dw_div{position: absolute;
   padding: 10px 15px;    top: 0;}
-  .weui_start{    align-items: flex-start!important;}
   .margin_bottom{margin-bottom:20px;}
   .margin_bottom>span{color: #000;
     font-size: 20px;
