@@ -2,7 +2,7 @@
   <div>
     <div class="crumbs">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item><i class="el-icon-tickets"></i> 白名单</el-breadcrumb-item>
+        <el-breadcrumb-item><i class="el-icon-tickets"></i> 班级成员</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div  v-loading="jz_loading">

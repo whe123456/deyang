@@ -15,8 +15,8 @@
             class="sr_input"
             clearable>
           </el-input>
-          <span class="demonstration">管理老师</span>
-          <el-input
+          <span class="demonstration" v-if="js_id!=1">管理老师</span>
+          <el-input v-if="js_id!=1"
             placeholder="请输入管理老师"
             v-model="formInline.GlTeacher"
             class="sr_input"
@@ -162,6 +162,11 @@ export default {
     const that = this
     const url = localStorage.getItem('url')
     this.js_id = localStorage.getItem('js_id')
+    const usersName = localStorage.getItem('ms_username')
+    if (usersName === null) {
+      that.$router.push('/Login')
+      return false
+    }
     this.address = url + 'api/export/class_list_import.php'
     getList(1, that)
   }
@@ -184,7 +189,7 @@ const getList = function (page, that) {
       that.total = res.count
       if (res.list !== false) {
         that.tableData = res.list
-        if (res.count === 1) {
+        if (res.count === 1 && that.js_id === '1') {
           that.$router.push({path: '/cuser', query: { bm: res.list[0].bj_bm }})
         }
       } else {
