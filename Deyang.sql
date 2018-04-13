@@ -61,6 +61,7 @@ CREATE TABLE `zjzz_dhbmd` (
   `sjhm` varchar(11) NOT NULL COMMENT '手机号',
   `xm` varchar(100) NOT NULL COMMENT '姓名',
   `cj_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `yz_ts` datetime DEFAULT NULL COMMENT '验证时间',
   `sf_yz` int(11) NOT NULL COMMENT '0未验证1已验证',
   `yzm` varchar(50) DEFAULT NULL COMMENT '验证码',
   `yzsj` datetime DEFAULT NULL COMMENT '验证时间',
@@ -71,7 +72,7 @@ CREATE TABLE `zjzz_dhbmd` (
 
 /*Data for the table `zjzz_dhbmd` */
 
-insert  into `zjzz_dhbmd`(`id`,`sjhm`,`xm`,`cj_time`,`sf_yz`,`yzm`,`yzsj`,`bjbm`,`xh`) values (1,'12345612345','我去我去1','2018-04-03 16:12:31',0,'','0000-00-00 00:00:00','001','002'),(7,'12345678900','测试哥','2018-04-03 17:59:43',0,'','0000-00-00 00:00:00','002','200');
+insert  into `zjzz_dhbmd`(`id`,`sjhm`,`xm`,`cj_time`,`yz_ts`,`sf_yz`,`yzm`,`yzsj`,`bjbm`,`xh`) values (1,'12345612345','我去我去1','2018-04-03 16:12:31',NULL,0,'','0000-00-00 00:00:00','001','002'),(7,'12345678900','测试哥','2018-04-03 17:59:43',NULL,0,'','0000-00-00 00:00:00','002','200');
 
 /*Table structure for table `zjzz_js` */
 
@@ -175,14 +176,12 @@ DROP TABLE IF EXISTS `zjzz_xs`;
 
 CREATE TABLE `zjzz_xs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `xh` varchar(50) DEFAULT NULL COMMENT '学号',
   `dhbmd_id` int(11) NOT NULL COMMENT '白名单ID',
   `wxid` varchar(100) DEFAULT NULL COMMENT '微信ID',
   `wxnc` varchar(50) DEFAULT NULL COMMENT '昵称',
   `create_ts` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `dhbmd` (`dhbmd_id`),
-  UNIQUE KEY `学号` (`xh`)
+  UNIQUE KEY `dhbmd` (`dhbmd_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_xs` */

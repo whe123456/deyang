@@ -39,6 +39,11 @@ export default new Router({
           meta: { title: '请假详情' }
         }
       ]
+    },
+    {
+      path: '/stu',
+      component: resolve => require(['../components/login/student.vue'], resolve),
+      meta: { title: '学生绑定' }
     }
   ]
 })
