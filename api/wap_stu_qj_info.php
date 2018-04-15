@@ -22,4 +22,5 @@ if(!$user){
 }
 $sql="SELECT zq.*,zj.xm from zjzz_qj zq,zjzz_js zj WHERE zq.id=? AND zj.js_bm=zq.js_bm";
 $info=Database::ReadoneRow($sql,$conn,array($id));
+$info['stu_xm']=$user;
 echo json_encode(array('state'=>'true','info'=>$info));

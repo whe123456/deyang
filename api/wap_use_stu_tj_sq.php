@@ -25,5 +25,5 @@ if(!$user){
 }
 $now=date('Y-m-d H:i:s');
 $sql="INSERT into zjzz_qj VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'-'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img'])));
+Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img'])));
 echo json_encode(array('state'=>'true','msg'=>'申请已提交'));
