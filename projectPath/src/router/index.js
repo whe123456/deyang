@@ -44,6 +44,26 @@ export default new Router({
       path: '/stu',
       component: resolve => require(['../components/login/student.vue'], resolve),
       meta: { title: '学生绑定' }
+    },
+    {
+      path: '/teacher',
+      component: resolve => require(['../components/login/teacher.vue'], resolve),
+      meta: { title: '教师绑定' }
+    },
+    {
+      path: '/teachlist',
+      component: resolve => require(['../components/teacher/LeaveList.vue'], resolve),
+      meta: { title: '申请列表' }
+    },
+    {
+      path: '/leavesp',
+      component: resolve => require(['../components/teacher/LeaveSp.vue'], resolve),
+      meta: { title: '请假详情' }
+    },
+    {
+      path: '/leaveteachinfo',
+      component: resolve => require(['../components/LeaveInfo.vue'], resolve),
+      meta: { title: '请假详情' }
     }
   ]
 })

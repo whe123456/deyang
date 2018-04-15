@@ -1,11 +1,9 @@
 <template>
   <div>
     <div v-wechat-title="$route.meta.title"></div>
-    <popup-radio :options="options" v-model="option" placeholder="请选择类型"></popup-radio>
-    <div class="jd_dw_div">类型</div>
     <group class="td_group">
-      <x-input placeholder="请输入请假标题"></x-input>
-      <x-textarea :max="200" name="description" placeholder="请输入请假内容"></x-textarea>
+      <x-input placeholder="请输入请假标题" v-model="qj_bt"></x-input>
+      <x-textarea :max="200" name="description" v-model="qj_nr" placeholder="请输入请假内容"></x-textarea>
       <uploader
         :max="max_number"
         :images="xz_img"
@@ -14,13 +12,10 @@
         name="img"
         size="small"
         @preview="previewMethod"
-        @add-image="addImageMethod"
-        @remove-image="removeImageMethod"
       ></uploader>
-      <!--../assets/downing.png-->
     </group>
     <group>
-      <datetime v-model="value" placeholder="请选择开始时间" @on-change="change" clear-text="today" @on-clear="setToday":start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+      <datetime v-model="value" placeholder="请选择开始时间" @on-change="change" clear-text="today" @on-clear="setToday" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
       <datetime v-model="value1" placeholder="请选择截止时间" @on-change="change1" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
       <cell title="申请时长" align-items="flex-start">
         <div>
@@ -34,20 +29,24 @@
     </group>
     <flexbox class="margin_top">
       <flexbox-item>
-        <x-button type="default">保存草稿</x-button>
+        <x-button type="default" @click.native="saveinfo">保存草稿</x-button>
       </flexbox-item>
       <flexbox-item>
-        <x-button type="primary">提交申请</x-button>
+        <x-button type="primary" @click.native="getinfo">提交申请</x-button>
       </flexbox-item>
     </flexbox>
+    <toast v-model="show" :text="toasttext"></toast>
   </div>
 </template>
 <script>
-  import { XTextarea, Group, XInput, PopupRadio, DatetimeRange, Cell, Datetime, Flexbox, FlexboxItem, XButton } from 'vux'
+  /* eslint-disable no-array-constructor */
+
+  import { XTextarea, Group, XInput, PopupRadio, DatetimeRange, Cell, Datetime, Flexbox, FlexboxItem, XButton, Toast } from 'vux'
   import Uploader from 'vux-uploader'
   export default {
     components: {
       XTextarea,
+      Toast,
       Group,
       XInput,
       PopupRadio,
@@ -61,14 +60,10 @@
     },
     data () {
       return {
-        teacher_list: [{
-          key: '1',
-          value: '事假'
-        }, {
-          key: '2',
-          value: '病假'
-        }],
-        teacher: '2',
+        teacher_list: [],
+        teacher: '',
+        qj_bt: '',
+        qj_nr: '',
         value: '',
         value1: '',
         option: '',
@@ -87,34 +82,97 @@
         val_date1: '',
         xc_date: '0',
         xc_ts: '0',
-        z_sq: '0.00'
+        z_sq: '0.00',
+        show: false,
+        toasttext: '111'
       }
     },
-    mounted () {
+    created () {
       let now = new Date()
       let year = now.getFullYear()      // 年
       let month = now.getMonth() + 1     // 月
       let day = now.getDate()            // 日
-
       let clock = year + '-'
-
       if (month < 10) clock += '0'
-
       clock += month + '-'
-
       if (day < 10) clock += '0'
       clock += day
       this.start_date = clock
+      const url = localStorage.getItem('url')
+      this.uploadUrl = url + 'api/upload/upload.php'
+      const that = this
+      const wxid = localStorage.getItem('wxid')
+      const arr = localStorage.getItem('qj_arr')
+      if (arr !== null) {
+        const Arr = JSON.parse(arr)
+        console.log(Arr)
+        this.qj_bt = Arr['qj_bt']
+        this.qj_nr = Arr['qj_nr']
+        this.xz_img = Arr['xz_img']
+        this.value = Arr['value']
+        this.value1 = Arr['value1']
+        this.val_date = Arr['value']
+        this.val_date1 = Arr['value1']
+        this.teacher = Arr['teacher']
+        this.datedifference()
+      }
+      that.axios.get(url + 'api/wap_stu_teacher.php', { wxid: wxid }, function (res) {
+        if (res.state === 'true') {
+          that.teacher_list = res.list
+        } else {
+          that.$vux.alert.show({
+            title: '提示',
+            content: res.msg
+          })
+        }
+      })
     },
     methods: {
+      getinfo () {
+        const Arr = {
+          'qj_bt': this.qj_bt,
+          'qj_nr': this.qj_nr,
+          'xz_img': this.xz_img,
+          'value': this.value,
+          'value1': this.value1,
+          'teacher': this.teacher
+        }
+        const that = this
+        const wxid = localStorage.getItem('wxid')
+        const url = localStorage.getItem('url')
+        that.axios.get(url + 'api/wap_use_stu_tj_sq.php', { wxid: wxid, array: Arr }, function (res) {
+          if (res.state === 'true') {
+            that.toasttext = '申请已提交'
+            that.show = true
+            localStorage.removeItem('qj_arr')
+            that.option = ''
+            that.qj_bt = ''
+            that.qj_nr = ''
+            that.xz_img = ''
+            that.teacher = ''
+          } else {
+            that.$vux.alert.show({
+              title: '提示',
+              content: res.msg
+            })
+          }
+        })
+      },
+      saveinfo () {
+        const Arr = {
+          'qj_bt': this.qj_bt,
+          'qj_nr': this.qj_nr,
+          'xz_img': this.xz_img,
+          'value': this.value,
+          'value1': this.value1,
+          'teacher': this.teacher
+        }
+        localStorage.setItem('qj_arr', JSON.stringify(Arr))
+        this.toasttext = '保存成功'
+        this.show = true
+      },
       previewMethod (e) {
         console.log('change', e)
-      },
-      addImageMethod (val) {
-        console.log('change', val)
-      },
-      removeImageMethod (val) {
-
       },
       setToday () {
         let now = new Date()

@@ -10,17 +10,14 @@ include_once $dii_ctx_root_dir . '/include/code.php';
 if(!isset($_SESSION)){
     session_start();
 }
-checkRequestKeyHtml("username", "用户名不能为空");
-$id=empty($_REQUEST['id'])?'':$_REQUEST['id'];
-if($id==1||$id==4){
-	alertExitHtml("该权限无法修改");
-}
-$sql="SELECT count(*) from zjzz_js where js_id='$id'";
+checkRequestKeyHtml("wxid", "用户信息不能为空");
+$wxid = $_REQUEST['wxid'];
 $conn=Database::Connect();
-$count=Database::ReadoneStr($sql,$conn,array());
-if($count>0){
-    alertExit('部分老师角色为此角色，无法删除，请修改后再试');
+$sql="SELECT zdb.bjbm FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
+$user=Database::ReadoneStr($sql,$conn,array($wxid));
+if(!$user){
+	alertExitHtml("无此学号信息");
 }
-$sql="DELETE FROM zjzz_juese WHERE id=?";
-Database::InsertOrUpdate($sql,$conn,array($id));
-echo json_encode(array('state'=>'true'));
+$sql="SELECT zj.js_bm as `key`,zj.xm as `value` from zjzz_bj zb,zjzz_js zj where zb.bj_bm=? and zb.js_bm=zj.js_bm";
+$date=Database::Readall($sql,$conn,array($user));
+echo json_encode(array('state'=>'true','list'=>$date));

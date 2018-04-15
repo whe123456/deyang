@@ -1,8 +1,9 @@
 <template>
   <div>
-    <group title="学生注册">
-      <x-input title='学号' :required="true" v-model="xh"></x-input>
+    <group title="教师注册">
+      <x-input title='教师编码' :required="true" v-model="xh"></x-input>
       <x-input title='姓名' :required="true" v-model="name"></x-input>
+      <x-input title='登录密码' :required="true" v-model="dl_mm"></x-input>
       <x-input title='手机号码' :required="true" v-model="tel" mask="999 9999 9999" :max="13" is-type="china-mobile"></x-input>
       <x-input title='验证码' :required="true" v-model="yzm" :min="6" :max="6">
         <x-button slot="right" mini :text="change_text" :disabled="xs_yf" @click.native="change_text_fun" type="primary"></x-button>
@@ -18,6 +19,8 @@
   import { XInput, Cell, Group, XButton, Box } from 'vux'
 
   export default {
+    mounted () {
+    },
     components: {
       XInput,
       Group,
@@ -42,44 +45,11 @@
         if (yzm.length < 6 || yzm.length > 6) {
           return false
         }
-        const that = this
-        const url = localStorage.getItem('url')
-        that.axios.get(url + 'api/wap_use_stu_yzm.php', { xh: xh, name: name, tel: tel, yzm: yzm }, function (res) {
-          if (res.state === 'true') {
-            that.$router.push({path: '/'})
-          } else {
-            that.$vux.alert.show({
-              title: '提示',
-              content: res.msg
-            })
-          }
-        })
+        this.$router.push({path: '/'})
       },
       change_text_fun () {
-        const xh = this.xh
-        const name = this.name
-        let tel = this.tel
-        if (xh === '' || name === '' || tel === '') {
-          return false
-        }
-        tel = tel.replace(/\s+/g, '')
-        const myreg = /^[1][3,4,5,7,8][0-9]{9}$/
-        if (!myreg.test(tel)) {
-          return false
-        }
-        const that = this
-        const url = localStorage.getItem('url')
-        that.axios.get(url + 'api/wap_get_stu_yzm.php', { xh: xh, name: name, tel: tel }, function (res) {
-          if (res.state === 'true') {
-            that.xs_yf = true
-            that.change_ms()
-          } else {
-            that.$vux.alert.show({
-              title: '提示',
-              content: res.msg
-            })
-          }
-        })
+        this.xs_yf = true
+        this.change_ms()
       },
       change_ms () {
         if (this.ms > '0') {
@@ -104,7 +74,8 @@
         yzm: '',
         xs_yf: false,
         change_text: '发送验证码',
-        ms: 60
+        ms: 60,
+        dl_mm: ''
       }
     }
   }

@@ -15,6 +15,9 @@ if(!isset($_SESSION)){
 }
 checkRequestKeyHtml("username", "用户名不能为空");
 $id=empty($_REQUEST['id'])?'':$_REQUEST['id'];
+if($id==1||$id==4){
+    alertExitHtml("该权限无法修改");
+}
 $form=empty($_REQUEST['form'])?json_encode(array()):$_REQUEST['form'];
 $form=json_decode($form,true);
 if(count($form)==0){

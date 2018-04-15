@@ -7,6 +7,8 @@ import api from './utils/api'
 import router from './router'
 import Vuex from 'vuex'
 import Calendar from 'vue-calendar-component'
+import { AlertPlugin } from 'vux'
+Vue.use(AlertPlugin)
 Vue.use(require('vue-wechat-title'))
 Vue.use(Calendar)
 Vue.use(Vuex)
