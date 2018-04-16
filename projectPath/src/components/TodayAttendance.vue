@@ -32,14 +32,14 @@
   /* eslint-disable no-cond-assign,no-constant-condition */
 
   import {Toast, Group, Cell, CellBox} from 'vux'
-  import weixin from '../../static/js/jweixin-1.2.0.js'
+  import wx from 'weixin-js-sdk'
   export default {
     components: {
       Toast,
       Group,
       Cell,
       CellBox,
-      weixin
+      wx
     },
     data () {
       return {
@@ -66,23 +66,24 @@
       const url = localStorage.getItem('url')
       that.axios.get(url + 'api/wap_use_stu_today_qd.php', { wxid: wxid }, function (res) {
         if (res.state === 'true') {
-          weixin.config({
+          wx.config({
             debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: res.config.wxapp, // 必填，企业号的唯一标识，此处填写企业号corpid
             timestamp: res.config.timestamp, // 必填，生成签名的时间戳
             nonceStr: res.config.Str, // 必填，生成签名的随机串
             signature: res.config.sign, // 必填，签名，见附录1
-            jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            jsApiList: [ 'getLocation' ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
           })
-          // weixin.getLocation({
-          //   type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-          //   success: function (res) {
-          //     var latitude = res.latitude // 纬度，浮点数，范围为90 ~ -90
-          //     var longitude = res.longitude // 经度，浮点数，范围为180 ~ -180。
-          //     var speed = res.speed // 速度，以米/每秒计
-          //     var accuracy = res.accuracy // 位置精度
-          //   }
-          // })
+          wx.getLocation({
+            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+              // console.log(res)
+              // var latitude = res.latitude // 纬度，浮点数，范围为90 ~ -90
+              // var longitude = res.longitude // 经度，浮点数，范围为180 ~ -180。
+              // var speed = res.speed // 速度，以米/每秒计
+              // var accuracy = res.accuracy // 位置精度
+            }
+          })
           if (res.jrkq > 0) {
             that.qd_cell = 'qt_cell'
             that.qd_wb = '已签到'

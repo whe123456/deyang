@@ -35,7 +35,9 @@ if(isset($_SESSION['ticket']) && !empty($_SESSION['ticket'])){
     $_SESSION['ticket']=$ticket;
     $_SESSION['access_token']=$access_token;
 }
+echo $ticket;
 $url='http://192.168.0.188:8880/projectPath/index.html';
+$url='http://127.0.0.1:8180/projectPath/index.html';
 $time=time();
 $nons=getRandstr();
 

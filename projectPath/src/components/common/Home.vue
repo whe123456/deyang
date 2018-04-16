@@ -37,9 +37,9 @@
       TabbarItem
     },
     mounted () {
-      // localStorage.setItem('url', 'http://127.0.0.1:8180/')
+      localStorage.setItem('url', 'http://192.168.0.105:8180/')
       localStorage.setItem('wxid', '111')
-      localStorage.setItem('url', 'http://192.168.0.188:8880/')
+      // localStorage.setItem('url', 'http://192.168.0.188:8880/')
     }
   }
 </script>
