@@ -1,7 +1,7 @@
 <template>
   <div>
     <group title="教师注册">
-      <x-input title='教师编码' :required="true" v-model="xh"></x-input>
+      <x-input title='教师编码' :required="true" v-model="js_bm"></x-input>
       <x-input title='姓名' :required="true" v-model="name"></x-input>
       <x-input title='登录密码' :required="true" v-model="dl_mm"></x-input>
       <x-input title='手机号码' :required="true" v-model="tel" mask="999 9999 9999" :max="13" is-type="china-mobile"></x-input>
@@ -20,6 +20,8 @@
 
   export default {
     mounted () {
+      // localStorage.setItem('url', 'http://127.0.0.1:8180/')
+      localStorage.setItem('url', 'http://192.168.0.188:8880/')
     },
     components: {
       XInput,
@@ -30,11 +32,12 @@
     },
     methods: {
       zc_bmd () {
-        const xh = this.xh
+        const jsbm = this.js_bm
         const name = this.name
         let tel = this.tel
+        const dlmm = this.dl_mm
         const yzm = this.yzm
-        if (xh === '' || name === '' || tel === '' || yzm === '') {
+        if (jsbm === '' || name === '' || tel === '' || yzm === '' || dlmm === '') {
           return false
         }
         tel = tel.replace(/\s+/g, '')
@@ -45,11 +48,45 @@
         if (yzm.length < 6 || yzm.length > 6) {
           return false
         }
-        this.$router.push({path: '/'})
+        const that = this
+        const url = localStorage.getItem('url')
+        that.axios.get(url + 'api/wap_use_teacher_yzm.php', { js_bm: jsbm, name: name, tel: tel, yzm: yzm, dlmm: dlmm }, function (res) {
+          if (res.state === 'true') {
+            that.$router.push({path: '/teachlist'})
+          } else {
+            that.$vux.alert.show({
+              title: '提示',
+              content: res.msg
+            })
+          }
+        })
       },
       change_text_fun () {
-        this.xs_yf = true
-        this.change_ms()
+        const jsbm = this.js_bm
+        const name = this.name
+        const dlmm = this.dl_mm
+        let tel = this.tel
+        if (jsbm === '' || name === '' || tel === '' || dlmm === '') {
+          return false
+        }
+        tel = tel.replace(/\s+/g, '')
+        const myreg = /^[1][3,4,5,7,8][0-9]{9}$/
+        if (!myreg.test(tel)) {
+          return false
+        }
+        const that = this
+        const url = localStorage.getItem('url')
+        that.axios.get(url + 'api/wap_get_teacher_yzm.php', { js_bm: jsbm, name: name, tel: tel }, function (res) {
+          if (res.state === 'true') {
+            that.xs_yf = true
+            that.change_ms()
+          } else {
+            that.$vux.alert.show({
+              title: '提示',
+              content: res.msg
+            })
+          }
+        })
       },
       change_ms () {
         if (this.ms > '0') {
@@ -68,7 +105,7 @@
     },
     data () {
       return {
-        xh: '',
+        js_bm: '',
         name: '',
         tel: '',
         yzm: '',

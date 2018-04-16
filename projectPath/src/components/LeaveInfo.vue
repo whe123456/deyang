@@ -27,7 +27,7 @@
       <cell title="审批状态" :value="spzt"></cell>
       <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
     </group>
-    <x-button style="margin-top: 15px;" type="primary" link="BACK">Back</x-button>
+    <x-button style="margin-top: 15px;" type="primary" link="BACK">确认</x-button>
   </div>
 </template>
 <script>
@@ -95,9 +95,16 @@
       const that = this
       const url = localStorage.getItem('url')
       const wxid = localStorage.getItem('wxid')
-      this.sheight = document.documentElement.clientHeight - 55 + 'px'
+      const type = this.$route.query.type
+      if (type === null || type === undefined) {
+        this.sheight = document.documentElement.clientHeight - 55 + 'px'
+      }
       that.axios.get(url + 'api/wap_stu_qj_info.php', { id: id, wxid: wxid }, function (res) {
         if (res.state === 'true') {
+          if (res.info.ewm_url !== '' && res.info.ewm_url !== null) {
+            const ewmarr = [{'src': res.info.ewm_url}]
+            that.ewm_list = ewmarr
+          }
           that.title = res.info.qj_yy
           that.content = res.info.qj_nr
           if (res.info.sq_img !== '' && res.info.sq_img !== null) {

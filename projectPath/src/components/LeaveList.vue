@@ -80,7 +80,7 @@
         that.axios.get(url + 'api/wap_stu_qj_list.php', { wxid: wxid, minid: minid }, function (res) {
           that.showloading = false
           if (res.state === 'true') {
-            if (res && res.length === 0) {
+            if (res.list && res.list.length === 0) {
               that.scrollerStatus.pullupStatus = 'disabled'
               that.scrollerStatus.pulldownStatus = 'disabled'
             } else {

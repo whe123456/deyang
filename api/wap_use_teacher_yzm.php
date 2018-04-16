@@ -10,25 +10,27 @@ include_once $dii_ctx_root_dir . '/include/code.php';
 if(!isset($_SESSION)){
     session_start();
 }
-checkRequestKeyHtml("xh", "学号不能为空");
+checkRequestKeyHtml("js_bm", "教师编码不能为空");
 checkRequestKeyHtml("name", "姓名不能为空");
 checkRequestKeyHtml("tel", "手机号码不能为空");
 checkRequestKeyHtml("yzm", "验证码不能为空");
-$xh = $_REQUEST['xh'];
+checkRequestKeyHtml("dlmm", "登录密码不能为空");
+$js_bm = $_REQUEST['js_bm'];
 $name = $_REQUEST['name'];
 $tel = $_REQUEST['tel'];
 $yzm = $_REQUEST['yzm'];
+$dlmm = $_REQUEST['dlmm'];
 $conn=Database::Connect();
-$sql="SELECT * from zjzz_dhbmd where xh=?";
-$user=Database::ReadoneRow($sql,$conn,array($xh));
+$sql="SELECT * from zjzz_js where js_bm=?";
+$user=Database::ReadoneRow($sql,$conn,array($js_bm));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此教师编号信息");
 }
 if($name!=$user['xm']){
-	alertExitHtml("学生姓名信息错误");
+	alertExitHtml("教师姓名信息错误");
 }
 if($tel!=$user['sjhm']){
-	alertExitHtml("学生电话信息错误");
+	alertExitHtml("教师电话信息错误");
 }
 $now=date('Y-m-d H:i:s');
 $min_ago=date('Y-m-d H:i:s',strtotime( '-10 Minute'));
@@ -42,13 +44,7 @@ if($info['create_ts']<$min_ago){
 }
 $sql="UPDATE zjzz_yzm set is_use=1 where sjhm=?";
 @Database::Update_pre($sql,$conn,array($tel));
-$bmd_sql="UPDATE zjzz_dhbmd SET yz_ts=?,sf_yz='1',yzm=?,yzsj=? where xh=?";
-$arr=array($now,$yzm,$now,$xh);
+$bmd_sql="UPDATE zjzz_js SET dl_mm=?,wxid=?,wxnc=?,zc_ts=?,ewm_url=?,sf_zc=? WHERE js_bm=?";
+$arr=array(md5($dlmm),'','',$now,'','1',$js_bm);
 @Database::Update_pre($bmd_sql,$conn,$arr);
-$xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
-$have=Database::ReadoneStr($xs_sql,$conn,array($info['id']));
-if($have==0){
-	$sql="INSERT INTO zjzz_xs VALUES (?,?,?,?,?)";
-	@Database::InsertOrUpdate($sql,$conn,array(NULL,$info['id'],'','',$now));
-}
 echo json_encode(array('state'=>'true'));

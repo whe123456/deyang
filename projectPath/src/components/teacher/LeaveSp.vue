@@ -2,7 +2,6 @@
   <div>
     <div v-wechat-title="$route.meta.title"></div>
     <group class="td_group">
-      <cell title="类型" :value="info"></cell>
       <cell title="请假标题" :value="title"></cell>
       <cell title="申请人" :value="str"></cell>
       <cell title="审批人" :value="teacher"></cell>
@@ -22,12 +21,13 @@
       <popup-radio title="审批状态" :options="optionzt" v-model="spzt" placeholder="是否同意"></popup-radio>
       <x-textarea :max="50" v-model="spyj" placeholder="审批意见" ></x-textarea>
     </group>
-    <x-button style="margin-top: 15px;" type="primary">确认</x-button>
-    <x-button style="margin-top: 15px;" type="default" link="BACK">Back</x-button>
+    <x-button style="margin-top: 15px;" type="primary" @click.native="getinfo">确认</x-button>
+    <x-button style="margin-top: 15px;" type="default" link="BACK">返回</x-button>
+    <toast v-model="show1" :text="toasttext" @on-hide="onHide"></toast>
   </div>
 </template>
 <script>
-  import { XButton, Previewer, TransferDom, Group, Cell, PopupRadio, XTextarea } from 'vux'
+  import { XButton, Previewer, TransferDom, Group, Cell, PopupRadio, XTextarea, Toast } from 'vux'
   export default {
     components: {
       Previewer,
@@ -35,7 +35,8 @@
       Cell,
       XButton,
       PopupRadio,
-      XTextarea
+      XTextarea,
+      Toast
     },
     directives: {
       TransferDom
@@ -49,19 +50,9 @@
           key: '-1',
           value: '不同意'
         }],
-        info: '病假',
-        title: '爱是一道过',
-        content: '爱是一道过爱是一道过爱是一道过爱是一道过',
-        list: [{
-          msrc: 'http://ww1.sinaimg.cn/thumbnail/663d3650gy1fplwwcynw2j20p00b4js9.jpg',
-          src: 'http://ww1.sinaimg.cn/large/663d3650gy1fplwwcynw2j20p00b4js9.jpg'
-        }, {
-          msrc: 'http://ww1.sinaimg.cn/thumbnail/663d3650gy1fplwwcynw2j20p00b4js9.jpg',
-          src: 'http://ww1.sinaimg.cn/large/663d3650gy1fplwwcynw2j20p00b4js9.jpg'
-        }, {
-          msrc: 'http://ww1.sinaimg.cn/thumbnail/663d3650gy1fplwwcynw2j20p00b4js9.jpg',
-          src: 'http://ww1.sinaimg.cn/large/663d3650gy1fplwwcynw2j20p00b4js9.jpg'
-        }],
+        title: '',
+        content: '',
+        list: [],
         options: {
           getThumbBoundsFn (index) {
             // find thumbnail element
@@ -77,22 +68,73 @@
             // http://javascript.info/tutorial/coordinates
           }
         },
-        start_ts: '2018-04-18 16:16:16',
-        end_ts: '2018-04-20 16:16:16',
-        str: '小王',
-        teacher: '老王',
+        start_ts: '',
+        end_ts: '',
+        str: '',
+        teacher: '',
         spzt: '',
-        spyj: '已同意'
+        spyj: '',
+        show1: false,
+        toasttext: ''
       }
     },
-    mounted () {
+    created () {
+      const id = this.$route.query.id
+      if (id === null) {
+        history.back()
+      }
+      const that = this
+      const url = localStorage.getItem('url')
+      const wxid = localStorage.getItem('wxid')
+      this.sheight = document.documentElement.clientHeight - 55 + 'px'
+      that.axios.get(url + 'api/wap_stu_qj_info.php', { id: id, wxid: wxid }, function (res) {
+        if (res.state === 'true') {
+          that.title = res.info.qj_yy
+          that.content = res.info.qj_nr
+          if (res.info.sq_img !== '' && res.info.sq_img !== null) {
+            const str = res.info.sq_img.replace(/url/g, 'src')
+            that.list = JSON.parse(str)
+          }
+          var arr = res.info.qj_sj
+          arr = arr.split('.')
+          that.start_ts = arr[0]
+          that.end_ts = arr[1]
+          that.teacher = res.info.xm
+          that.str = res.info.stu_xm
+        } else {
+          that.$vux.alert.show({
+            title: '提示',
+            content: res.msg
+          })
+        }
+      })
     },
     methods: {
       show (index) {
         this.$refs.previewer.show(index)
       },
-      show1 (index) {
-        this.$refs.previewer_ewm.show(index)
+      getinfo () {
+        if (this.spzt === '') {
+          return false
+        }
+        const id = this.$route.query.id
+        const that = this
+        const url = localStorage.getItem('url')
+        const wxid = localStorage.getItem('wxid')
+        that.axios.get(url + 'api/wap_teacher_check_info.php', { id: id, wxid: wxid, zt: this.spzt, yj: this.spyj }, function (res) {
+          if (res.state === 'true') {
+            that.toasttext = '已审批申请'
+            that.show1 = true
+          } else {
+            that.$vux.alert.show({
+              title: '提示',
+              content: res.msg
+            })
+          }
+        })
+      },
+      onHide () {
+        history.back()
       }
     }
   }

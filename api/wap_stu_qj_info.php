@@ -12,15 +12,18 @@ if(!isset($_SESSION)){
 }
 checkRequestKeyHtml("wxid", "用户信息不能为空");
 $wxid = $_REQUEST['wxid'];
-checkRequestKeyHtml("wxid", "请假信息不能为空");
+checkRequestKeyHtml("id", "请假信息不能为空");
 $id = $_REQUEST['id'];
 $conn=Database::Connect();
-$sql="SELECT zdb.xm FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
-$user=Database::ReadoneStr($sql,$conn,array($wxid));
-if(!$user){
-	alertExitHtml("无此学号信息");
-}
 $sql="SELECT zq.*,zj.xm from zjzz_qj zq,zjzz_js zj WHERE zq.id=? AND zj.js_bm=zq.js_bm";
 $info=Database::ReadoneRow($sql,$conn,array($id));
+if(!$info){
+    alertExitHtml("无此请假信息");
+}
+$sql="SELECT xm FROM zjzz_dhbmd WHERE xh=?";
+$user=Database::ReadoneStr($sql,$conn,array($info['xs_id']));
+if(!$user){
+    alertExitHtml("无此学号信息");
+}
 $info['stu_xm']=$user;
 echo json_encode(array('state'=>'true','info'=>$info));

@@ -340,3 +340,24 @@ function GetData($val)
     $n = intval(($val - 25569) * 3600 * 24);
     return gmdate('Y-m-d H:i:s', $n);
 }
+//生成二维码引用phpqrcode
+function scerweima($value=''){
+    $errorCorrectionLevel = 'L';    //容错级别
+    $matrixPointSize = 5;           //生成图片大小
+
+    //生成二维码图片
+    $filename = 'qrcode/'.date('YmdHis').rand(0,999999).'.png';
+    QRcode::png($value,$filename , $errorCorrectionLevel, $matrixPointSize, 2);
+
+    return $filename;
+}
+
+//微信随机数
+function getRandstr($length = 16){
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    $str = "";
+    for ($i = 0; $i < $length; $i++) {
+        $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+    }
+    return $str;
+}
