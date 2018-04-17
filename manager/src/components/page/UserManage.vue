@@ -64,10 +64,10 @@
           prop="zc_ts"
           label="注册时间">
         </el-table-column>
-        <el-table-column
-          prop="ewm_url"
-          label="二维码">
-        </el-table-column>
+        <!--<el-table-column-->
+          <!--prop="ewm_url"-->
+          <!--label="二维码">-->
+        <!--</el-table-column>-->
         <el-table-column
           prop="coin"
           label="操作">

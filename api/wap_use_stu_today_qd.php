@@ -7,6 +7,7 @@ include_once dirname(__FILE__) . '/../config/setting.php';
 include_once($dii_ctx_root_dir . '/include/function.php');
 include_once $dii_ctx_root_dir . '/include/class.Database.php';
 include_once $dii_ctx_root_dir . '/include/code.php';
+include_once $dii_ctx_root_dir.'/include/wx_function.php';
 if(!isset($_SESSION)){
     session_start();
 }
@@ -35,17 +36,15 @@ $jrkq=Database::ReadoneStr($sql,$conn,array($user['xh']));
 //    $_SESSION['ticket']=$ticket;
 //    $_SESSION['access_token']=$access_token;
 //}
-$url=$url.'#/today';
-//$url='http://127.0.0.1:8180/projectPath/index.html';
-$time=time();
-$nons=getRandstr();
-
-$re_data['noncestr'] = $nons;
-$re_data['url'] = $url;
-$re_data['timestamp'] =$time;
-$re_data['ticket'] =$ticket;
-
-$string = "jsapi_ticket=".$ticket."&noncestr=".$nons."&timestamp=".$time."&url=".$url."";
-$sign = sha1($string);
-//'zmkq'=>$zmkq,
-echo json_encode(array('state'=>'true','jrkq'=>$jrkq,'str'=>$str,'ewm_url'=>$user['ewm_url'],'config'=>array('wxapp'=>$appid,'timestamp'=>$time,'Str'=>$nons,'sign'=>$sign)));
+if(empty($_SESSION['ticket'])) {
+    $wx = new JSSDK($appid, $secret);
+    $ticket = $wx->getSignPackage();
+    $_SESSION['ticket']=$ticket;
+}else{
+    $ticket=$_SESSION['ticket'];
+}
+$time=$ticket['timestamp'];
+$nonceStr=$ticket['nonceStr'];
+$url=$ticket['url'];
+$sign=sha1('jsapi_ticket='.$ticket['jsapi_ticket'].'&noncestr='.$nonceStr.'&timestamp='.$time.'&url='.$url);
+echo json_encode(array('state'=>'true','jrkq'=>$jrkq,'str'=>$str,'ewm_url'=>$user['ewm_url'],'config'=>array('wxapp'=>$appid,'timestamp'=>$time,'Str'=>$nonceStr,'sign'=>$sign)));

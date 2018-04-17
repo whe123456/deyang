@@ -27,11 +27,6 @@ if (isset($_GET['code'])){
 
     $_SESSION['wx_oauth2']=$api2data;
 
-    $json = file_get_contents('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$api1_arry['access_token'].'&type=jsapi');
-    $data = json_decode($json,true);
-    $ticket = $data['ticket'];
-    $_SESSION['ticket']=$ticket;
-
 
 }else{
     header("Location:".sprintf($urlwx,$url));exit;
