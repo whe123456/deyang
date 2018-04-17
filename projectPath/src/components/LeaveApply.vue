@@ -103,7 +103,7 @@
       const that = this
       const wxid = localStorage.getItem('wxid')
       const arr = localStorage.getItem('qj_arr')
-      if (arr !== null) {
+      if (arr !== undefined) {
         const Arr = JSON.parse(arr)
         console.log(Arr)
         this.qj_bt = Arr['qj_bt']

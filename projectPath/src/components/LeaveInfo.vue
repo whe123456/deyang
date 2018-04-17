@@ -89,14 +89,14 @@
     },
     created () {
       const id = this.$route.query.id
-      if (id === null) {
+      if (id === undefined) {
         history.back()
       }
       const that = this
       const url = localStorage.getItem('url')
       const wxid = localStorage.getItem('wxid')
       const type = this.$route.query.type
-      if (type === null || type === undefined) {
+      if (type === undefined || type === undefined) {
         this.sheight = document.documentElement.clientHeight - 55 + 'px'
       }
       that.axios.get(url + 'api/wap_stu_qj_info.php', { id: id, wxid: wxid }, function (res) {

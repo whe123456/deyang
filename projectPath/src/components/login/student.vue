@@ -1,6 +1,6 @@
 <template>
   <div>
-    <group title="学生注册">
+    <group :title="xs_info">
       <x-input title='学号' :required="true" v-model="xh"></x-input>
       <x-input title='姓名' :required="true" v-model="name"></x-input>
       <x-input title='手机号码' :required="true" v-model="tel" mask="999 9999 9999" :max="13" is-type="china-mobile"></x-input>
@@ -44,7 +44,8 @@
         }
         const that = this
         const url = localStorage.getItem('url')
-        that.axios.get(url + 'api/wap_use_stu_yzm.php', { xh: xh, name: name, tel: tel, yzm: yzm }, function (res) {
+        const wxid = localStorage.getItem('wxid')
+        that.axios.get(url + 'api/wap_use_stu_yzm.php', { xh: xh, name: name, tel: tel, yzm: yzm, wxid: wxid }, function (res) {
           if (res.state === 'true') {
             that.$router.push({path: '/'})
           } else {
@@ -104,8 +105,30 @@
         yzm: '',
         xs_yf: false,
         change_text: '发送验证码',
-        ms: 60
+        ms: 60,
+        xs_info: '学生注册'
       }
+    },
+    mounted () {
+      const url = this.$route.query.url
+      if (url !== undefined) {
+        localStorage.setItem('url', url)
+      }
+      const wxid = this.$route.query.wxid
+      if (wxid !== undefined) {
+        localStorage.setItem('wxid', wxid)
+      }
+      const that = this
+      const uri = localStorage.getItem('url')
+      const wid = localStorage.getItem('wxid')
+      that.axios.get(uri + 'api/wap_get_stu_info.php', { wxid: wid }, function (res) {
+        if (res.state === 'true') {
+          that.xh = res.data.xh
+          that.name = res.data.xm
+          that.tel = res.data.sjhm
+          that.xs_info = '验证信息'
+        }
+      })
     }
   }
 </script>

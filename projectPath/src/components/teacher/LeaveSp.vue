@@ -80,7 +80,7 @@
     },
     created () {
       const id = this.$route.query.id
-      if (id === null) {
+      if (id === undefined) {
         history.back()
       }
       const that = this

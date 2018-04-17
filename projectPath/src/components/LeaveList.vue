@@ -54,6 +54,14 @@
       }
     },
     created () {
+      const url = this.$route.query.url
+      if (url !== undefined) {
+        localStorage.setItem('url', url)
+      }
+      const wxid = this.$route.query.wxid
+      if (wxid !== undefined) {
+        localStorage.setItem('wxid', wxid)
+      }
       this.get_list()
     },
     methods: {

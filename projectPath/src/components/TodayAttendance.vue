@@ -18,9 +18,17 @@
         </div>
       </cell>
       <!--<cell class="qt_cell" title="签退" inline-desc='17:00' value="签退"></cell>-->
-      <cell :class="zm_cell" title="周末签到">
-        <div @click="zm_qd">
-          {{zm_wb}}
+      <!--<cell :class="zm_cell" title="周末签到">-->
+        <!--<div @click="zm_qd">-->
+          <!--{{zm_wb}}-->
+        <!--</div>-->
+      <!--</cell>-->
+      <cell title="二维码图片" align-items="flex-start" primary="content" >
+        <div>
+          <img class="previewer-demo-imgs" v-for="(item, index) in ewm_list" :src="item.src" width="100" @click="show1(index)">
+          <div>
+            <previewer :list="ewm_list" ref="previewer_ewm" :options="options_ewm"></previewer>
+          </div>
         </div>
       </cell>
     </group>
@@ -29,9 +37,8 @@
   </div>
 </template>
 <script>
-  /* eslint-disable no-cond-assign,no-constant-condition */
-
-  import {Toast, Group, Cell, CellBox} from 'vux'
+  /* eslint-disable no-cond-assign,no-constant-condition,standard/object-curly-even-spacing */
+  import {Toast, Group, Cell, CellBox, Previewer } from 'vux'
   import wx from 'weixin-js-sdk'
   export default {
     components: {
@@ -39,6 +46,7 @@
       Group,
       Cell,
       CellBox,
+      Previewer,
       wx
     },
     data () {
@@ -53,45 +61,66 @@
         qd_wb: '签到',
         zm_wb: '签到',
         show: false,
-        toasttext: '111'
+        toasttext: '111',
+        ewm_list: [],
+        options_ewm: {
+          getThumbBoundsFn (index) {
+            // find thumbnail element
+            let thumbnail = document.querySelectorAll('.previewer-demo-imgs')[index]
+            // get window scroll Y
+            let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+            // optionally get horizontal scroll
+            // get position of element relative to viewport
+            let rect = thumbnail.getBoundingClientRect()
+            // w = width
+            return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
+            // Good guide on how to get element coordinates:
+            // http://javascript.info/tutorial/coordinates
+          }
+        }
       }
     },
-    mounted () {
+    created () {
       this.NowDate()
       const that = this
       setInterval(function () {
         that.NowDate()
       }, 1000)
+      // console.log(localStorage)
       const wxid = localStorage.getItem('wxid')
       const url = localStorage.getItem('url')
       that.axios.get(url + 'api/wap_use_stu_today_qd.php', { wxid: wxid }, function (res) {
         if (res.state === 'true') {
-          wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: res.config.wxapp, // 必填，企业号的唯一标识，此处填写企业号corpid
-            timestamp: res.config.timestamp, // 必填，生成签名的时间戳
-            nonceStr: res.config.Str, // 必填，生成签名的随机串
-            signature: res.config.sign, // 必填，签名，见附录1
-            jsApiList: [ 'getLocation' ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-          })
-          wx.getLocation({
-            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-            success: function (res) {
-              // console.log(res)
-              // var latitude = res.latitude // 纬度，浮点数，范围为90 ~ -90
-              // var longitude = res.longitude // 经度，浮点数，范围为180 ~ -180。
-              // var speed = res.speed // 速度，以米/每秒计
-              // var accuracy = res.accuracy // 位置精度
-            }
-          })
+          // wx.config({
+          //   debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          //   appId: res.config.wxapp, // 必填，企业号的唯一标识，此处填写企业号corpid
+          //   timestamp: res.config.timestamp, // 必填，生成签名的时间戳
+          //   nonceStr: res.config.Str, // 必填，生成签名的随机串
+          //   signature: res.config.sign, // 必填，签名，见附录1
+          //   jsApiList: [ 'getLocation' ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+          // })
+          // wx.getLocation({
+          //   type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+          //   success: function (res) {
+          //     // console.log(res)
+          //     // var latitude = res.latitude // 纬度，浮点数，范围为90 ~ -90
+          //     // var longitude = res.longitude // 经度，浮点数，范围为180 ~ -180。
+          //     // var speed = res.speed // 速度，以米/每秒计
+          //     // var accuracy = res.accuracy // 位置精度
+          //   }
+          // })
           if (res.jrkq > 0) {
             that.qd_cell = 'qt_cell'
             that.qd_wb = '已签到'
           }
-          if (res.zmkq > 0) {
-            that.zm_cell = 'qt_cell'
-            that.zm_wb = '已签到'
+          if (res.ewm_url !== '' && res.ewm_url !== null) {
+            const ewmarr = [{'src': res.ewm_url}]
+            that.ewm_list = ewmarr
           }
+          // if (res.zmkq > 0) {
+          //   that.zm_cell = 'qt_cell'
+          //   that.zm_wb = '已签到'
+          // }
         } else {
           that.$vux.alert.show({
             title: '提示',
@@ -124,29 +153,29 @@
           }
         })
       },
-      zm_qd () {
-        if (this.zm_wb === '已签到') {
-          return false
-        }
-        const wxid = localStorage.getItem('wxid')
-        const url = localStorage.getItem('url')
-        const nowwz = this.now_wz
-        const nowgps = this.now_gps
-        const that = this
-        this.axios.get(url + 'api/wap_use_stu_qd.php', { wxid: wxid, type: 1, address: nowwz, gps: nowgps }, function (res) {
-          if (res.state === 'true') {
-            that.toasttext = '签到成功'
-            that.zm_cell = 'qt_cell'
-            that.zm_wb = '已签到'
-            that.show = true
-          } else {
-            that.$vux.alert.show({
-              title: '提示',
-              content: res.msg
-            })
-          }
-        })
-      },
+      // zm_qd () {
+      //   if (this.zm_wb === '已签到') {
+      //     return false
+      //   }
+      //   const wxid = localStorage.getItem('wxid')
+      //   const url = localStorage.getItem('url')
+      //   const nowwz = this.now_wz
+      //   const nowgps = this.now_gps
+      //   const that = this
+      //   this.axios.get(url + 'api/wap_use_stu_qd.php', { wxid: wxid, type: 1, address: nowwz, gps: nowgps }, function (res) {
+      //     if (res.state === 'true') {
+      //       that.toasttext = '签到成功'
+      //       that.zm_cell = 'qt_cell'
+      //       that.zm_wb = '已签到'
+      //       that.show = true
+      //     } else {
+      //       that.$vux.alert.show({
+      //         title: '提示',
+      //         content: res.msg
+      //       })
+      //     }
+      //   })
+      // },
       NowDate () {
         let now = new Date()
         let year = now.getFullYear()      // 年
@@ -176,6 +205,9 @@
         time += ss
         this.date = clock
         this.time = time
+      },
+      show1 (index) {
+        this.$refs.previewer_ewm.show(index)
       }
     }
   }

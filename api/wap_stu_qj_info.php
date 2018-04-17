@@ -11,7 +11,6 @@ if(!isset($_SESSION)){
     session_start();
 }
 checkRequestKeyHtml("wxid", "用户信息不能为空");
-$wxid = $_REQUEST['wxid'];
 checkRequestKeyHtml("id", "请假信息不能为空");
 $id = $_REQUEST['id'];
 $conn=Database::Connect();

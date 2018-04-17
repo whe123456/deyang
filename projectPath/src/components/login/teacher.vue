@@ -1,6 +1,6 @@
 <template>
   <div>
-    <group title="教师注册">
+    <group :title="xs_info">
       <x-input title='教师编码' :required="true" v-model="js_bm"></x-input>
       <x-input title='姓名' :required="true" v-model="name"></x-input>
       <x-input title='登录密码' :required="true" v-model="dl_mm"></x-input>
@@ -20,8 +20,25 @@
 
   export default {
     mounted () {
-      // localStorage.setItem('url', 'http://127.0.0.1:8180/')
-      localStorage.setItem('url', 'http://192.168.0.188:8880/')
+      const url = this.$route.query.url
+      if (url !== undefined) {
+        localStorage.setItem('url', url)
+      }
+      const wxid = this.$route.query.wxid
+      if (wxid !== undefined) {
+        localStorage.setItem('wxid', wxid)
+      }
+      const that = this
+      const uri = localStorage.getItem('url')
+      const wid = localStorage.getItem('wxid')
+      that.axios.get(uri + 'api/wap_get_teacher_info.php', { wxid: wid }, function (res) {
+        if (res.state === 'true') {
+          that.js_bm = res.data.js_bm
+          that.name = res.data.name
+          that.tel = res.data.tel
+          that.xs_info = '验证信息'
+        }
+      })
     },
     components: {
       XInput,
@@ -112,7 +129,8 @@
         xs_yf: false,
         change_text: '发送验证码',
         ms: 60,
-        dl_mm: ''
+        dl_mm: '',
+        xs_info: '教师注册'
       }
     }
   }

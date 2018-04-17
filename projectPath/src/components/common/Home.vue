@@ -37,8 +37,16 @@
       TabbarItem
     },
     mounted () {
-      localStorage.setItem('url', 'http://192.168.0.105:8180/')
-      localStorage.setItem('wxid', '111')
+      const url = this.$route.query.url
+      if (url !== undefined) {
+        localStorage.setItem('url', url)
+      }
+      const wxid = this.$route.query.wxid
+      if (wxid !== undefined) {
+        localStorage.setItem('wxid', wxid)
+      }
+      // localStorage.setItem('url', 'http://192.168.0.105:8180/')
+      // localStorage.setItem('wxid', '111')
       // localStorage.setItem('url', 'http://192.168.0.188:8880/')
     }
   }

@@ -26,8 +26,8 @@ if(empty($form['classs'])||empty($form['js_bm'])||empty($form['xm'])||empty($for
 $conn=Database::Connect();
 $now=date('Y-m-d H:i:s');
 if($id!=''){
-    $sql="UPDATE zjzz_js SET xm=?,dl_mm=?,sjhm=?,wxid=?,wxnc=?,zc_ts=?,ewm_url=?,sf_zc=?,js_id=? WHERE id=?";
-    $arr=array($form['xm'],md5('123456'),$form['sjhm'],'','',$now,'','0',$form['classs'],$id);
+    $sql="UPDATE zjzz_js SET xm=?,dl_mm=?,sjhm=?,wxid=?,zc_ts=?,ewm_url=?,sf_zc=?,js_id=? WHERE id=?";
+    $arr=array($form['xm'],md5('123456'),$form['sjhm'],'',$now,'','0',$form['classs'],$id);
     $msg='教师信息修改成功';
     Database::Update_pre($sql,$conn,$arr);
 }else{
@@ -38,6 +38,6 @@ if($id!=''){
     }
     $sql="INSERT INTO zjzz_js VALUES(NULL,?,?,?,?,?,?,?,?,?,?)";
     $msg='教师信息增加成功';
-    Database::InsertOrUpdate($sql,$conn,array($form['js_bm'],$form['xm'],md5('123456'),$form['sjhm'],'','',$now,'','0',$form['classs']));
+    Database::InsertOrUpdate($sql,$conn,array($form['js_bm'],$form['xm'],md5('123456'),$form['sjhm'],'',$now,'','0',$form['classs']));
 }
 echo json_encode(array('state'=>'true','msg'=>$msg));

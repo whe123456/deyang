@@ -14,10 +14,12 @@ checkRequestKeyHtml("xh", "学号不能为空");
 checkRequestKeyHtml("name", "姓名不能为空");
 checkRequestKeyHtml("tel", "手机号码不能为空");
 checkRequestKeyHtml("yzm", "验证码不能为空");
+checkRequestKeyHtml("wxid", "验证码不能为空");
 $xh = $_REQUEST['xh'];
 $name = $_REQUEST['name'];
 $tel = $_REQUEST['tel'];
 $yzm = $_REQUEST['yzm'];
+$wxid = $_REQUEST['wxid'];
 $conn=Database::Connect();
 $sql="SELECT * from zjzz_dhbmd where xh=?";
 $user=Database::ReadoneRow($sql,$conn,array($xh));
@@ -48,7 +50,30 @@ $arr=array($now,$yzm,$now,$xh);
 $xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
 $have=Database::ReadoneStr($xs_sql,$conn,array($info['id']));
 if($have==0){
+//des加密二维码
+	require_once $dii_ctx_root_dir . '/include/DES.php';
+	include_once $dii_ctx_root_dir . '/include/phpqrcode.php';
+	include_once $dii_ctx_root_dir . '/config/config_upyun.php';
+	include_once $dii_ctx_root_dir . '/config/upyun.class.php';
+	$des = new Crypt_DES();
+	$des->setKey('zjzz_zkey');
+	$ewm_str=$url."api/wap_use_stu_qd.php?wxid=$wxid&type=1&address=周末签到&gps=周末签到";//周末签到二维码字符串
+	$str = base64_encode($des->encrypt($ewm_str));
+	$filePath=scerweima($str);
+	$upyun = new UpYun($config_file['bucket'], $config_file['user_name'], $config_file['pwd'],UpYun::ED_TELECOM, 6000);
+	$upyunpicpath = '/dy_ewm/'.$filePath;
+	if($filePath) {
+		$fh = @fopen($filePath, 'rb');
+		if ($fh) {
+			$rsp = $upyun->writeFile($upyunpicpath, $fh, true);
+			@fclose($fh);
+			@unlink($filePath);
+			if ($rsp) {
+				$url = $upyun_host_file . $upyunpicpath;
+			}
+		}
+	}
 	$sql="INSERT INTO zjzz_xs VALUES (?,?,?,?,?)";
-	@Database::InsertOrUpdate($sql,$conn,array(NULL,$info['id'],'','',$now));
+	@Database::InsertOrUpdate($sql,$conn,array(NULL,$info['id'],$wxid,$now,$url));
 }
 echo json_encode(array('state'=>'true'));
