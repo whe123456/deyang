@@ -47,4 +47,4 @@ $time=$ticket['timestamp'];
 $nonceStr=$ticket['nonceStr'];
 $url=$ticket['url'];
 $sign=sha1('jsapi_ticket='.$ticket['jsapi_ticket'].'&noncestr='.$nonceStr.'&timestamp='.$time.'&url='.$url);
-echo json_encode(array('state'=>'true','jrkq'=>$jrkq,'str'=>$str,'ewm_url'=>$user['ewm_url'],'config'=>array('wxapp'=>$appid,'timestamp'=>$time,'Str'=>$nonceStr,'sign'=>$sign)));
+echo json_encode(array('state'=>'true','jrkq'=>$jrkq,'ewm_url'=>$user['ewm_url'],'config'=>array('wxapp'=>$appid,'timestamp'=>$time,'Str'=>$nonceStr,'sign'=>$sign)));
