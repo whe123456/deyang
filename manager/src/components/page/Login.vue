@@ -41,7 +41,8 @@ export default {
       self.$refs[formName].validate((valid) => {
         if (valid) {
           // localStorage.setItem('url', 'http://127.0.0.1:8180/')
-          localStorage.setItem('url', 'http://192.168.0.188:8880/')
+          // localStorage.setItem('url', 'http://192.168.0.188:8880/')
+          localStorage.setItem('url', 'http://110.185.185.118:81/')
           const url = localStorage.getItem('url')
           self.axios.get(url + 'api/api_login.php', { username: self.ruleForm.username, password: self.ruleForm.password }, function (res) {
             if (res.state === 'true') {
