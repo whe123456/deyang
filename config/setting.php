@@ -45,6 +45,6 @@ $all_upload_file_type_arry =array("13780","7173","8297","208207","8075","255216"
 $allowedExts = array("xls","xlsx");
 
 
-$appid="wx53b80126f0f8ab16";
-$secret="e5202a5aff3bf1827172b469d2664fab";
+$appid="wxfee467cf675f5006";
+$secret="c40e72d98ddac3b6a80e4f2817495124";
 $url='http://192.168.0.188:8880/';
