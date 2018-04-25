@@ -38,7 +38,7 @@ $jrkq=Database::ReadoneStr($sql,$conn,array($user['xh']));
 //    $_SESSION['ticket']=$ticket;
 //    $_SESSION['access_token']=$access_token;
 //}
-if(empty($_SESSION['ticket'])) {
+if(empty($_SESSION['ticket'])||$_SESSION['ticket']['jsapi_ticket']==NULL) {
     $wx = new JSSDK($appid, $secret);
     $ticket = $wx->getSignPackage();
     $_SESSION['ticket']=$ticket;

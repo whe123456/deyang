@@ -29,7 +29,7 @@ if(!isset($_SESSION)){
  $configuration = array(
      'pdoDriver'=>'mysql',
      'user'   => 'root',
-     'pass' => 'Dyzj@1258521',
+     'pass' => 'dii_3927',
      'db' => 'Deyang_Occupation',
      'host'   => 'localhost',
      'port'   => '3306'
@@ -47,4 +47,4 @@ $allowedExts = array("xls","xlsx");
 
 $appid="wxfee467cf675f5006";
 $secret="c40e72d98ddac3b6a80e4f2817495124";
-$url='http://192.168.0.188:8880/';
+$urls='http://xs.17189.net/';

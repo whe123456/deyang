@@ -21,7 +21,7 @@ class JSSDK {
 //    $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
 
 //    $signature = sha1($string);
-
+var_dump($jsapiTicket);exit;
     $signPackage = array(
       "jsapi_ticket"=>$jsapiTicket,
       "appId"     => $this->appId,
@@ -72,6 +72,7 @@ class JSSDK {
       // $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$this->appId&corpsecret=$this->appSecret";
       $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=$this->appId&secret=$this->appSecret";
       $res = json_decode($this->httpGet($url));
+      var_dump($res);exit;
       $access_token = $res->access_token;
       if ($access_token) {
         $data->expire_time = time() + 7000;

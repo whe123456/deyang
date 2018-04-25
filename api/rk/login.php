@@ -25,4 +25,3 @@ if(!isset($_SESSION['user_id']) || empty($_SESSION['user_id']) || $_SESSION['use
 }else{
     $wid=$_SESSION['user_id'];
 }
-$url=urlencode($url);
