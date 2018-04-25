@@ -10,14 +10,14 @@
       <swiper-item :key="0">
         <scroller v-show="isShow" lock-x scrollbar-y height="-54" v-model="scrollerStatus" ref="scroller" :use-pullup="pullup" :use-pulldown="pulldown" @on-pullup-loading="onScrollBottom" @on-pulldown-loading="load_down" :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新'}" :pullup-config="upobj">
           <div class="box1">
-            <form-preview v-for="item in list" :key="item.id" header-label="请假标题" :header-value="item.title" :body-items="item.list" :footer-buttons="buttons" :name="item.id"></form-preview>
+            <form-preview class="top_div" v-for="item in list" :key="item.id" header-label="请假标题" :header-value="item.title" :body-items="item.list" :footer-buttons="buttons" :name="item.id"></form-preview>
           </div>
         </scroller>
       </swiper-item>
       <swiper-item :key="1">
         <scroller v-show="isShow1" lock-x scrollbar-y height="-54" v-model="scrollerStatus1" ref="scroller1" :use-pullup="pullup1" :use-pulldown="pulldown1" @on-pullup-loading="onScrollBottom1" @on-pulldown-loading="load_down1" :pulldown-config="{downContent: '下拉刷新', upContent: '释放后更新'}" :pullup-config="upobj">
           <div class="box1">
-            <form-preview v-for="item in list1" :key="item.id" header-label="请假标题" :header-value="item.title" :body-items="item.list" :footer-buttons="buttons1" :name="item.id"></form-preview>
+            <form-preview class="top_div" v-for="item in list1" :key="item.id" header-label="请假标题" :header-value="item.title" :body-items="item.list" :footer-buttons="buttons1" :name="item.id"></form-preview>
           </div>
         </scroller>
       </swiper-item>
@@ -70,7 +70,7 @@
         pullup1: true,
         pulldown1: true,
         index: 0,
-        list2: ['待审批', '未审批'],
+        list2: ['待审批', '已审批'],
         sheight: '100px',
         buttons: [{
           style: 'primary',
@@ -91,7 +91,17 @@
       }
     },
     created () {
-      localStorage.setItem('wxid', '222')
+      const url = this.$route.query.url
+      if (url !== undefined) {
+        localStorage.setItem('url', url)
+      } else {
+        localStorage.setItem('url', 'http://xs.17189.net/')
+      }
+      const wxid = this.$route.query.wxid
+      if (wxid !== undefined) {
+        localStorage.setItem('wxid', wxid)
+      }
+      // localStorage.setItem('wxid', '222')
       if (this.$route.query.index !== undefined) {
         this.index = Number(this.$route.query.index)
       }
@@ -218,4 +228,5 @@
 </script>
 
 <style>
+  .top_div{margin-bottom: 15px;}
 </style>

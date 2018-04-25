@@ -14,7 +14,7 @@ checkRequestKeyHtml("xh", "学号不能为空");
 checkRequestKeyHtml("name", "姓名不能为空");
 checkRequestKeyHtml("tel", "手机号码不能为空");
 checkRequestKeyHtml("yzm", "验证码不能为空");
-checkRequestKeyHtml("wxid", "验证码不能为空");
+checkRequestKeyHtml("wxid", "微信id不能为空");
 $xh = $_REQUEST['xh'];
 $name = $_REQUEST['name'];
 $tel = $_REQUEST['tel'];

@@ -25,7 +25,7 @@ if(array_key_exists($ii, $_FILES)===false){
     $filePath = 'img/' . date('YmdHis') . rand(0000, 9999) . '.' . end($namefile);
     $aa = $_FILES[$ii]['tmp_name'];
     move_uploaded_file($aa, $filePath);
-    $url = 'http://xs.17189.net/api/' . $filePath;
+    $url = 'http://xs.17189.net/api/upload/' . $filePath;
 }
 $array=array(
     'result'=>'0',

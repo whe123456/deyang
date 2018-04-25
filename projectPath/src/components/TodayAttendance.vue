@@ -11,7 +11,7 @@
       <!--<cell title="考勤制度" value="详情" is-link></cell>-->
     </group>
     <group class="qd_group">
-      <cell title="当前位置" :value="now_wz"></cell>
+      <cell title="当前位置" align-items="flex-start" primary="content" :value="now_wz"></cell>
       <cell :class="qd_cell" title="签到" inline-desc='09:00'>
         <div @click="jr_qd">
           {{qd_wb}}
@@ -54,8 +54,8 @@
         time: '',
         date: '',
         week: '',
-        now_wz: '11',
-        now_gps: '11',
+        now_wz: '获取中',
+        now_gps: '获取中',
         qd_cell: 'qd_cell',
         zm_cell: 'qd_cell',
         qd_wb: '签到',
@@ -89,11 +89,21 @@
       // console.log(localStorage)
       const wxid = localStorage.getItem('wxid')
       const url = localStorage.getItem('url')
-      console.log()
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       that.axios.get(url + 'api/wap_use_stu_today_qd.php', { wxid: wxid, url: encodeURIComponent(location.href.split('#')[0]) }, function (res) {
         if (res.state === 'true') {
+          if (res.jrkq > 0) {
+            that.qd_cell = 'qt_cell'
+            that.qd_wb = '已签到'
+          }
+          if (res.ewm_url !== '' && res.ewm_url !== null) {
+            const ewmarr = [{'src': res.ewm_url}]
+            that.ewm_list = ewmarr
+          }
           wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: res.config.wxapp, // 必填，企业号的唯一标识，此处填写企业号corpid
             timestamp: res.config.timestamp, // 必填，生成签名的时间戳
             nonceStr: res.config.Str, // 必填，生成签名的随机串
@@ -102,8 +112,20 @@
           })
           wx.ready(function () {
             wx.getLocation({
-              type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+              type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
               success: function (res) {
+                that.now_gps = res.latitude + ',' + res.longitude
+                that.axios.get(url + 'api/wap_use_address.php', { wxid: wxid, latitude: res.latitude, longitude: res.longitude }, function (res) {
+                  that.$vux.loading.hide()
+                  if (res.state === 'true') {
+                    that.now_wz = res.now_wz
+                  } else {
+                    that.$vux.alert.show({
+                      title: '提示',
+                      content: res.msg
+                    })
+                  }
+                })
                 // console.log(res)
                 // var latitude = res.latitude // 纬度，浮点数，范围为90 ~ -90
                 // var longitude = res.longitude // 经度，浮点数，范围为180 ~ -180。
@@ -111,23 +133,20 @@
                 // var accuracy = res.accuracy // 位置精度
               }
             })
-            if (res.jrkq > 0) {
-              that.qd_cell = 'qt_cell'
-              that.qd_wb = '已签到'
-            }
-            if (res.ewm_url !== '' && res.ewm_url !== null) {
-              const ewmarr = [{'src': res.ewm_url}]
-              that.ewm_list = ewmarr
-            }
             // if (res.zmkq > 0) {
             //   that.zm_cell = 'qt_cell'
             //   that.zm_wb = '已签到'
             // }
           })
           wx.error(function (res) {
-            alert(res.errMsg)
+            that.$vux.loading.hide()
+            that.$vux.alert.show({
+              title: '提示',
+              content: res.errMsg
+            })
           })
         } else {
+          that.$vux.loading.hide()
           that.$vux.alert.show({
             title: '提示',
             content: res.msg
@@ -145,7 +164,11 @@
         const nowwz = this.now_wz
         const nowgps = this.now_gps
         const that = this
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
         this.axios.get(url + 'api/wap_use_stu_qd.php', { wxid: wxid, type: 0, address: nowwz, gps: nowgps }, function (res) {
+          that.$vux.loading.hide()
           if (res.state === 'true') {
             that.qd_cell = 'qt_cell'
             that.qd_wb = '已签到'

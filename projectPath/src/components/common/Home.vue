@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <transition name="move" mode="out-in">
-      <router-view></router-view>
+    <transition name="move" mode="out-in" >
+      <router-view :style="{height: sheight}" style="overflow: scroll;"></router-view>
     </transition>
     <tabbar>
       <tabbar-item link="/today" :selected="$route.path == '/today'">
@@ -29,22 +29,31 @@
 </template>
 
 <script>
-  import { Tabbar, TabbarItem } from 'vux'
+  import { Tabbar, TabbarItem, ViewBox } from 'vux'
 
   export default {
     components: {
       Tabbar,
-      TabbarItem
+      TabbarItem,
+      ViewBox
     },
-    mounted () {
+    data () {
+      return {
+        sheight: ''
+      }
+    },
+    created () {
       const url = this.$route.query.url
       if (url !== undefined) {
         localStorage.setItem('url', url)
+      } else {
+        localStorage.setItem('url', 'http://xs.17189.net/')
       }
       const wxid = this.$route.query.wxid
       if (wxid !== undefined) {
         localStorage.setItem('wxid', wxid)
       }
+      this.sheight = document.documentElement.clientHeight - 55 + 'px'
       // localStorage.setItem('url', 'http://192.168.0.105:8180/')
       // localStorage.setItem('wxid', '111')
       // localStorage.setItem('url', 'http://192.168.0.188:8880/')
@@ -52,4 +61,9 @@
   }
 </script>
 <style>
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
 </style>

@@ -15,7 +15,7 @@
       ></uploader>
     </group>
     <group>
-      <datetime v-model="value" placeholder="请选择开始时间" @on-change="change" clear-text="today" @on-clear="setToday" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+      <datetime v-model="value" placeholder="请选择开始时间" @on-change="change" clear-text="现在" @on-clear="setToday" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="开始时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
       <datetime v-model="value1" placeholder="请选择截止时间" @on-change="change1" :start-date="start_date" :max-year=2100 format="YYYY-MM-DD HH:mm" title="截止时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
       <cell title="申请时长" align-items="flex-start">
         <div>
@@ -103,9 +103,8 @@
       const that = this
       const wxid = localStorage.getItem('wxid')
       const arr = localStorage.getItem('qj_arr')
-      if (arr !== undefined) {
+      if (arr !== undefined && arr !== null) {
         const Arr = JSON.parse(arr)
-        console.log(Arr)
         this.qj_bt = Arr['qj_bt']
         this.qj_nr = Arr['qj_nr']
         this.xz_img = Arr['xz_img']
@@ -116,7 +115,11 @@
         this.teacher = Arr['teacher']
         this.datedifference()
       }
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       that.axios.get(url + 'api/wap_stu_teacher.php', { wxid: wxid }, function (res) {
+        that.$vux.loading.hide()
         if (res.state === 'true') {
           that.teacher_list = res.list
         } else {
@@ -140,7 +143,11 @@
         const that = this
         const wxid = localStorage.getItem('wxid')
         const url = localStorage.getItem('url')
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
         that.axios.get(url + 'api/wap_use_stu_tj_sq.php', { wxid: wxid, array: Arr }, function (res) {
+          that.$vux.loading.hide()
           if (res.state === 'true') {
             that.toasttext = '申请已提交'
             that.show = true

@@ -31,7 +31,11 @@
       const that = this
       const uri = localStorage.getItem('url')
       const wid = localStorage.getItem('wxid')
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       that.axios.get(uri + 'api/wap_get_teacher_info.php', { wxid: wid }, function (res) {
+        that.$vux.loading.hide()
         if (res.state === 'true') {
           that.js_bm = res.data.js_bm
           that.name = res.data.name
@@ -67,7 +71,12 @@
         }
         const that = this
         const url = localStorage.getItem('url')
-        that.axios.get(url + 'api/wap_use_teacher_yzm.php', { js_bm: jsbm, name: name, tel: tel, yzm: yzm, dlmm: dlmm }, function (res) {
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
+        const wxid = localStorage.getItem('wxid')
+        that.axios.get(url + 'api/wap_use_teacher_yzm.php', { js_bm: jsbm, name: name, tel: tel, yzm: yzm, dlmm: dlmm, wxid: wxid }, function (res) {
+          that.$vux.loading.hide()
           if (res.state === 'true') {
             that.$router.push({path: '/teachlist'})
           } else {
@@ -93,7 +102,11 @@
         }
         const that = this
         const url = localStorage.getItem('url')
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
         that.axios.get(url + 'api/wap_get_teacher_yzm.php', { js_bm: jsbm, name: name, tel: tel }, function (res) {
+          that.$vux.loading.hide()
           if (res.state === 'true') {
             that.xs_yf = true
             that.change_ms()

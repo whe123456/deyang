@@ -48,3 +48,5 @@ $allowedExts = array("xls","xlsx");
 $appid="wxfee467cf675f5006";
 $secret="c40e72d98ddac3b6a80e4f2817495124";
 $urls='http://xs.17189.net/';
+$jgtz='49bahKbQtBYDzxCh5vI_mjU37o4MElRdvAcMzjBxOYE';
+$shtz='WxohN1FNc0aUicTXMKCX9QtgPY6rFJtw6jrp3kdsGGo';

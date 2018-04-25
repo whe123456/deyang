@@ -7,6 +7,7 @@ include_once dirname(__FILE__) . '/../config/setting.php';
 include_once($dii_ctx_root_dir . '/include/function.php');
 include_once $dii_ctx_root_dir . '/include/class.Database.php';
 include_once $dii_ctx_root_dir . '/include/code.php';
+include_once $dii_ctx_root_dir.'/include/wx_function.php';
 if(!isset($_SESSION)){
     session_start();
 }
@@ -25,5 +26,38 @@ if(!$user){
 }
 $now=date('Y-m-d H:i:s');
 $sql="INSERT into zjzz_qj VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img'])));
+@Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img'])));
+
+$wx = new JSSDK($appid, $secret);
+$token = $wx->getAccessToken1();
+$url_token="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=".$token;
+$sql="select w.wxid from zjzz_js zj,wxid_b w where zj.js_bm=? and w.id=zj.wxid";
+$openid=Database::ReadoneStr($sql,$conn,array($array['teacher']));
+if($openid){
+	$post_data = array(
+	    'touser'=>$openid,//推送给谁,openid
+	    'template_id'=>$shtz, //微信后台的模板信息id
+	    "url"=>"http://xs.17189.net/api/rk/teacher.php",
+	    "data"=> array(
+	    	"first" => array(
+	    		"value"=>'学生请假申请',
+	    		"color"=>"#173177"
+	    		),
+	    	"keyword1"=>array(
+		    	"value"=>date('Y-m-d H:i:s'),
+		    	"color"=>"#173177"
+		    	),
+	    	"keyword2"=>array(
+	            "value"=>$array['qj_bt'],
+	            "color"=>"#173177"
+	        ),
+	        "remark"=> array(
+	            "value"=>"请及时审批哦！",
+	            "color"=>"#173177"
+	        ),
+	    )
+	);
+	$post_data = json_encode($post_data);
+	$info=post($url_token,$post_data);
+}
 echo json_encode(array('state'=>'true','msg'=>'申请已提交'));

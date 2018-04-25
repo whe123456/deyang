@@ -14,7 +14,7 @@ if(!isset($_SESSION)){
 checkRequestKeyHtml("wxid", "用户信息不能为空");
 checkRequestKeyHtml("url", "地址不能为空");
 $wxid = $_REQUEST['wxid'];
-$url = $_REQUEST['url'];
+$url = urldecode($_REQUEST['url']);
 $conn=Database::Connect();
 $sql="SELECT zdb.xh,zx.ewm_url FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneRow($sql,$conn,array($wxid));

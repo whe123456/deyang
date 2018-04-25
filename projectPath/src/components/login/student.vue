@@ -121,7 +121,11 @@
       const that = this
       const uri = localStorage.getItem('url')
       const wid = localStorage.getItem('wxid')
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       that.axios.get(uri + 'api/wap_get_stu_info.php', { wxid: wid }, function (res) {
+        that.$vux.loading.hide()
         if (res.state === 'true') {
           that.xh = res.data.xh
           that.name = res.data.xm

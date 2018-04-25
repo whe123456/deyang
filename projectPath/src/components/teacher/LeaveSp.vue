@@ -21,8 +21,8 @@
       <popup-radio title="审批状态" :options="optionzt" v-model="spzt" placeholder="是否同意"></popup-radio>
       <x-textarea :max="50" v-model="spyj" placeholder="审批意见" ></x-textarea>
     </group>
-    <x-button style="margin-top: 15px;" type="primary" @click.native="getinfo">确认</x-button>
-    <x-button style="margin-top: 15px;" type="default" link="BACK">返回</x-button>
+    <x-button class="sp_btn" type="primary" @click.native="getinfo">确认</x-button>
+    <x-button class="sp_btn" type="default" link="BACK">返回</x-button>
     <toast v-model="show1" :text="toasttext" @on-hide="onHide"></toast>
   </div>
 </template>
@@ -87,7 +87,11 @@
       const url = localStorage.getItem('url')
       const wxid = localStorage.getItem('wxid')
       this.sheight = document.documentElement.clientHeight - 55 + 'px'
+      this.$vux.loading.show({
+        text: 'Loading'
+      })
       that.axios.get(url + 'api/wap_stu_qj_info.php', { id: id, wxid: wxid }, function (res) {
+        that.$vux.loading.hide()
         if (res.state === 'true') {
           that.title = res.info.qj_yy
           that.content = res.info.qj_nr
@@ -121,7 +125,11 @@
         const that = this
         const url = localStorage.getItem('url')
         const wxid = localStorage.getItem('wxid')
+        this.$vux.loading.show({
+          text: 'Loading'
+        })
         that.axios.get(url + 'api/wap_teacher_check_info.php', { id: id, wxid: wxid, zt: this.spzt, yj: this.spyj }, function (res) {
+          that.$vux.loading.hide()
           if (res.state === 'true') {
             that.toasttext = '已审批申请'
             that.show1 = true
