@@ -17,9 +17,16 @@
       <cell title="开始时间" primary="content" :value="start_ts"></cell>
       <cell title="截止时间" primary="content" :value="end_ts"></cell>
     </group>
-    <group>
+    <group v-if="sfksp === 0">
       <popup-radio title="审批状态" :options="optionzt" v-model="spzt" placeholder="是否同意"></popup-radio>
       <x-textarea :max="50" v-model="spyj" placeholder="审批意见" ></x-textarea>
+    </group>
+    <group v-else>
+      <popup-radio title="审批状态" readonly :options="optionzt" v-model="spzt"></popup-radio>
+      <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
+
+      <popup-radio v-if="jdctea === ''" title="教导处审批状态" :options="optionzt" v-model="spjdc" placeholder="是否同意"></popup-radio>
+      <x-textarea v-if="jdctea === ''" :max="50" v-model="jdcyj" placeholder="教导处审批意见" ></x-textarea>
     </group>
     <x-button class="sp_btn" type="primary" @click.native="getinfo">确认</x-button>
     <x-button class="sp_btn" type="default" link="BACK">返回</x-button>
@@ -44,10 +51,10 @@
     data () {
       return {
         optionzt: [{
-          key: '1',
+          key: 1,
           value: '同意'
         }, {
-          key: '-1',
+          key: -1,
           value: '不同意'
         }],
         title: '',
@@ -75,7 +82,12 @@
         spzt: '',
         spyj: '',
         show1: false,
-        toasttext: ''
+        toasttext: '',
+        spjdc: '',
+        jdctea: '',
+        jdcyj: '',
+        sh_sj: '',
+        sfksp: ''
       }
     },
     created () {
@@ -105,6 +117,13 @@
           that.end_ts = arr[1]
           that.teacher = res.info.xm
           that.str = res.info.stu_xm
+          that.spzt = res.info.sf_ty
+          that.sfksp = res.info.sf_ty
+          that.spyj = res.info.sh_yj
+          that.spjdc = res.info.jdc_ty
+          that.jdctea = res.info.jdc_teacher
+          that.jdcyj = res.info.jdc_yj
+          that.sh_sj = res.info.sh_sj
         } else {
           that.$vux.alert.show({
             title: '提示',
@@ -118,7 +137,7 @@
         this.$refs.previewer.show(index)
       },
       getinfo () {
-        if (this.spzt === '') {
+        if (this.spzt === '' && this.spjdc === '') {
           return false
         }
         const id = this.$route.query.id
@@ -128,7 +147,15 @@
         this.$vux.loading.show({
           text: 'Loading'
         })
-        that.axios.get(url + 'api/wap_teacher_check_info.php', { id: id, wxid: wxid, zt: this.spzt, yj: this.spyj }, function (res) {
+        let zt = this.spzt
+        if (this.spjdc !== 0) {
+          zt = this.spjdc
+        }
+        let yj = this.spyj
+        if (this.spjdc !== 0) {
+          yj = this.jdcyj
+        }
+        that.axios.get(url + 'api/wap_teacher_check_info.php', { id: id, wxid: wxid, zt: zt, yj: yj }, function (res) {
           that.$vux.loading.hide()
           if (res.state === 'true') {
             that.toasttext = '已审批申请'

@@ -36,8 +36,8 @@ if($id!=''){
     if($sfcz>0){
         alertExit('已有该学号白名单');
     }
-    $sql="INSERT INTO zjzz_dhbmd VALUES('',?,?,?,?,?,?,?,?)";
+    $sql="INSERT INTO zjzz_dhbmd VALUES('',?,?,?,?,?,?,?,?,?)";
     $msg='白名单信息增加成功';
-    Database::InsertOrUpdate($sql,$conn,array($form['sjhm'],$form['xm'],$now,'0','','',$form['classs'],$form['xh']));
+    Database::InsertOrUpdate($sql,$conn,array($form['sjhm'],$form['xm'],$now,$now,'0','','',$form['classs'],$form['xh']));
 }
 echo json_encode(array('state'=>'true','msg'=>$msg));

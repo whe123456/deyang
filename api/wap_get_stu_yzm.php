@@ -34,5 +34,6 @@ $sql="UPDATE zjzz_yzm set is_use=1 where sjhm=?";
 @Database::Update_pre($sql,$conn,array($tel));
 $sql="INSERT into zjzz_yzm VALUES (?,?,?,?,?)";
 $code=rand(100000,999999);
+$code=123456;
 Database::InsertOrUpdate($sql,$conn,array(NULL,$code,$tel,$now,'0'));
 echo json_encode(array('state'=>'true'));

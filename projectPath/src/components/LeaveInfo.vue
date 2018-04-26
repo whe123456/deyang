@@ -26,6 +26,9 @@
       <cell title="截止时间" primary="content" :value="end_ts"></cell>
       <cell title="审批状态" :value="spzt"></cell>
       <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
+      <cell v-if="sptea !== false" title="教导处审批人" :value="sptea"></cell>
+      <cell v-if="sptea !== false" title="教导处审批状态" :value="spjdc"></cell>
+      <cell v-if="sptea !== false && jdcyj !== ''" title="教导处审批意见" :value="jdcyj"></cell>
     </group>
     <x-button class="sp_btn" type="primary" link="BACK">确认</x-button>
   </div>
@@ -84,7 +87,10 @@
             // Good guide on how to get element coordinates:
             // http://javascript.info/tutorial/coordinates
           }
-        }
+        },
+        spjdc: '',
+        sptea: false,
+        jdcyj: ''
       }
     },
     created () {
@@ -129,6 +135,15 @@
             that.spzt = '未同意'
           }
           that.spyj = res.info.sh_yj
+          if (res.info.jdc_ty === 0) {
+            that.spjdc = '等待审核'
+          } else if (res.info.jdc_ty === 1) {
+            that.spjdc = '已同意'
+          } else {
+            that.spjdc = '未同意'
+          }
+          that.sptea = res.info.js_xm
+          that.jdcyj = res.info.jdc_yj
         } else {
           that.$vux.alert.show({
             title: '提示',

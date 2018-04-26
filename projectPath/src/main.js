@@ -5,26 +5,13 @@ import FastClick from 'fastclick'
 import App from './App'
 import api from './utils/api'
 import router from './router'
-import Vuex from 'vuex'
 import Calendar from 'vue-calendar-component'
 import { AlertPlugin, LoadingPlugin } from 'vux'
 Vue.use(AlertPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(require('vue-wechat-title'))
 Vue.use(Calendar)
-Vue.use(Vuex)
 Vue.prototype.axios = api
-const store = new Vuex.Store({
-  state: {
-    count: 0,
-    adminleftnavnum: '1'
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
 
 FastClick.attach(document.body)
 
@@ -33,6 +20,5 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   router,
-  store,
   render: h => h(App)
 }).$mount('#app-box')

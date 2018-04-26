@@ -25,4 +25,10 @@ if(!$user){
     alertExitHtml("无此学号信息");
 }
 $info['stu_xm']=$user;
+$sql="SELECT xm FROM zjzz_js WHERE js_bm=?";
+$js=Database::ReadoneStr($sql,$conn,array($info['jdc_teacher']));
+if(!$user){
+    alertExitHtml("无此教师信息");
+}
+$info['js_xm']=$js;
 echo json_encode(array('state'=>'true','info'=>$info));

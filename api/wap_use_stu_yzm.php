@@ -48,7 +48,7 @@ $bmd_sql="UPDATE zjzz_dhbmd SET yz_ts=?,sf_yz='1',yzm=?,yzsj=? where xh=?";
 $arr=array($now,$yzm,$now,$xh);
 @Database::Update_pre($bmd_sql,$conn,$arr);
 $xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
-$have=Database::ReadoneStr($xs_sql,$conn,array($info['id']));
+$have=Database::ReadoneStr($xs_sql,$conn,array($user['id']));
 if($have==0){
 //des加密二维码
 	require_once $dii_ctx_root_dir . '/include/DES.php';
