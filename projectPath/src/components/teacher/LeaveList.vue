@@ -200,7 +200,7 @@
               if (that.minid1 === '') {
                 that.list1 = res.list
               } else {
-                that.list = that.list.concat(res.list)
+                that.list1 = that.list1.concat(res.list)
               }
               that.more1 = res.more
               if (that.more1 === false) {
@@ -220,7 +220,7 @@
               content: res.msg
             })
           }
-          that.minid = res.minid
+          that.minid1 = res.minid
         })
       }
     }
