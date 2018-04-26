@@ -98,6 +98,12 @@
       if (id === undefined) {
         history.back()
       }
+      if (this.$route.query.url !== undefined) {
+        localStorage.setItem('url', this.$route.query.url)
+      }
+      if (this.$route.query.wxid !== undefined) {
+        localStorage.setItem('wxid', this.$route.query.wxid)
+      }
       const that = this
       const url = localStorage.getItem('url')
       const wxid = localStorage.getItem('wxid')

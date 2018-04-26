@@ -34,7 +34,7 @@ if(count($arr)>0){
 			$more=false;
 		}
 		$minid=$value['id'];
-		$date=explode('-', $value['qj_sj']);
+		$date=explode('.', $value['qj_sj']);
 		$list[$key]['title']=$value['qj_yy'];
 		$list[$key]['id']=$value['id'];
 		$list[$key]['list'][0]['label']='审批人';

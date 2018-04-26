@@ -18,14 +18,14 @@
       <cell title="截止时间" primary="content" :value="end_ts"></cell>
     </group>
     <group v-if="sfksp === 0">
-      <popup-radio title="审批状态" :options="optionzt" v-model="spzt" placeholder="是否同意"></popup-radio>
+      <popup-radio class="red_radio" title="审批状态" :options="optionzt" v-model="spzt" placeholder="是否同意"></popup-radio>
       <x-textarea :max="50" v-model="spyj" placeholder="审批意见" ></x-textarea>
     </group>
     <group v-else>
       <popup-radio title="审批状态" readonly :options="optionzt" v-model="spzt"></popup-radio>
       <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
-
-      <popup-radio v-if="jdctea === ''" title="教导处审批状态" :options="optionzt" v-model="spjdc" placeholder="是否同意"></popup-radio>
+      <badge></badge>
+      <popup-radio class="red_radio" v-if="jdctea === ''" title="教导处审批状态" :options="optionzt" v-model="spjdc" placeholder="是否同意"></popup-radio>
       <x-textarea v-if="jdctea === ''" :max="50" v-model="jdcyj" placeholder="教导处审批意见" ></x-textarea>
     </group>
     <x-button class="sp_btn" type="primary" @click.native="getinfo">确认</x-button>
@@ -34,7 +34,7 @@
   </div>
 </template>
 <script>
-  import { XButton, Previewer, TransferDom, Group, Cell, PopupRadio, XTextarea, Toast } from 'vux'
+  import { XButton, Previewer, TransferDom, Group, Cell, PopupRadio, XTextarea, Toast, Badge } from 'vux'
   export default {
     components: {
       Previewer,
@@ -43,7 +43,8 @@
       XButton,
       PopupRadio,
       XTextarea,
-      Toast
+      Toast,
+      Badge
     },
     directives: {
       TransferDom
@@ -94,6 +95,12 @@
       const id = this.$route.query.id
       if (id === undefined) {
         history.back()
+      }
+      if (this.$route.query.url !== undefined) {
+        localStorage.setItem('url', this.$route.query.url)
+      }
+      if (this.$route.query.wxid !== undefined) {
+        localStorage.setItem('wxid', this.$route.query.wxid)
       }
       const that = this
       const url = localStorage.getItem('url')
@@ -186,4 +193,5 @@
     margin: 0 10px;}
   .bottom_div{font-size: 15px;}
   .margin_top{margin-top: 20px;}
+  .red_radio>.vux-cell-primary{color: #f74c31;}
 </style>

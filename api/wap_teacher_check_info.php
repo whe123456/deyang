@@ -56,7 +56,7 @@ if($info['sf_ty']==0) {
 										"color"=>"#173177"
 								),
 								"keyword2"=>array(
-										"value"=>$array['qj_bt'],
+										"value"=>$info['qj_bt'],
 										"color"=>"#173177"
 								),
 								"remark"=> array(
@@ -70,7 +70,7 @@ if($info['sf_ty']==0) {
 			}
 		}
 //		$des = new Crypt_DES();
-//		$des->setKey('zjzz_zkey');
+//		$des->setKey('98765432');
 //		$ewm_str = $url . "api/mw_yz_ewm.php?id=$id&type=sm";//周末签到二维码字符串
 //		$str = base64_encode($des->encrypt($ewm_str));
 //		$filePath = scerweima($str);
@@ -82,10 +82,10 @@ if($info['sf_ty']==0) {
 			$post_data = array(
 					'touser' => $openid['wxid'],//推送给谁,openid
 					'template_id' => $jgtz, //微信后台的模板信息id
-					"url" => "http://xs.17189.net/api/rk/stu.php",
+					"url" => "http://xs.17189.net/api/tz_yd/stu_rk.php?id=".$id,
 					"data" => array(
 							"first" => array(
-									"value" => "您好，您的请假已审批！",
+									"value" => "您好，您的请假申请未通过！",
 									"color" => "#173177"
 							),
 							"keyword1" => array(
@@ -116,12 +116,15 @@ if($info['sf_ty']==0) {
 	$now = date('Y-m-d H:i:s');
 	$url = '';
 	$msg='不同意';
+	$info_msg="您好，您的请假申请未通过！";
 	if ($zt == 1) {
 		$msg='同意';
-		$des = new Crypt_DES();
-		$des->setKey('zjzz_zkey');
+		$info_msg="您好，您的请假已审批！";
+		// $des = new Crypt_DES();
+		// $des->setKey('');
 		$ewm_str = $url . "api/mw_yz_ewm.php?id=$id&type=sm";//周末签到二维码字符串
-		$str = base64_encode($des->encrypt($ewm_str));
+		// $str = base64_encode($des->encrypt($ewm_str));
+		$str="bbb".$id;
 		$filePath = scerweima($str);
 		$url = 'http://xs.17189.net/api/' . $filePath;
 	}
@@ -140,10 +143,10 @@ if($info['sf_ty']==0) {
 		$post_data = array(
 				'touser' => $openid['wxid'],//推送给谁,openid
 				'template_id' => $jgtz, //微信后台的模板信息id
-				"url" => "http://xs.17189.net/api/rk/stu.php",
+				"url" => "http://xs.17189.net/api/tz_yd/stu_rk.php?id=".$id,
 				"data" => array(
 						"first" => array(
-								"value" => "您好，您的请假已审批！",
+								"value" => $info_msg,
 								"color" => "#173177"
 						),
 						"keyword1" => array(

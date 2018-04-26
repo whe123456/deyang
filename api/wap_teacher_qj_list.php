@@ -22,15 +22,15 @@ if(!$user){
 $where='';
 if($type==0) {
     if($user['js_id']==4){
-        $where .= "  AND (sf_ty=0 OR sf_ty=1) AND (jdc_teacher='' OR jdc_teacher IS NULL) AND jdc_ty=0";
+        $where .= "  AND (zq.sf_ty=0 OR zq.sf_ty=1) AND (zq.jdc_teacher='' OR zq.jdc_teacher IS NULL) AND zq.jdc_ty=0";
     }else{
-        $where .= " and sf_ty =0";
+        $where .= " and zq.sf_ty =0";
     }
 }else{
     if($user['js_id']==4){
-        $where .= " AND sf_ty!=0 AND jdc_teacher='{$user['js_bm']}' AND jdc_ty!=0";
+        $where .= " AND zq.sf_ty!=0 AND ((jdc_teacher='{$user['js_bm']}' AND jdc_ty!=0) or zq.sf_ty=-1)";
     }else{
-        $where .= " and sf_ty !=0";
+        $where .= " and zq.sf_ty !=0";
     }
 }
 if(!empty($_REQUEST['minid'])){
@@ -49,7 +49,7 @@ if(count($arr)>0){
             $more=false;
         }
         $minid=$value['id'];
-        $date=explode('-', $value['qj_sj']);
+        $date=explode('.', $value['qj_sj']);
         $list[$key]['title']=$value['qj_yy'];
         $list[$key]['id']=$value['id'];
         $list[$key]['list'][0]['label']='审批人';
@@ -68,8 +68,8 @@ if(count($arr)>0){
         $list[$key]['list'][2]['value']=$spr;
         $list[$key]['list'][3]['value']=$sf_ty[$value['jdc_ty']];
         $list[$key]['list'][4]['value']=$value['qj_nr'];
-        $list[$key]['list'][5]['value']=$date[0];
-        $list[$key]['list'][6]['value']=$date[1];
+        $list[$key]['list'][5]['value']=empty($date[0])?'':$date[0];
+        $list[$key]['list'][6]['value']=empty($date[1])?'':$date[1];
     }
 }
 echo json_encode(array('state'=>'true','more'=>$more,'list'=>$list,'minid'=>$minid));

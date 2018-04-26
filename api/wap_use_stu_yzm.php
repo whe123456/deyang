@@ -51,12 +51,13 @@ $xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
 $have=Database::ReadoneStr($xs_sql,$conn,array($user['id']));
 if($have==0){
 //des加密二维码
-	require_once $dii_ctx_root_dir . '/include/DES.php';
+	// require_once $dii_ctx_root_dir . '/include/DES.php';
 	include_once $dii_ctx_root_dir . '/include/phpqrcode.php';
-	$des = new Crypt_DES();
-	$des->setKey('zjzz_zkey');
+	// $des = new Crypt_DES();
+	// $des->setKey('98765432');
 	$ewm_str=$url."api/wap_use_stu_qd.php?wxid=$wxid&type=1&address=周末签到&gps=周末签到";//周末签到二维码字符串
-	$str = base64_encode($des->encrypt($ewm_str));
+	// $str = base64_encode($des->encrypt($ewm_str));
+	$str="aaa".$wxid;
 	$filePath=scerweima($str);
 	$url = 'http://xs.17189.net/api/' . $filePath;
 	$sql="INSERT INTO zjzz_xs VALUES (?,?,?,?,?)";
