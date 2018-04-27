@@ -131,7 +131,7 @@ export default {
   }
 }
 const getList = function (page, value7, that) {
-  const usersName = localStorage.getItem('ms_username')
+  const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
     return false

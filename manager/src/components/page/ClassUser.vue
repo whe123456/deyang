@@ -135,7 +135,7 @@ export default {
       window.open(url + 'api/demo/white_demo_list.xlsx')
     },
     delClick (e) {
-      const usersName = localStorage.getItem('ms_username')
+      const usersName = sessionStorage.getItem('ms_username')
       if (usersName === null) {
         this.$router.push('/Login')
         return false
@@ -164,7 +164,7 @@ export default {
   }
 }
 const getList = function (page, that) {
-  const usersName = localStorage.getItem('ms_username')
+  const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
     return false

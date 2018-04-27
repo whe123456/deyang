@@ -18,15 +18,18 @@ $wxid = $_REQUEST['wxid'];
 checkRequestKeyHtml("id", "请假信息不能为空");
 $id = $_REQUEST['id'];
 checkRequestKeyHtml("zt", "审核状态不能为空");
-$zt = $_REQUEST['zt'];
+$zt = empty($_REQUEST['zt'])?1:$_REQUEST['zt'];
 $yj = empty($_REQUEST['yj'])?'':$_REQUEST['yj'];
 $conn=Database::Connect();
-$sql="SELECT zq.*,zj.xm from zjzz_qj zq,zjzz_js zj WHERE zq.id=? AND zj.js_bm=zq.js_bm AND zj.wxid=?";
-$info=Database::ReadoneRow($sql,$conn,array($id,$wxid));
+$sql="SELECT zq.*,zj.xm,zj.wxid from zjzz_qj zq,zjzz_js zj WHERE zq.id=? AND zj.js_bm=zq.js_bm";
+$info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
     alertExitHtml("无此请假信息");
 }
 if($info['sf_ty']==0) {
+	if($wxid!=$info['wxid']){
+		alertExitHtml("无权审核");
+	}
 	$now = date('Y-m-d H:i:s');
 	$url = '';
 	$sql = "UPDATE zjzz_qj SET sf_ty=?,sh_yj=?,ewm_url=?,sh_sj=? WHERE id=?";
@@ -56,7 +59,7 @@ if($info['sf_ty']==0) {
 										"color"=>"#173177"
 								),
 								"keyword2"=>array(
-										"value"=>$info['qj_bt'],
+										"value"=>$info['qj_yy'],
 										"color"=>"#173177"
 								),
 								"remark"=> array(
@@ -113,6 +116,11 @@ if($info['sf_ty']==0) {
 
 	$info['stu_xm'] = $user;
 }else{
+	$sql="SELECT * FROM zjzz_js WHERE wxid=?";
+	$js=Database::ReadoneRow($sql,$conn,array($wxid));
+	if($js['js_id']!=4){
+		alertExitHtml("仅教导处教师可审核");
+	}
 	$now = date('Y-m-d H:i:s');
 	$url = '';
 	$msg='不同意';

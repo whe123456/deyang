@@ -41,3 +41,4 @@ if($list==0){
 }
 $sql="INSERT INTO saoma_list VALUES (?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now));
+echo json_encode(array('state'=>0,'msg'=>$msg));

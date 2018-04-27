@@ -135,7 +135,7 @@ export default {
       window.open(url + 'api/demo/class_demo_list.xlsx')
     },
     delClick (e) {
-      const usersName = localStorage.getItem('ms_username')
+      const usersName = sessionStorage.getItem('ms_username')
       if (usersName === null) {
         this.$router.push('/Login')
         return false
@@ -161,8 +161,8 @@ export default {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
     const that = this
     const url = localStorage.getItem('url')
-    this.js_id = localStorage.getItem('js_id')
-    const usersName = localStorage.getItem('ms_username')
+    this.js_id = sessionStorage.getItem('js_id')
+    const usersName = sessionStorage.getItem('ms_username')
     if (usersName === null) {
       that.$router.push('/Login')
       return false
@@ -172,7 +172,7 @@ export default {
   }
 }
 const getList = function (page, that) {
-  const usersName = localStorage.getItem('ms_username')
+  const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
     return false

@@ -3,7 +3,12 @@
     <v-head></v-head>
     <v-sidebar></v-sidebar>
     <div class="content">
-      <transition name="move" mode="out-in">
+      <transition name="move" mode="out-in" v-if="$route.meta.keepAlive">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </transition>
+      <transition name="move" mode="out-in" v-if="!$route.meta.keepAlive">
         <router-view></router-view>
       </transition>
     </div>

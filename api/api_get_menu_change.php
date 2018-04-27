@@ -15,8 +15,8 @@ $id=empty($_REQUEST['id'])?'':$_REQUEST['id'];
 $conn=Database::Connect();
 $js_list=array();
 if($id!=''){
-    $js_list=Database::ReadoneRow("SELECT title,parent FROM sidebar_icon WHERE id=$id",$conn,array());
+    $js_list=Database::ReadoneRow("SELECT title,parent,`order` FROM sidebar_icon WHERE id=$id",$conn,array());
 }
-$sql="SELECT `index`,title as label from sidebar_icon where parent=0";
+$sql="SELECT `index`,title as label from sidebar_icon where parent=0 ORDER BY `order` DESC";
 $list=Database::Readall($sql,$conn,array());
 echo json_encode(array('state'=>'true','list'=>$list,'bmd'=>$js_list));

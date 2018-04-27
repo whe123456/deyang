@@ -20,14 +20,14 @@ $form=json_decode($form,true);
 if(count($form)==0){
     alertExit('请输入菜单信息');
 }
-if(empty($form['name'])||empty($form['fj'])){
+if(empty($form['name'])||empty($form['fj'])||empty($form['order'])){
     alertExit('请输入完整菜单信息');
 }
 $conn=Database::Connect();
 $now=date('Y-m-d H:i:s');
 if($id!=''){
-    $sql="UPDATE sidebar_icon SET title=?,parent=? WHERE id=?";
-    $arr=array($form['name'],$form['fj'],$id);
+    $sql="UPDATE sidebar_icon SET title=?,parent=?,`order`=? WHERE id=?";
+    $arr=array($form['name'],$form['fj'],$form['order'],$id);
     $msg='菜单信息修改成功';
     Database::Update_pre($sql,$conn,$arr);
 }

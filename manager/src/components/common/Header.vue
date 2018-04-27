@@ -17,12 +17,12 @@
 export default {
   data () {
     return {
-      name: 'linxin'
+      name: ''
     }
   },
   computed: {
     username () {
-      let usersName = localStorage.getItem('ms_username')
+      let usersName = sessionStorage.getItem('ms_username')
       if (usersName) {
         return usersName
       } else {
@@ -33,7 +33,7 @@ export default {
   methods: {
     handleCommand (command) {
       if (command === 'loginout') {
-        localStorage.removeItem('ms_username')
+        sessionStorage.removeItem('ms_username')
         this.$router.push('/login')
       }
     }

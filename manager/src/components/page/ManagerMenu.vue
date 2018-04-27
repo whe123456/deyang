@@ -18,6 +18,9 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="排序设置">
+        <el-input v-model="form.order" class="width300"></el-input>越高排序越靠前
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">{{wb_text}}</el-button>
         <el-button type="primary" @click="oncancle">取消</el-button>
@@ -33,7 +36,8 @@ export default {
       options: [],
       form: {
         name: '',
-        fj: ''
+        fj: '',
+        order: ''
       },
       loading: true,
       ClassName: '',
@@ -43,7 +47,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      const usersName = localStorage.getItem('ms_username')
+      const usersName = sessionStorage.getItem('ms_username')
       if (usersName === null) {
         this.$router.push('/Login')
         return false
@@ -72,7 +76,7 @@ export default {
       this.wb_text = '立即修改'
       this.ClassName = '菜单信息修改'
     }
-    const usersName = localStorage.getItem('ms_username')
+    const usersName = sessionStorage.getItem('ms_username')
     if (usersName === null) {
       this.$router.push('/Login')
       return false

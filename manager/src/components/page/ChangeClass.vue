@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      const usersName = localStorage.getItem('ms_username')
+      const usersName = sessionStorage.getItem('ms_username')
       if (usersName === null) {
         this.$router.push('/Login')
         return false
@@ -89,7 +89,7 @@ export default {
       this.ClassName = '新增班级'
       this.sf_ds = false
     }
-    const usersName = localStorage.getItem('ms_username')
+    const usersName = sessionStorage.getItem('ms_username')
     if (usersName === null) {
       this.$router.push('/Login')
       return false

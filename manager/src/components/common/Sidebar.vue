@@ -44,7 +44,7 @@ export default {
   },
   mounted () {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
-    const usersName = localStorage.getItem('ms_username')
+    const usersName = sessionStorage.getItem('ms_username')
     if (usersName === null) {
       this.$router.push('/Login')
       return false

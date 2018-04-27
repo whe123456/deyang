@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      const usersName = localStorage.getItem('ms_username')
+      const usersName = sessionStorage.getItem('ms_username')
       if (usersName === null) {
         this.$router.push('/Login')
         return false
@@ -72,7 +72,7 @@ export default {
       this.ClassName = '新增角色'
       this.wb_text = '立即创建'
     }
-    const usersName = localStorage.getItem('ms_username')
+    const usersName = sessionStorage.getItem('ms_username')
     if (usersName === null) {
       this.$router.push('/Login')
       return false

@@ -24,7 +24,6 @@
     <group v-else>
       <popup-radio title="审批状态" readonly :options="optionzt" v-model="spzt"></popup-radio>
       <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
-      <badge></badge>
       <popup-radio class="red_radio" v-if="jdctea === ''" title="教导处审批状态" :options="optionzt" v-model="spjdc" placeholder="是否同意"></popup-radio>
       <x-textarea v-if="jdctea === ''" :max="50" v-model="jdcyj" placeholder="教导处审批意见" ></x-textarea>
     </group>
@@ -34,7 +33,7 @@
   </div>
 </template>
 <script>
-  import { XButton, Previewer, TransferDom, Group, Cell, PopupRadio, XTextarea, Toast, Badge } from 'vux'
+  import { XButton, Previewer, TransferDom, Group, Cell, PopupRadio, XTextarea, Toast } from 'vux'
   export default {
     components: {
       Previewer,
@@ -43,8 +42,7 @@
       XButton,
       PopupRadio,
       XTextarea,
-      Toast,
-      Badge
+      Toast
     },
     directives: {
       TransferDom
@@ -125,6 +123,9 @@
           that.teacher = res.info.xm
           that.str = res.info.stu_xm
           that.spzt = res.info.sf_ty
+          if (that.spzt === 0) {
+            that.spzt = 1
+          }
           that.sfksp = res.info.sf_ty
           that.spyj = res.info.sh_yj
           that.spjdc = res.info.jdc_ty
@@ -144,7 +145,7 @@
         this.$refs.previewer.show(index)
       },
       getinfo () {
-        if (this.spzt === '' && this.spjdc === '') {
+        if (this.spzt === 0 && this.spjdc === 0) {
           return false
         }
         const id = this.$route.query.id

@@ -75,7 +75,6 @@ export default {
     },
     oncancle () {
       this.formInline.xm = ''
-      this.formInline.bh = ''
       getList(1, this)
     },
     handleCurrentChange (e) {
@@ -92,7 +91,7 @@ export default {
   }
 }
 const getList = function (page, that) {
-  const usersName = localStorage.getItem('ms_username')
+  const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
     return false
