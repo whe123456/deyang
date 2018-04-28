@@ -9,7 +9,7 @@
         <el-input v-model="form.BjCode" class="width300" :disabled="sf_ds"></el-input>
       </el-form-item>
       <el-form-item label="年级设置">
-        <el-select v-model="form.grade" clearable filterable placeholder="请选择年级" class="width300">
+        <el-select v-model="form.grade_id" clearable filterable placeholder="请选择年级" class="width300">
           <el-option
             v-for="item in option_grade"
             :key="item.id"
@@ -54,7 +54,8 @@ export default {
         bj_mc: '',
         js_bh: '',
         desc: '',
-        gl_teacher: ''
+        gl_teacher: '',
+        grade_id: ''
       },
       sf_ds: true,
       loading: true,
@@ -119,6 +120,7 @@ export default {
           that.form.js_bh = res.bmd.js_bh
           that.form.desc = res.bmd.bz
           that.form.gl_teacher = res.bmd.js_bm
+          that.form.grade_id = res.bmd.grade_id
         }
       } else {
         that.$alert(res.msg, '提示', {

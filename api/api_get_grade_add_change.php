@@ -14,29 +14,29 @@ if(!isset($_SESSION)){
     session_start();
 }
 checkRequestKeyHtml("username", "用户名不能为空");
-$BjBm=empty($_REQUEST['BjBm'])?'':$_REQUEST['BjBm'];
+$id=empty($_REQUEST['id'])?'':$_REQUEST['id'];
 $form=empty($_REQUEST['form'])?json_encode(array()):$_REQUEST['form'];
 $form=json_decode($form,true);
 if(count($form)==0){
     alertExit('请输入班级信息');
 }
-if(empty($form['bj_mc'])||empty($form['BjCode'])||empty($form['gl_teacher'])||empty($form['grade_id'])){
+if(empty($form['bj_mc'])){
     alertExit('请输入完整班级信息');
 }
 $conn=Database::Connect();
-if($BjBm!=''){
-    $sql="UPDATE zjzz_Bj SET bj_mc=? ,js_bh=? ,js_bm=? ,bz=? ,grade_id=? WHERE bj_bm=?";
-    $arr=array($form['bj_mc'],$form['js_bh'],$form['gl_teacher'],$form['desc'],$form['grade_id'],$BjBm);
+if($id!=''){
+    $sql="UPDATE grade SET `name`=? ,state=? WHERE id=?";
+    $arr=array($form['bj_mc'],'1',$id);
     $msg='信息修改成功';
     Database::Update_pre($sql,$conn,$arr);
 }else{
-    $sql="SELECT COUNT(*) FROM zjzz_Bj WHERE bj_bm=?";
-    $sfcz=Database::ReadoneStr($sql,$conn,array($form['BjCode']));
+    $sql="SELECT COUNT(*) FROM grade WHERE name=?";
+    $sfcz=Database::ReadoneStr($sql,$conn,array($form['bj_mc']));
     if($sfcz>0){
-        alertExit('已有该教室编码');
+        alertExit('已有该年级名称');
     }
-    $sql="INSERT INTO zjzz_Bj (bj_bm,bj_mc,js_bh,js_bm,bz,grade_id)VALUES(?,?,?,?,?,?)";
+    $sql="INSERT INTO grade (`name`,create_ts,state)VALUES(?,?,?)";
     $msg='班级增加成功';
-    Database::InsertOrUpdate($sql,$conn,array($form['BjCode'],$form['bj_mc'],$form['js_bh'],$form['gl_teacher'],$form['desc'],$form['grade_id']));
+    Database::InsertOrUpdate($sql,$conn,array($form['bj_mc'],date('Y-m-d H:i:s'),'1'));
 }
 echo json_encode(array('state'=>'true','msg'=>$msg));

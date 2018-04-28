@@ -55,6 +55,10 @@
           label="班级编码">
         </el-table-column>
         <el-table-column
+          prop="nj_name"
+          label="年级名称">
+        </el-table-column>
+        <el-table-column
           prop="bj_mc"
           label="班级名称">
         </el-table-column>

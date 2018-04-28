@@ -20,5 +20,5 @@ if($BjBm!=''){
 $sql="SELECT js_bm,xm FROM zjzz_js";
 $list=Database::Readall($sql,$conn,array());
 $sql="SELECT * FROM grade where state=1";
-$list=Database::Readall($sql,$conn,array());
-echo json_encode(array('state'=>'true','list'=>$list,'bmd'=>$dhbmd));
+$grade=Database::Readall($sql,$conn,array());
+echo json_encode(array('state'=>'true','list'=>$list,'grade'=>$grade,'bmd'=>$dhbmd));

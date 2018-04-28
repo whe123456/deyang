@@ -44,7 +44,7 @@
           label="功能">
           <template slot-scope="scope">
             <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
-            <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
+            <!--<el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>-->
           </template>
         </el-table-column>
       </el-table>
@@ -69,7 +69,8 @@ export default {
       page: 5,
       total: 0,
       now_page: 1,
-      js_id: 0
+      js_id: 0,
+      tableData: []
     }
   },
   methods: {
@@ -84,29 +85,29 @@ export default {
       getList(e, this)
     },
     ChangeClick (e) {
-      this.$router.push({path: '/change', query: { bm: e.bj_bm }})
+      this.$router.push({path: '/grademenu', query: { id: e.id }})
     },
     AddClass () {
-      this.$router.push({path: '/change'})
-    },
-    delClick (e) {
-      const usersName = sessionStorage.getItem('ms_username')
-      if (usersName === null) {
-        this.$router.push('/Login')
-        return false
-      }
-      const url = localStorage.getItem('url')
-      const that = this
-      this.axios.get(url + 'api/api_get_grade_del.php', { username: usersName, grade: e.bj_bm }, function (res) {
-        if (res.state === 'true') {
-          that.$message('删除成功')
-          getList(that.now_page, that)
-        } else {
-          that.$alert(res.msg, '提示', {
-            confirmButtonText: '确定'
-          })
-        }
-      })
+      this.$router.push({path: '/grademenu'})
+    // },
+    // delClick (e) {
+    //   const usersName = sessionStorage.getItem('ms_username')
+    //   if (usersName === null) {
+    //     this.$router.push('/Login')
+    //     return false
+    //   }
+    //   const url = localStorage.getItem('url')
+    //   const that = this
+    //   this.axios.get(url + 'api/api_get_grade_del.php', { username: usersName, grade: e.name }, function (res) {
+    //     if (res.state === 'true') {
+    //       that.$message('删除成功')
+    //       getList(that.now_page, that)
+    //     } else {
+    //       that.$alert(res.msg, '提示', {
+    //         confirmButtonText: '确定'
+    //       })
+    //     }
+    //   })
     }
   },
   mounted () {
@@ -130,8 +131,7 @@ const getList = function (page, that) {
   that.loading = true
   const url = localStorage.getItem('url')
   const BjName = that.formInline.BjName
-  const GlTeacher = that.formInline.GlTeacher
-  that.axios.get(url + 'api/api_get_class_list.php', { username: usersName, page: page, BjName: BjName, ClassTeach: GlTeacher }, function (res) {
+  that.axios.get(url + 'api/api_get_grade_list.php', { username: usersName, page: page, grade: BjName }, function (res) {
     that.now_page = page
     that.loading = false
     if (res.state === 'true') {

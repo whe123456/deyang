@@ -13,14 +13,10 @@ if(!isset($_SESSION)){
 checkRequestKeyHtml("username", "用户名不能为空");
 $username = trim($_REQUEST['username']);
 $page=empty($_REQUEST['page'])?0:$_REQUEST['page']-1;
-$BjName=empty($_REQUEST['BjName'])?'':$_REQUEST['BjName'];
-$ClassTeach=empty($_REQUEST['ClassTeach'])?'':$_REQUEST['ClassTeach'];
-$where=' zb.`js_bm`=zj.`js_bm` and zb.grade_id=g.id';
-if($BjName!=''){
-    $where.=" AND zb.bj_mc LIKE '%$BjName%'";
-}
-if($ClassTeach!=''){
-    $where.=" AND zj.`xm` LIKE '%$ClassTeach%'";
+$grade=empty($_REQUEST['grade'])?'':$_REQUEST['grade'];
+$where=' state=1';
+if($grade!=''){
+    $where.=" AND name LIKE '%$grade%'";
 }
 $page_count=10;
 $conn=Database::Connect();
@@ -32,8 +28,8 @@ if(!$user){
 if($user['js_id']=='1'){
     $where.=" AND zj.`js_bm`= '".$_REQUEST['username']."'";
 }
-$count=Database::ReadoneStr("SELECT count(*) FROM zjzz_bj zb,zjzz_js zj,grade g WHERE $where",$conn,array());
+$count=Database::ReadoneStr("SELECT count(*) FROM grade WHERE $where",$conn,array());
 $qz_count=$page*$page_count;
-$sql="SELECT zb.*,zj.`xm`,g.name as nj_name FROM zjzz_bj zb,zjzz_js zj,grade g WHERE $where ORDER BY id DESC LIMIT $qz_count,$page_count";
+$sql="SELECT * FROM grade WHERE $where ORDER BY id DESC LIMIT $qz_count,$page_count";
 $user_list=Database::Readall($sql,$conn,array());
 echo json_encode(array('state'=>'true','list'=>$user_list,'count'=>$count,'page_size'=>$page_count));
