@@ -44,7 +44,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div>
+    <div v-loading="loading">
       <el-table
         :data="tableData"
         stripe
@@ -98,6 +98,7 @@ export default {
         kq_sj: '',
         xm: ''
       },
+      loading: true,
       options: [{
         value: '0',
         label: '日常考勤'
@@ -172,6 +173,7 @@ export default {
   }
 }
 const getList = function (page, that) {
+  that.loading = true
   const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
@@ -183,6 +185,7 @@ const getList = function (page, that) {
   const Kqsj = that.formInline.kq_sj
   const xm = that.formInline.xm
   that.axios.get(url + 'api/api_get_kq_list.php', {username: usersName, page: page, bj_mc: Bjmc, kq_lx: KqLx, kq_sj: Kqsj, xm: xm}, function (res) {
+    that.loading = false
     if (res.state === 'true') {
       that.page = res.page
       that.total = res.count

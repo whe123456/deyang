@@ -35,7 +35,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div>
+    <div v-loading="loading">
       <el-table
         :data="tableData"
         stripe
@@ -95,6 +95,7 @@ export default {
         xm: '',
         bh: ''
       },
+      loading: true,
       tableData: [],
       jz_loading: false,
       fileList: [],
@@ -189,10 +190,12 @@ const getList = function (page, that) {
     that.$router.push('/Login')
     return false
   }
+  that.loading = true
   const url = localStorage.getItem('url')
   const xm = that.formInline.xm
   const bh = that.formInline.bh
   that.axios.get(url + 'api/api_get_user_manager.php', { username: usersName, page: page, xm: xm, bh: bh }, function (res) {
+    that.loading = false
     if (res.state === 'true') {
       that.page = res.page
       that.total = res.count

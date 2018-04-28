@@ -19,7 +19,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div>
+    <div v-loading="loading">
       <el-table
         :data="tableData"
         stripe
@@ -61,6 +61,7 @@ export default {
       formInline: {
         xm: ''
       },
+      loading: true,
       tableData: [],
       page: 5,
       total: 0,
@@ -91,6 +92,7 @@ export default {
   }
 }
 const getList = function (page, that) {
+  that.loading = true
   const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
@@ -99,6 +101,7 @@ const getList = function (page, that) {
   const url = localStorage.getItem('url')
   const xm = that.formInline.xm
   that.axios.get(url + 'api/api_get_silder.php', { username: usersName, page: page, name: xm }, function (res) {
+    that.loading = false
     if (res.state === 'true') {
       that.page = res.page
       that.total = res.count

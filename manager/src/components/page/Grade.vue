@@ -2,28 +2,34 @@
   <div>
     <div class="crumbs">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item><i class="el-icon-tickets"></i> 角色管理</el-breadcrumb-item>
+        <el-breadcrumb-item><i class="el-icon-tickets"></i> 年级管理</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div>
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item>
-          <label>名称查询</label>
-          <el-input v-model="formInline.xm" placeholder="请输入名称查询"></el-input>
+          <span class="demonstration">年级名称</span>
+          <el-input
+            placeholder="请输入班级名称"
+            v-model="formInline.BjName"
+            class="sr_input"
+            clearable>
+          </el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">查询</el-button>
           <el-button type="primary" @click="oncancle">取消查询</el-button>
         </el-form-item>
         <el-form-item class="right">
-          <el-button type="primary" @click="onAdd">新增</el-button>
+          <el-button type="primary" @click="AddClass">添加</el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div v-loading="loading">
+    <div>
       <el-table
         :data="tableData"
         stripe
+        v-loading="loading"
         style="width: 100%">
         <el-table-column
           prop="id"
@@ -31,24 +37,14 @@
         </el-table-column>
         <el-table-column
           prop="name"
-          label="名称">
-        </el-table-column>
-        <el-table-column
-          prop="ms"
-          label="角色描述">
-        </el-table-column>
-        <el-table-column
-          prop="create_ts"
-          label="创建时间">
+          label="年级名称">
         </el-table-column>
         <el-table-column
           prop="coin"
-          label="操作">
+          label="功能">
           <template slot-scope="scope">
-            <div v-if="scope.row.id !== 1 && scope.row.id !== 4">
-              <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
-              <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
-            </div>
+            <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
+            <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -67,15 +63,13 @@ export default {
   data () {
     return {
       formInline: {
-        xm: ''
+        BjName: ''
       },
       loading: true,
-      tableData: [],
       page: 5,
       total: 0,
-      UserId: '',
-      thatUserTel: '',
-      UserForce: ''
+      now_page: 1,
+      js_id: 0
     }
   },
   methods: {
@@ -83,64 +77,65 @@ export default {
       getList(1, this)
     },
     oncancle () {
-      this.formInline.xm = ''
-      this.formInline.bh = ''
+      this.formInline.BjName = ''
       getList(1, this)
     },
     handleCurrentChange (e) {
       getList(e, this)
     },
-    delClick (e) {
-      const id = e.id
-      this.$confirm('此操作将永久删除该角色, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        const usersName = sessionStorage.getItem('ms_username')
-        if (usersName === null) {
-          this.$router.push('/Login')
-          return false
-        }
-        const url = localStorage.getItem('url')
-        const that = this
-        that.axios.get(url + 'api/api_get_role_del.php', { username: usersName, id: id }, function (res) {
-          if (res.state === 'true') {
-            getList(1, that)
-          } else {
-            that.$alert(res.msg, '提示', {
-              confirmButtonText: '确定'
-            })
-          }
-        })
-      })
-    },
     ChangeClick (e) {
-      this.$router.push({path: '/managerrole', query: { id: e.id }})
+      this.$router.push({path: '/change', query: { bm: e.bj_bm }})
     },
-    onAdd () {
-      this.$router.push({path: '/managerrole'})
+    AddClass () {
+      this.$router.push({path: '/change'})
+    },
+    delClick (e) {
+      const usersName = sessionStorage.getItem('ms_username')
+      if (usersName === null) {
+        this.$router.push('/Login')
+        return false
+      }
+      const url = localStorage.getItem('url')
+      const that = this
+      this.axios.get(url + 'api/api_get_grade_del.php', { username: usersName, grade: e.bj_bm }, function (res) {
+        if (res.state === 'true') {
+          that.$message('删除成功')
+          getList(that.now_page, that)
+        } else {
+          that.$alert(res.msg, '提示', {
+            confirmButtonText: '确定'
+          })
+        }
+      })
     }
   },
   mounted () {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
     const that = this
+    this.js_id = sessionStorage.getItem('js_id')
+    const usersName = sessionStorage.getItem('ms_username')
+    if (usersName === null) {
+      that.$router.push('/Login')
+      return false
+    }
     getList(1, that)
   }
 }
 const getList = function (page, that) {
-  that.loading = true
   const usersName = sessionStorage.getItem('ms_username')
   if (usersName === null) {
     that.$router.push('/Login')
     return false
   }
+  that.loading = true
   const url = localStorage.getItem('url')
-  const xm = that.formInline.xm
-  that.axios.get(url + 'api/api_get_role.php', { username: usersName, page: page, name: xm }, function (res) {
+  const BjName = that.formInline.BjName
+  const GlTeacher = that.formInline.GlTeacher
+  that.axios.get(url + 'api/api_get_class_list.php', { username: usersName, page: page, BjName: BjName, ClassTeach: GlTeacher }, function (res) {
+    that.now_page = page
     that.loading = false
     if (res.state === 'true') {
-      that.page = res.page
+      that.page = res.page_size
       that.total = res.count
       if (res.list !== false) {
         that.tableData = res.list
@@ -159,9 +154,7 @@ const getList = function (page, that) {
 <style scoped>
   .el-breadcrumb{font-size: 30px;    margin-bottom: 22px;}
   .el-pagination{text-align: center;}
+  .sr_input{width: 200px;}
   .right{float:right;}
-  .size20{font-size: 20px;}
-  .el-input {
-    width: 200px;
-  }
+  .upload-demo{display: inline-block;}
 </style>

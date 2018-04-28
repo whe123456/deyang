@@ -44,7 +44,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div>
+    <div v-loading="loading">
       <el-table
         :data="tableData"
         stripe
@@ -166,6 +166,7 @@ export default {
           }
         }]
       },
+      loading: true,
       tableData: [],
       page: 5,
       total: 0
@@ -211,12 +212,14 @@ const getList = function (page, that) {
     that.$router.push('/Login')
     return false
   }
+  that.loading = true
   const url = localStorage.getItem('url')
   const Bjmc = that.formInline.bj_mc
   const KqLx = that.formInline.kq_lx
   const Kqsj = that.formInline.kq_sj
   const xm = that.formInline.xm
   that.axios.get(url + 'api/api_get_qj_list.php', {username: usersName, page: page, bj_mc: Bjmc, sf_ty: KqLx, kq_sj: Kqsj, xm: xm}, function (res) {
+    that.loading = false
     if (res.state === 'true') {
       that.page = res.page
       that.total = res.count

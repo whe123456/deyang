@@ -154,7 +154,7 @@ export default {
       })
     }
   },
-  mounted () {
+  activated () {
     this.$store.state.adminleftnavnum = this.$route.path.replace('/', '')
     const that = this
     const url = localStorage.getItem('url')

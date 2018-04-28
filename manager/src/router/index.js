@@ -24,7 +24,7 @@ export default new Router({
           path: '/change',
           component: resolve => require(['../components/page/ChangeClass.vue'], resolve),
           meta: {
-            keepAlive: true // 需要缓存
+            keepAlive: false // 需要缓存
           }
         },
         {
@@ -45,21 +45,21 @@ export default new Router({
           path: '/whiteadd',
           component: resolve => require(['../components/page/WhiteListAdd.vue'], resolve),
           meta: {
-            keepAlive: true // 需要缓存
+            keepAlive: false // 需要缓存
           }
         },
         {
           path: '/userkq',
           component: resolve => require(['../components/page/GetKqJl.vue'], resolve),
           meta: {
-            keepAlive: true // 需要缓存
+            keepAlive: false // 需要缓存
           }
         },
         {
           path: '/getqjjl',
           component: resolve => require(['../components/page/GetQjJl.vue'], resolve),
           meta: {
-            keepAlive: true // 需要缓存
+            keepAlive: false // 需要缓存
           }
         },
         {
@@ -87,7 +87,7 @@ export default new Router({
           path: '/manageruser',
           component: resolve => require(['../components/page/MangerUser.vue'], resolve),
           meta: {
-            keepAlive: true // 需要缓存
+            keepAlive: false // 需要缓存
           }
         },
         {
@@ -101,7 +101,7 @@ export default new Router({
           path: '/managerrole',
           component: resolve => require(['../components/page/ManagerRole.vue'], resolve),
           meta: {
-            keepAlive: true // 需要缓存
+            keepAlive: false // 需要缓存
           }
         },
         {
@@ -114,6 +114,20 @@ export default new Router({
         {
           path: '/managermenu',
           component: resolve => require(['../components/page/ManagerMenu.vue'], resolve),
+          meta: {
+            keepAlive: false // 需要缓存
+          }
+        },
+        {
+          path: '/grade',
+          component: resolve => require(['../components/page/Grade.vue'], resolve),
+          meta: {
+            keepAlive: true // 需要缓存
+          }
+        },
+        {
+          path: '/grademenu',
+          component: resolve => require(['../components/page/GradeMenu.vue'], resolve),
           meta: {
             keepAlive: false // 需要缓存
           }

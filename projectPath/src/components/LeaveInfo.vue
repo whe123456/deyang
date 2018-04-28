@@ -26,9 +26,9 @@
       <cell title="截止时间" primary="content" :value="end_ts"></cell>
       <cell title="审批状态" :value="spzt"></cell>
       <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
-      <cell v-if="sptea !== false" title="教导处审批人" :value="sptea"></cell>
-      <cell v-if="sptea !== false" title="教导处审批状态" :value="spjdc"></cell>
-      <cell v-if="sptea !== false && jdcyj !== ''" title="教导处审批意见" :value="jdcyj"></cell>
+      <cell v-if="sptea !== false" title="学生处审批人" :value="sptea"></cell>
+      <cell v-if="sptea !== false" title="学生处审批状态" :value="spjdc"></cell>
+      <cell v-if="sptea !== false && jdcyj !== ''" title="学生处审批意见" :value="jdcyj"></cell>
     </group>
     <x-button class="sp_btn" type="primary" link="BACK">确认</x-button>
   </div>

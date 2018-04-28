@@ -119,7 +119,7 @@ if($info['sf_ty']==0) {
 	$sql="SELECT * FROM zjzz_js WHERE wxid=?";
 	$js=Database::ReadoneRow($sql,$conn,array($wxid));
 	if($js['js_id']!=4){
-		alertExitHtml("仅教导处教师可审核");
+		alertExitHtml("仅学生处教师可审核");
 	}
 	$now = date('Y-m-d H:i:s');
 	$url = '';

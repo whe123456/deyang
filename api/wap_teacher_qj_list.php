@@ -54,8 +54,8 @@ if(count($arr)>0){
         $list[$key]['id']=$value['id'];
         $list[$key]['list'][0]['label']='审批人';
         $list[$key]['list'][1]['label']='审批状态';
-        $list[$key]['list'][2]['label']='教导处审批人';
-        $list[$key]['list'][3]['label']='教导处审批状态';
+        $list[$key]['list'][2]['label']='学生处审批人';
+        $list[$key]['list'][3]['label']='学生处审批状态';
         $list[$key]['list'][4]['label']='请假标题';
         $list[$key]['list'][5]['label']='请假开始时间';
         $list[$key]['list'][6]['label']='请假结束时间';

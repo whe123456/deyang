@@ -24,8 +24,8 @@
     <group v-else>
       <popup-radio title="审批状态" readonly :options="optionzt" v-model="spzt"></popup-radio>
       <cell title="审批意见" :value="spyj" v-if="spyj !== ''"></cell>
-      <popup-radio class="red_radio" v-if="jdctea === ''" title="教导处审批状态" :options="optionzt" v-model="spjdc" placeholder="是否同意"></popup-radio>
-      <x-textarea v-if="jdctea === ''" :max="50" v-model="jdcyj" placeholder="教导处审批意见" ></x-textarea>
+      <popup-radio class="red_radio" v-if="jdctea === ''" title="学生处审批状态" :options="optionzt" v-model="spjdc" placeholder="是否同意"></popup-radio>
+      <x-textarea v-if="jdctea === ''" :max="50" v-model="jdcyj" placeholder="学生处审批意见" ></x-textarea>
     </group>
     <x-button class="sp_btn" type="primary" @click.native="getinfo">确认</x-button>
     <x-button class="sp_btn" type="default" link="BACK">返回</x-button>

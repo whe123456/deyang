@@ -16,6 +16,20 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`Deyang_Occupation` /*!40100 DEFAULT CHA
 
 USE `Deyang_Occupation`;
 
+/*Table structure for table `grade` */
+
+DROP TABLE IF EXISTS `grade`;
+
+CREATE TABLE `grade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL COMMENT '年级名称',
+  `create_ts` datetime NOT NULL COMMENT '创建时间',
+  `state` int(1) DEFAULT '1' COMMENT '1正常2删除',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `grade` */
+
 /*Table structure for table `saoma_list` */
 
 DROP TABLE IF EXISTS `saoma_list`;
@@ -39,12 +53,13 @@ CREATE TABLE `sidebar_icon` (
   `index` varchar(100) NOT NULL COMMENT '页面导航',
   `title` varchar(100) DEFAULT NULL COMMENT '页面名称',
   `parent` varchar(11) DEFAULT NULL COMMENT '父级',
+  `order` varchar(10) NOT NULL DEFAULT '0' COMMENT '排序设置',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `sidebar_icon` */
 
-insert  into `sidebar_icon`(`id`,`icon`,`index`,`title`,`parent`) values (1,'el-icon-setting','1','业务管理','0'),(2,NULL,'class','班级管理','1'),(3,NULL,'white','白名单管理','1'),(4,NULL,'userkq','出勤统计','1'),(5,NULL,'getqjjl','请假统计','1'),(6,'el-icon-date','2','系统管理','0'),(7,NULL,'mangeruser','系统管理','2'),(8,NULL,'role','角色管理','2'),(9,NULL,'menu','菜单管理','2');
+insert  into `sidebar_icon`(`id`,`icon`,`index`,`title`,`parent`,`order`) values (1,'el-icon-setting','1','业务管理','0','0'),(2,NULL,'class','班级管理','1','0'),(3,NULL,'white','白名单管理','1','0'),(4,NULL,'userkq','出勤统计','1','0'),(5,NULL,'getqjjl','请假统计','1','0'),(6,'el-icon-date','2','系统管理','0','0'),(7,NULL,'mangeruser','系统管理','2','0'),(8,NULL,'role','角色管理','2','0'),(9,NULL,'menu','菜单管理','2','0');
 
 /*Table structure for table `wxid_b` */
 
@@ -176,12 +191,16 @@ CREATE TABLE `zjzz_qj` (
   `create_ts` datetime NOT NULL COMMENT '申请时间',
   `sh_sj` datetime DEFAULT NULL COMMENT '审核时间',
   `sq_img` text COMMENT '申请图片',
+  `jdc_teacher` varchar(50) DEFAULT NULL COMMENT '教导处审核教师id',
+  `jdc_ty` int(11) DEFAULT '0' COMMENT '是否同意：0等待审核-1不同意1同意',
+  `jdc_yj` text COMMENT '审核意见',
+  `ec_sj` datetime DEFAULT NULL COMMENT '二次审核时间',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_qj` */
 
-insert  into `zjzz_qj`(`id`,`xs_id`,`qj_sj`,`qj_yy`,`qj_nr`,`js_bm`,`sf_ty`,`sh_yj`,`ewm_url`,`create_ts`,`sh_sj`,`sq_img`) values (1,200,'2018-04-05 17:07:40-2018-04-05 17:07:40','试试看',NULL,'001',1,'啧啧啧','https://cn.vuejs.org/images/logo.png','2018-04-06 10:32:03','2018-04-06 11:32:06',NULL),(2,200,'2018-04-15 14:25-2018-04-21 14:25','12121','我去我去·','002',0,'','','2018-04-15 15:21:55','2018-04-15 15:21:55',NULL),(3,200,'2018-04-15 14:25-2018-04-21 14:25','12121','我去我去·','002',0,'','','2018-04-15 15:22:09','2018-04-15 15:22:09',NULL),(4,200,'2018-04-15 15:23-2018-04-20 15:23','121','2121','002',0,'','','2018-04-15 15:23:53','2018-04-15 15:23:53',NULL),(5,200,'2018-04-15 15:24-2018-04-30 15:24','12','212','002',0,'','','2018-04-15 15:24:42','2018-04-15 15:24:42',NULL),(6,200,'2018-04-15 18:41-2018-04-28 18:42','1212','这是标题','002',0,'','','2018-04-15 18:42:06','2018-04-15 18:42:06','Array'),(7,200,'2018-04-15 18:41-2018-04-28 18:42','1212','这是标题','002',1,'.....','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180416170229832061.png','2018-04-15 18:42:27','2018-04-16 17:02:29','[{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/201804151841557147.png\"},{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/20180415184157693.png\"},{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/201804151841588216.png\"}]'),(8,200,'2018-04-16 15:23.2018-04-24 15:23','2121','21212','002',-1,'天天请假，哼？？','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180416165851451110.png','2018-04-16 15:23:49','2018-04-16 16:58:51','[{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/20180416152244372.png\"},{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/201804161523462597.png\"},{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/201804161523476911.png\"}]');
+insert  into `zjzz_qj`(`id`,`xs_id`,`qj_sj`,`qj_yy`,`qj_nr`,`js_bm`,`sf_ty`,`sh_yj`,`ewm_url`,`create_ts`,`sh_sj`,`sq_img`,`jdc_teacher`,`jdc_ty`,`jdc_yj`,`ec_sj`) values (1,200,'2018-04-05 17:07:40-2018-04-05 17:07:40','试试看',NULL,'001',1,'啧啧啧','https://cn.vuejs.org/images/logo.png','2018-04-06 10:32:03','2018-04-06 11:32:06',NULL,NULL,0,NULL,NULL),(2,200,'2018-04-15 14:25-2018-04-21 14:25','12121','我去我去·','002',0,'','','2018-04-15 15:21:55','2018-04-15 15:21:55',NULL,NULL,0,NULL,NULL),(3,200,'2018-04-15 14:25-2018-04-21 14:25','12121','我去我去·','002',0,'','','2018-04-15 15:22:09','2018-04-15 15:22:09',NULL,NULL,0,NULL,NULL),(4,200,'2018-04-15 15:23-2018-04-20 15:23','121','2121','002',0,'','','2018-04-15 15:23:53','2018-04-15 15:23:53',NULL,NULL,0,NULL,NULL),(5,200,'2018-04-15 15:24-2018-04-30 15:24','12','212','002',0,'','','2018-04-15 15:24:42','2018-04-15 15:24:42',NULL,NULL,0,NULL,NULL),(6,200,'2018-04-15 18:41-2018-04-28 18:42','1212','这是标题','002',0,'','','2018-04-15 18:42:06','2018-04-15 18:42:06','Array',NULL,0,NULL,NULL),(7,200,'2018-04-15 18:41-2018-04-28 18:42','1212','这是标题','002',1,'.....','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180416170229832061.png','2018-04-15 18:42:27','2018-04-16 17:02:29','[{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/201804151841557147.png\"},{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/20180415184157693.png\"},{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/201804151841588216.png\"}]',NULL,0,NULL,NULL),(8,200,'2018-04-16 15:23.2018-04-24 15:23','2121','21212','002',-1,'天天请假，哼？？','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180416165851451110.png','2018-04-16 15:23:49','2018-04-16 16:58:51','[{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/20180416152244372.png\"},{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/201804161523462597.png\"},{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/201804161523476911.png\"}]',NULL,0,NULL,NULL);
 
 /*Table structure for table `zjzz_sm` */
 
