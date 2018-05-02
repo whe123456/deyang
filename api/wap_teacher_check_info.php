@@ -26,11 +26,11 @@ $info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
     alertExitHtml("无此请假信息");
 }
+$now = date('Y-m-d H:i:s');	
 if($info['sf_ty']==0) {
 	if($wxid!=$info['wxid']){
 		alertExitHtml("无权审核");
 	}
-	$now = date('Y-m-d H:i:s');
 	$url = '';
 	$sql = "UPDATE zjzz_qj SET sf_ty=?,sh_yj=?,ewm_url=?,sh_sj=? WHERE id=?";
 	$user = Database::Update_pre($sql, $conn, array($zt, $yj, $url, $now, $id));
@@ -46,30 +46,30 @@ if($info['sf_ty']==0) {
 		if(count($openid)>0){
 			foreach($openid as $v){
 				$post_data = array(
-						'touser'=>$v['wxid'],//推送给谁,openid
-						'template_id'=>$shtz, //微信后台的模板信息id
-						"url"=>"http://xs.17189.net/api/rk/teacher.php",
-						"data"=> array(
-								"first" => array(
-										"value"=>'学生请假申请二次审批',
-										"color"=>"#173177"
-								),
-								"keyword1"=>array(
-										"value"=>date('Y-m-d H:i:s'),
-										"color"=>"#173177"
-								),
-								"keyword2"=>array(
-										"value"=>$info['qj_yy'],
-										"color"=>"#173177"
-								),
-								"remark"=> array(
-										"value"=>"请及时审批哦！",
-										"color"=>"#173177"
-								),
-						)
+					'touser'=>$v['wxid'],//推送给谁,openid
+					'template_id'=>$shtz, //微信后台的模板信息id
+					"url"=>"http://xs.17189.net/api/rk/teacher.php",
+					"data"=> array(
+							"first" => array(
+									"value"=>'学生请假申请二次审批',
+									"color"=>"#173177"
+							),
+							"keyword1"=>array(
+									"value"=>$now,
+									"color"=>"#173177"
+							),
+							"keyword2"=>array(
+									"value"=>$info['qj_yy'],
+									"color"=>"#173177"
+							),
+							"remark"=> array(
+									"value"=>"请及时审批哦！",
+									"color"=>"#173177"
+							),
+					)
 				);
 				$post_data = json_encode($post_data);
-				$info=post($url_token,$post_data);
+				post($url_token,$post_data);
 			}
 		}
 //		$des = new Crypt_DES();
@@ -100,7 +100,7 @@ if($info['sf_ty']==0) {
 									"color" => "#173177"
 							),
 							"keyword3" => array(
-									"value" => date('Y-m-d H:i:s'),
+									"value" => $now,
 									"color" => "#173177"
 							),
 							"remark" => array(
@@ -110,7 +110,7 @@ if($info['sf_ty']==0) {
 					)
 			);
 			$post_data = json_encode($post_data);
-			$info = post($url_token, $post_data);
+			post($url_token, $post_data);
 		}
 	}
 
@@ -121,7 +121,6 @@ if($info['sf_ty']==0) {
 	if($js['js_id']!=4){
 		alertExitHtml("仅学生处教师可审核");
 	}
-	$now = date('Y-m-d H:i:s');
 	$url = '';
 	$msg='不同意';
 	$info_msg="您好，您的请假申请未通过！";
@@ -166,7 +165,7 @@ if($info['sf_ty']==0) {
 								"color" => "#173177"
 						),
 						"keyword3" => array(
-								"value" => date('Y-m-d H:i:s'),
+								"value" => $now,
 								"color" => "#173177"
 						),
 						"remark" => array(
@@ -176,7 +175,7 @@ if($info['sf_ty']==0) {
 				)
 		);
 		$post_data = json_encode($post_data);
-		$info = post($url_token, $post_data);
+		post($url_token, $post_data);
 	}
 }
 echo json_encode(array('state'=>'true'));

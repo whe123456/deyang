@@ -18,4 +18,6 @@ $id=empty($_REQUEST['id'])?'':$_REQUEST['id'];
 $conn=Database::Connect();
 $sql="DELETE FROM zjzz_dhbmd WHERE id=?";
 Database::InsertOrUpdate($sql,$conn,array($id));
+$sql="DELETE FROM zjzz_xs WHERE dhbmd_id=?";
+Database::InsertOrUpdate($sql,$conn,array($id));
 echo json_encode(array('state'=>'true'));

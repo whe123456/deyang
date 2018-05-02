@@ -25,7 +25,7 @@
       </cell>
     </group>
     <group>
-      <popup-radio title="审批人" :options="teacher_list" v-model="teacher" placeholder="请选择老师"></popup-radio>
+      <popup-radio title="审批人" :options="teacher_list" v-model="teacher" readonly placeholder="请选择老师"></popup-radio>
     </group>
     <flexbox class="margin_top">
       <flexbox-item>
@@ -122,6 +122,7 @@
         that.$vux.loading.hide()
         if (res.state === 'true') {
           that.teacher_list = res.list
+          that.teacher = res.list[0].key
         } else {
           that.$vux.alert.show({
             title: '提示',
@@ -132,6 +133,16 @@
     },
     methods: {
       getinfo () {
+        let sDate1 = Date.parse(this.value)
+        let sDate2 = Date.parse(this.value1)
+        let DateSpan = sDate2 - sDate1
+        if (DateSpan < 0) {
+          this.$vux.alert.show({
+            title: '提示',
+            content: '请假时间错误'
+          })
+          return false
+        }
         const Arr = {
           'qj_bt': this.qj_bt,
           'qj_nr': this.qj_nr,
@@ -157,6 +168,7 @@
             that.qj_nr = ''
             that.xz_img = ''
             that.teacher = ''
+            that.$router.push({path: '/leaveok'})
           } else {
             that.$vux.alert.show({
               title: '提示',

@@ -5,11 +5,19 @@
       <cell title="请假标题" :value="title"></cell>
       <cell title="申请人" :value="str"></cell>
       <cell title="审批人" :value="teacher"></cell>
-      <cell title="二维码图片" align-items="flex-start" primary="content" v-if="ewm_list.length>0">
+      <cell title="离校二维码图片" align-items="flex-start" primary="content" v-if="ewm_list.length>0">
         <div>
           <img class="previewer-demo-imgs" v-for="(item, index) in ewm_list" :src="item.src" width="100" @click="show1(index)">
           <div v-transfer-dom>
             <previewer :list="ewm_list" ref="previewer_ewm" :options="options_ewm"></previewer>
+          </div>
+        </div>
+      </cell>
+      <cell title="返校二维码图片" align-items="flex-start" primary="content" v-if="fx_list.length>0">
+        <div>
+          <img class="previewer-demo-imgfx" v-for="(item, index) in fx_list" :src="item.src" width="100" @click="show2(index)">
+          <div v-transfer-dom>
+            <previewer :list="fx_list" ref="previewer_fx" :options="options_fx"></previewer>
           </div>
         </div>
       </cell>
@@ -30,7 +38,7 @@
       <cell v-if="sptea !== false" title="学生处审批状态" :value="spjdc"></cell>
       <cell v-if="sptea !== false && jdcyj !== ''" title="学生处审批意见" :value="jdcyj"></cell>
     </group>
-    <x-button class="sp_btn" type="primary" link="BACK">确认</x-button>
+    <x-button class="sp_btn" type="primary" link="/leavelist">确认</x-button>
   </div>
 </template>
 <script>
@@ -88,6 +96,22 @@
             // http://javascript.info/tutorial/coordinates
           }
         },
+        fx_list: [],
+        options_fx: {
+          getThumbBoundsFn (index) {
+            // find thumbnail element
+            let thumbnail = document.querySelectorAll('.previewer-demo-imgfx')[index]
+            // get window scroll Y
+            let pageYScroll = window.pageYOffset || document.documentElement.scrollTop
+            // optionally get horizontal scroll
+            // get position of element relative to viewport
+            let rect = thumbnail.getBoundingClientRect()
+            // w = width
+            return {x: rect.left, y: rect.top + pageYScroll, w: rect.width}
+            // Good guide on how to get element coordinates:
+            // http://javascript.info/tutorial/coordinates
+          }
+        },
         spjdc: '',
         sptea: false,
         jdcyj: ''
@@ -120,6 +144,10 @@
           if (res.info.ewm_url !== '' && res.info.ewm_url !== null) {
             const ewmarr = [{'src': res.info.ewm_url}]
             that.ewm_list = ewmarr
+          }
+          if (res.info.fx_url !== '' && res.info.fx_url !== null) {
+            const fxarr = [{'src': res.info.fx_url}]
+            that.fx_list = fxarr
           }
           that.title = res.info.qj_yy
           that.content = res.info.qj_nr
@@ -164,6 +192,9 @@
       },
       show1 (index) {
         this.$refs.previewer_ewm.show(index)
+      },
+      show2 (index) {
+        this.$refs.previewer_fx.show(index)
       }
     }
   }

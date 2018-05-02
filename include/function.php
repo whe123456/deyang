@@ -343,7 +343,7 @@ function GetData($val)
 //生成二维码引用phpqrcode
 function scerweima($value=''){
     $errorCorrectionLevel = 'L';    //容错级别
-    $matrixPointSize = 5;           //生成图片大小
+    $matrixPointSize = 8;           //生成图片大小
 
     //生成二维码图片
     $filename = 'qrcode/'.date('YmdHis').rand(0,999999).'.png';

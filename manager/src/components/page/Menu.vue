@@ -36,13 +36,6 @@
           prop="parent_name"
           label="父级">
         </el-table-column>
-        <el-table-column
-          prop="coin"
-          label="操作">
-          <template slot-scope="scope">
-            <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
-          </template>
-        </el-table-column>
       </el-table>
       <el-pagination
         @current-change="handleCurrentChange"

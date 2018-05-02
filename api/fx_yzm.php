@@ -7,7 +7,6 @@ include_once dirname(__FILE__) . '/../config/setting.php';
 include_once($dii_ctx_root_dir . '/include/function.php');
 include_once $dii_ctx_root_dir . '/include/class.Database.php';
 include_once $dii_ctx_root_dir . '/include/code.php';
-include_once $dii_ctx_root_dir . '/include/phpqrcode.php';
 if(!isset($_SESSION)){
     session_start();
 }
@@ -29,14 +28,7 @@ if($info['sf_ty']!='1'){
 }
 $now=date('Y-m-d H:i:s');
 $qj_ts=str_replace(".","至",$info['qj_sj']);
-$msg=$info['name']." ".$info['bj_mc']." 学号".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 离校记录成功！";
+$msg=$info['name']." ".$info['bj_mc']." 学号".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 返校记录成功！";
 $sql="INSERT INTO saoma_list VALUES (?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now));
-// $ewm_str = $url . "api/mw_yz_ewm.php?id=$id&type=sm";//周末签到二维码字符串
-// $str = base64_encode($des->encrypt($ewm_str));
-$str="ccc".$id;
-$filePath = scerweima($str);
-$url = 'http://xs.17189.net/api/' . $filePath;
-$sql = "UPDATE zjzz_qj SET fx_url=? WHERE id=?";
-$user = Database::Update_pre($sql, $conn, array($url, $id));
 echo json_encode(array('state'=>0,'msg'=>$msg));

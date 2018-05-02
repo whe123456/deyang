@@ -1,6 +1,11 @@
 <template>
   <div class="content">
-    <transition name="move" mode="out-in" >
+    <transition name="move" mode="out-in" v-if="$route.meta.keepAlive">
+      <keep-alive>
+        <router-view :style="{height: sheight}" style="overflow: scroll;"></router-view>
+      </keep-alive>
+    </transition>
+    <transition name="move" mode="out-in" v-if="!$route.meta.keepAlive">
       <router-view :style="{height: sheight}" style="overflow: scroll;"></router-view>
     </transition>
     <tabbar>
