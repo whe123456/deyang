@@ -20,24 +20,27 @@ $form=json_decode($form,true);
 if(count($form)==0){
     alertExit('请输入班级信息');
 }
-if(empty($form['classs'])||empty($form['xh'])||empty($form['xm'])||empty($form['sjhm'])){
+if(empty($form['bjbm'])||empty($form['xm'])||empty($form['sjhm'])||empty($form['bj_mc'])||empty($form['js_bh'])||empty($form['grade'])){
     alertExit('请输入完整白名单信息');
 }
+$xh=empty($form['xh'])?'':$form['xh'];
 $conn=Database::Connect();
 $now=date('Y-m-d H:i:s');
 if($id!=''){
-    $sql="UPDATE zjzz_dhbmd SET sjhm=?,xm=?,cj_time=?,sf_yz=?,yzm=?,yzsj=?,bjbm=?,xh=? WHERE id=?";
-    $arr=array($form['sjhm'],$form['xm'],$now,'0','','',$form['classs'],$form['xh'],$id);
+    $sql="UPDATE zjzz_dhbmd SET sjhm=?,xm=?,cj_time=?,sf_yz=?,yzm=?,yzsj=?,bjbm=?,xh=?,bj_mc=?,js_bh=?,grade=? WHERE id=?";
+    $arr=array($form['sjhm'],$form['xm'],$now,'0','','',$form['bjbm'],$xh,$form['bj_mc'],$form['js_bh'],$form['grade'],$id);
     $msg='白名单信息修改成功';
     Database::Update_pre($sql,$conn,$arr);
 }else{
-    $sql="SELECT COUNT(*) FROM zjzz_dhbmd WHERE xh=?";
-    $sfcz=Database::ReadoneStr($sql,$conn,array($form['xh']));
-    if($sfcz>0){
-        alertExit('已有该学号白名单');
+    if($xh!='') {
+        $sql = "SELECT COUNT(*) FROM zjzz_dhbmd WHERE xh=?";
+        $sfcz = Database::ReadoneStr($sql, $conn, array($xh));
+        if ($sfcz > 0) {
+            alertExit('已有该学号白名单');
+        }
     }
-    $sql="INSERT INTO zjzz_dhbmd VALUES('',?,?,?,?,?,?,?,?,?)";
+    $sql="INSERT INTO zjzz_dhbmd VALUES('',?,?,?,?,?,?,?,?,?,?,?,?)";
     $msg='白名单信息增加成功';
-    Database::InsertOrUpdate($sql,$conn,array($form['sjhm'],$form['xm'],$now,$now,'0','','',$form['classs'],$form['xh']));
+    Database::InsertOrUpdate($sql,$conn,array($form['sjhm'],$form['xm'],$now,$now,'0','','',$form['bjbm'],$xh,$form['bj_mc'],$form['js_bh'],$form['grade']));
 }
 echo json_encode(array('state'=>'true','msg'=>$msg));

@@ -5,18 +5,30 @@
       <el-breadcrumb-item> {{ClassName}}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form ref="form" :model="form" label-width="80px" v-loading="loading">
-      <el-form-item label="班级选择">
-        <el-select v-model="form.classs" :value="form.classs" clearable filterable placeholder="请选择" class="width300">
-          <el-option
-            v-for="item in options"
-            :key="item.bj_bm"
-            :label="item.bj_mc"
-            :value="item.bj_bm">
-          </el-option>
-        </el-select>
+      <!--<el-form-item label="班级选择">-->
+        <!--<el-select v-model="form.classs" :value="form.classs" clearable filterable placeholder="请选择" class="width300">-->
+          <!--<el-option-->
+            <!--v-for="item in options"-->
+            <!--:key="item.bj_bm"-->
+            <!--:label="item.bj_mc"-->
+            <!--:value="item.bj_bm">-->
+          <!--</el-option>-->
+        <!--</el-select>-->
+      <!--</el-form-item>-->
+      <el-form-item label="班级编码">
+        <el-input v-model="form.bjbm" class="width300"></el-input>
+      </el-form-item>
+      <el-form-item label="班级名称">
+        <el-input v-model="form.bj_mc" class="width300"></el-input>
+      </el-form-item>
+      <el-form-item label="教室编号">
+        <el-input v-model="form.js_bh" class="width300"></el-input>
+      </el-form-item>
+      <el-form-item label="年级名称">
+        <el-input v-model="form.grade" class="width300"></el-input>
       </el-form-item>
       <el-form-item label="学号">
-        <el-input v-model="form.xh" class="width300" :disabled="sf_ds"></el-input>
+        <el-input v-model="form.xh" class="width300"></el-input>
       </el-form-item>
       <el-form-item label="姓名">
         <el-input v-model="form.xm" class="width300"></el-input>
@@ -37,14 +49,16 @@ export default {
   data () {
     return {
       form: {
-        classs: '',
+        bjbm: '',
+        bj_mc: '',
+        js_bh: '',
+        grade: '',
         xh: '',
         xm: '',
         sjhm: ''
       },
-      sf_ds: true,
       loading: true,
-      options: [],
+      // options: [],
       ClassName: '',
       bm: '',
       wb_text: '立即创建'
@@ -79,12 +93,10 @@ export default {
     if (this.$route.query.bm !== undefined) {
       this.bm = this.$route.query.bm
       this.wb_text = '立即修改'
-      this.sf_ds = true
       this.ClassName = '白名单修改'
     } else {
       this.ClassName = '新增白名单'
       this.wb_text = '立即创建'
-      this.sf_ds = false
     }
     const usersName = sessionStorage.getItem('ms_username')
     if (usersName === null) {
@@ -97,9 +109,12 @@ export default {
     this.axios.get(url + 'api/api_get_class_change.php', { username: usersName, id: id }, function (res) {
       that.loading = false
       if (res.state === 'true') {
-        that.options = res.list
+        // that.options = res.list
         if (id !== '') {
-          that.form.classs = res.bmd.bjbm
+          that.form.bjbm = res.bmd.bjbm
+          that.form.bj_mc = res.bmd.bj_mc
+          that.form.js_bh = res.bmd.js_bh
+          that.form.grade = res.bmd.grade
           that.form.xh = res.bmd.xh
           that.form.xm = res.bmd.xm
           that.form.sjhm = res.bmd.sjhm

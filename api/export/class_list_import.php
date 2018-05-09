@@ -1,4 +1,5 @@
 <?php
+exit;
 header("Access-Control-Allow-Origin:*");
 header("Access-Control-Allow-Method:POST,GET");
 header('Access-Control-Allow-Headers:x-requested-with,content-type');
