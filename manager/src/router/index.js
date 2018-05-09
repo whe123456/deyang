@@ -27,13 +27,13 @@ export default new Router({
         //     keepAlive: false // 需要缓存
         //   }
         // },
-        {
-          path: '/cuser',
-          component: resolve => require(['../components/page/ClassUser.vue'], resolve),
-          meta: {
-            keepAlive: true // 需要缓存
-          }
-        },
+        // {
+        //   path: '/cuser',
+        //   component: resolve => require(['../components/page/ClassUser.vue'], resolve),
+        //   meta: {
+        //     keepAlive: true // 需要缓存
+        //   }
+        // },
         {
           path: '/white',
           component: resolve => require(['../components/page/WhiteList.vue'], resolve),
@@ -117,20 +117,6 @@ export default new Router({
           meta: {
             keepAlive: false // 需要缓存
           }
-        // },
-        // {
-        //   path: '/grade',
-        //   component: resolve => require(['../components/page/Grade.vue'], resolve),
-        //   meta: {
-        //     keepAlive: true // 需要缓存
-        //   }
-        // },
-        // {
-        //   path: '/grademenu',
-        //   component: resolve => require(['../components/page/GradeMenu.vue'], resolve),
-        //   meta: {
-        //     keepAlive: false // 需要缓存
-        //   }
         }
       ]
     },

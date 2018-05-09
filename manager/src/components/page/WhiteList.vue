@@ -117,6 +117,7 @@ export default {
         name: '',
         xh: ''
       },
+      tableData: [],
       loading: true,
       jz_loading: false,
       page: 5,

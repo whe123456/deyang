@@ -18,9 +18,9 @@ $bj_mc=empty($_REQUEST['bj_mc'])?'':$_REQUEST['bj_mc'];
 $sf_ty=!isset($_REQUEST['sf_ty'])?'':$_REQUEST['sf_ty'];
 $kq_sj=empty($_REQUEST['kq_sj'])?array():$_REQUEST['kq_sj'];
 $xm=empty($_REQUEST['xm'])?'':$_REQUEST['xm'];
-$where=' FROM zjzz_qj zk,zjzz_dhbmd zb,zjzz_bj zbj,zjzz_js zj WHERE zk.xs_id=zb.xh and zb.bjbm=zbj.bj_bm and zk.js_bm=zj.js_bm';
+$where=' FROM zjzz_qj zk,zjzz_dhbmd zb,zjzz_js zj WHERE zk.xs_id=zb.xh and zk.js_bm=zj.js_bm';
 if($bj_mc!=''){
-    $where.=" AND zbj.bj_mc like '%$bj_mc%'";
+    $where.=" AND zb.bj_mc like '%$bj_mc%'";
 }
 if($xm!=''){
     $where.=" AND zb.xm like '%$xm%'";
@@ -32,7 +32,7 @@ if(count($kq_sj)>0){
     $where.=" AND zk.create_ts>'".$kq_sj[0]."' AND zk.create_ts<'".$kq_sj[1]."'";
 }
 $conn=Database::Connect();
-$sql="SELECT zk.*,zb.xm,zbj.bj_mc,zj.xm as js_xm  $where ORDER BY zk.id DESC";
+$sql="SELECT zk.*,zb.xm,zb.bj_mc,zj.xm as js_xm  $where ORDER BY zk.id DESC";
 $user_list=Database::Readall($sql,$conn,array());
 
 $excelData=array();

@@ -16,9 +16,9 @@ $bj_mc=empty($_REQUEST['bj_mc'])?'':$_REQUEST['bj_mc'];
 $kq_lx=!isset($_REQUEST['kq_lx'])?'':$_REQUEST['kq_lx'];
 $kq_sj=empty($_REQUEST['kq_sj'])?array():$_REQUEST['kq_sj'];
 $xm=empty($_REQUEST['xm'])?'':$_REQUEST['xm'];
-$where=' zk.xs_id=zb.xh and zb.bjbm=zbj.bj_bm';
+$where=' zk.xs_id=zb.xh';
 if($bj_mc!=''){
-    $where.=" AND zbj.bj_mc like '%$bj_mc%'";
+    $where.=" AND zb.bj_mc like '%$bj_mc%'";
 }
 if($xm!=''){
     $where.=" AND zb.xm like '%$xm%'";
@@ -31,8 +31,8 @@ if(count($kq_sj)>0){
 }
 $page_count=10;
 $conn=Database::Connect();
-$count=Database::ReadoneStr("SELECT count(*) FROM zjzz_kq zk,zjzz_dhbmd zb,zjzz_bj zbj WHERE $where ",$conn,array());
+$count=Database::ReadoneStr("SELECT count(*) FROM zjzz_kq zk,zjzz_dhbmd zb WHERE $where ",$conn,array());
 $qz_count=$page*$page_count;
-$sql="SELECT zk.*,zb.xm,zbj.bj_mc from zjzz_kq zk,zjzz_dhbmd zb,zjzz_bj zbj where $where ORDER BY zk.id DESC LIMIT $qz_count,$page_count";
+$sql="SELECT zk.*,zb.xm,zb.bj_mc from zjzz_kq zk,zjzz_dhbmd zb where $where ORDER BY zk.id DESC LIMIT $qz_count,$page_count";
 $user_list=Database::Readall($sql,$conn,array());
 echo json_encode(array('state'=>'true','user'=>$user_list,'count'=>$count,'page_size'=>$page_count));

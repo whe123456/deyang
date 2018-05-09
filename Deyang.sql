@@ -16,20 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`Deyang_Occupation` /*!40100 DEFAULT CHA
 
 USE `Deyang_Occupation`;
 
-/*Table structure for table `grade` */
-
-DROP TABLE IF EXISTS `grade`;
-
-CREATE TABLE `grade` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL COMMENT '年级名称',
-  `create_ts` datetime NOT NULL COMMENT '创建时间',
-  `state` int(1) DEFAULT '1' COMMENT '1正常2删除',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `grade` */
-
 /*Table structure for table `saoma_list` */
 
 DROP TABLE IF EXISTS `saoma_list`;
@@ -59,7 +45,7 @@ CREATE TABLE `sidebar_icon` (
 
 /*Data for the table `sidebar_icon` */
 
-insert  into `sidebar_icon`(`id`,`icon`,`index`,`title`,`parent`,`order`) values (1,'el-icon-setting','1','业务管理','0','0'),(2,NULL,'class','班级管理','1','0'),(3,NULL,'white','白名单管理','1','0'),(4,NULL,'userkq','出勤统计','1','0'),(5,NULL,'getqjjl','请假统计','1','0'),(6,'el-icon-date','2','系统管理','0','0'),(7,NULL,'mangeruser','系统管理','2','0'),(8,NULL,'role','角色管理','2','0'),(9,NULL,'menu','菜单管理','2','0');
+insert  into `sidebar_icon`(`id`,`icon`,`index`,`title`,`parent`,`order`) values (1,'el-icon-setting','1','业务管理','0','0'),(3,NULL,'white','白名单管理','1','0'),(4,NULL,'userkq','出勤统计','1','0'),(5,NULL,'getqjjl','请假统计','1','0'),(6,'el-icon-date','2','系统管理','0','0'),(7,NULL,'mangeruser','系统管理','2','0'),(8,NULL,'role','角色管理','2','0'),(9,NULL,'menu','菜单管理','2','0');
 
 /*Table structure for table `wxid_b` */
 
@@ -74,25 +60,6 @@ CREATE TABLE `wxid_b` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `wxid_b` */
-
-/*Table structure for table `zjzz_bj` */
-
-DROP TABLE IF EXISTS `zjzz_bj`;
-
-CREATE TABLE `zjzz_bj` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bj_bm` varchar(50) NOT NULL COMMENT '班级编码',
-  `bj_mc` varchar(500) NOT NULL COMMENT '班级名称',
-  `js_bh` varchar(500) DEFAULT NULL COMMENT '教室编号',
-  `js_bm` varchar(50) NOT NULL COMMENT '教师编码',
-  `bz` varchar(50) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`bj_bm`),
-  KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `zjzz_bj` */
-
-insert  into `zjzz_bj`(`id`,`bj_bm`,`bj_mc`,`js_bh`,`js_bm`,`bz`) values (1,'001','中江1','001','001','随意'),(2,'002','中江2','002','002','随意'),(3,'003','中江3','003','003',NULL),(4,'004','中江4','004','004','随意'),(5,'005','中江5','005','005',NULL),(6,'006','中江6','006','006',NULL),(7,'007','中江7','007','007',NULL),(8,'008','中江8','008','008','随意'),(9,'009','中江9','009','009',NULL),(10,'010','中江10','010','010',NULL),(11,'011','中江11','011','011',NULL),(12,'012','0556','012','007','www');
 
 /*Table structure for table `zjzz_dhbmd` */
 
@@ -109,12 +76,13 @@ CREATE TABLE `zjzz_dhbmd` (
   `yzsj` datetime DEFAULT NULL COMMENT '验证时间,每个月更新一次',
   `bjbm` varchar(50) NOT NULL COMMENT '班级编码',
   `xh` varchar(50) NOT NULL COMMENT '学号',
+  `bj_mc` varchar(50) NOT NULL COMMENT '班级名称',
+  `js_bh` varchar(50) NOT NULL COMMENT '教室编号',
+  `grade` varchar(50) NOT NULL COMMENT '年级名称',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_dhbmd` */
-
-insert  into `zjzz_dhbmd`(`id`,`sjhm`,`xm`,`cj_time`,`yz_ts`,`sf_yz`,`yzm`,`yzsj`,`bjbm`,`xh`) values (1,'12345612345','我去我去1','2018-04-03 16:12:31',NULL,0,'','0000-00-00 00:00:00','001','002'),(7,'18888888888','测试哥','2018-04-03 17:59:43','2018-04-17 13:18:04',1,'577355','2018-04-17 13:18:04','002','200');
 
 /*Table structure for table `zjzz_js` */
 
@@ -128,16 +96,19 @@ CREATE TABLE `zjzz_js` (
   `sjhm` varchar(18) NOT NULL COMMENT '手机号',
   `wxid` varchar(100) DEFAULT NULL COMMENT '微信ID',
   `zc_ts` datetime DEFAULT NULL COMMENT '注册时间',
-  `ewm_url` text COMMENT '二维码地址',
   `sf_zc` int(1) DEFAULT '0' COMMENT '0未注册，1已注册',
   `js_id` int(11) DEFAULT '0' COMMENT '0为未指定角色，其余对应角色表',
+  `bjbm` varchar(50) DEFAULT NULL COMMENT '学号',
+  `bj_mc` varchar(50) DEFAULT NULL COMMENT '班级名称',
+  `js_bh` varchar(50) DEFAULT NULL COMMENT '教室编号',
+  `grade` varchar(50) DEFAULT NULL COMMENT '年级名称',
   PRIMARY KEY (`js_bm`),
   KEY `id` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_js` */
 
-insert  into `zjzz_js`(`id`,`js_bm`,`xm`,`dl_mm`,`sjhm`,`wxid`,`zc_ts`,`ewm_url`,`sf_zc`,`js_id`) values (1,'001','老王','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(2,'002','老2','202cb962ac59075b964b07152d234b70','18812345678','222','2018-04-16 13:49:27','',1,1),(3,'003','老3','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(4,'004','老4','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(5,'005','老5','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(6,'006','老6','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(7,'007','老7','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(8,'008','老8','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(9,'009','老9','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(10,'010','老10','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,NULL,0,1),(11,'011','老11','e10adc3949ba59abbe56e057f20f883e','18812345678','','2018-04-06 17:24:26','',0,4);
+insert  into `zjzz_js`(`id`,`js_bm`,`xm`,`dl_mm`,`sjhm`,`wxid`,`zc_ts`,`sf_zc`,`js_id`,`bjbm`,`bj_mc`,`js_bh`,`grade`) values (1,'001','老王','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(2,'002','老2','202cb962ac59075b964b07152d234b70','18812345678','222','2018-04-16 13:49:27',1,1,NULL,NULL,NULL,NULL),(3,'003','老3','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(4,'004','老4','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(5,'005','老5','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(6,'006','老6','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(7,'007','老7','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(8,'008','老8','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(9,'009','老9','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(10,'010','老10','e10adc3949ba59abbe56e057f20f883e','18812345678','16151132231331213213213123132132132132',NULL,0,1,NULL,NULL,NULL,NULL),(11,'011','老11','e10adc3949ba59abbe56e057f20f883e','18812345678','','2018-04-06 17:24:26',0,4,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `zjzz_juese` */
 
@@ -154,7 +125,7 @@ CREATE TABLE `zjzz_juese` (
 
 /*Data for the table `zjzz_juese` */
 
-insert  into `zjzz_juese`(`id`,`name`,`create_ts`,`qx_list`,`ms`) values (1,'普通老师','2018-04-06 14:24:41','class,userkq,getqjjl','www'),(4,'测试','2018-04-06 16:51:15','class,white,userkq,getqjjl,mangeruser,role,menu','测试哥');
+insert  into `zjzz_juese`(`id`,`name`,`create_ts`,`qx_list`,`ms`) values (1,'普通老师','2018-04-06 14:24:41','userkq,getqjjl','普通老师'),(4,'学生处','2018-04-06 16:51:15','white,userkq,getqjjl,mangeruser,role,menu','学生处');
 
 /*Table structure for table `zjzz_kq` */
 
@@ -171,8 +142,6 @@ CREATE TABLE `zjzz_kq` (
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_kq` */
-
-insert  into `zjzz_kq`(`id`,`xs_id`,`kq_lx`,`create_ts`,`gps`,`kq_dz`) values (1,200,0,'2018-04-05 17:07:40','101,90','学校门口'),(2,200,1,'2018-04-05 17:23:49','101,90','学校门口'),(8,200,1,'2018-04-15 10:59:54','11','11'),(7,200,0,'2018-04-15 10:57:17','11','11'),(9,200,1,'2018-04-14 12:56:38','11','11'),(10,200,0,'2018-04-16 17:02:52','11','11');
 
 /*Table structure for table `zjzz_qj` */
 
@@ -199,8 +168,6 @@ CREATE TABLE `zjzz_qj` (
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_qj` */
-
-insert  into `zjzz_qj`(`id`,`xs_id`,`qj_sj`,`qj_yy`,`qj_nr`,`js_bm`,`sf_ty`,`sh_yj`,`ewm_url`,`create_ts`,`sh_sj`,`sq_img`,`jdc_teacher`,`jdc_ty`,`jdc_yj`,`ec_sj`) values (1,200,'2018-04-05 17:07:40-2018-04-05 17:07:40','试试看',NULL,'001',1,'啧啧啧','https://cn.vuejs.org/images/logo.png','2018-04-06 10:32:03','2018-04-06 11:32:06',NULL,NULL,0,NULL,NULL),(2,200,'2018-04-15 14:25-2018-04-21 14:25','12121','我去我去·','002',0,'','','2018-04-15 15:21:55','2018-04-15 15:21:55',NULL,NULL,0,NULL,NULL),(3,200,'2018-04-15 14:25-2018-04-21 14:25','12121','我去我去·','002',0,'','','2018-04-15 15:22:09','2018-04-15 15:22:09',NULL,NULL,0,NULL,NULL),(4,200,'2018-04-15 15:23-2018-04-20 15:23','121','2121','002',0,'','','2018-04-15 15:23:53','2018-04-15 15:23:53',NULL,NULL,0,NULL,NULL),(5,200,'2018-04-15 15:24-2018-04-30 15:24','12','212','002',0,'','','2018-04-15 15:24:42','2018-04-15 15:24:42',NULL,NULL,0,NULL,NULL),(6,200,'2018-04-15 18:41-2018-04-28 18:42','1212','这是标题','002',0,'','','2018-04-15 18:42:06','2018-04-15 18:42:06','Array',NULL,0,NULL,NULL),(7,200,'2018-04-15 18:41-2018-04-28 18:42','1212','这是标题','002',1,'.....','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180416170229832061.png','2018-04-15 18:42:27','2018-04-16 17:02:29','[{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/201804151841557147.png\"},{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/20180415184157693.png\"},{\"url\":\"http:\\/\\/127.0.0.1:8180\\/api\\/upload\\/img\\/201804151841588216.png\"}]',NULL,0,NULL,NULL),(8,200,'2018-04-16 15:23.2018-04-24 15:23','2121','21212','002',-1,'天天请假，哼？？','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180416165851451110.png','2018-04-16 15:23:49','2018-04-16 16:58:51','[{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/20180416152244372.png\"},{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/201804161523462597.png\"},{\"url\":\"http:\\/\\/chedaodaofile.b0.upaiyun.com\\/\\/dy_img\\/img\\/201804161523476911.png\"}]',NULL,0,NULL,NULL);
 
 /*Table structure for table `zjzz_sm` */
 
@@ -233,8 +200,6 @@ CREATE TABLE `zjzz_xs` (
 
 /*Data for the table `zjzz_xs` */
 
-insert  into `zjzz_xs`(`id`,`dhbmd_id`,`wxid`,`create_ts`,`ewm_url`) values (1,3,'','2018-04-14 21:00:45',NULL),(2,5,'','2018-04-14 21:03:54',NULL),(3,7,'111','2018-04-14 21:06:45','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180417131804279876.png'),(4,8,'','2018-04-14 21:07:32',NULL),(5,12,'','2018-04-17 13:18:04','http://chedaodaofile.b0.upaiyun.com//dy_ewm/qrcode/20180417131804279876.png');
-
 /*Table structure for table `zjzz_yzm` */
 
 DROP TABLE IF EXISTS `zjzz_yzm`;
@@ -249,8 +214,6 @@ CREATE TABLE `zjzz_yzm` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `zjzz_yzm` */
-
-insert  into `zjzz_yzm`(`id`,`yzm`,`sjhm`,`create_ts`,`is_use`) values (3,'391235','18888888888','2018-04-14 21:00:38',1),(4,'208892','18888888888','2018-04-14 21:02:17',1),(5,'317932','18888888888','2018-04-14 21:03:45',1),(6,'032165','18888888888','2018-04-14 21:04:33',1),(7,'137600','18888888888','2018-04-14 21:06:34',1),(8,'248480','18888888888','2018-04-14 21:07:24',1),(9,'686779','18812345678','2018-04-16 10:16:24',1),(10,'982229','18812345678','2018-04-16 13:48:45',1),(11,'963031','18812345678','2018-04-16 13:49:22',1),(12,'577355','18888888888','2018-04-17 13:17:55',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

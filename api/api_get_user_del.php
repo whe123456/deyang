@@ -12,12 +12,7 @@ if(!isset($_SESSION)){
 }
 checkRequestKeyHtml("username", "用户名不能为空");
 $id=empty($_REQUEST['id'])?'':$_REQUEST['id'];
-$sql="SELECT count(*) from zjzz_bj where js_bm='$id'";
 $conn=Database::Connect();
-$count=Database::ReadoneStr($sql,$conn,array());
-if($count>0){
-    alertExit('该老师正在管理某班级，无法删除，请修改后再试');
-}
 $sql="DELETE FROM zjzz_js WHERE js_bm=?";
 Database::InsertOrUpdate($sql,$conn,array($id));
 echo json_encode(array('state'=>'true'));
