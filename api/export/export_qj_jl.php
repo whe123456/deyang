@@ -18,7 +18,7 @@ $bj_mc=empty($_REQUEST['bj_mc'])?'':$_REQUEST['bj_mc'];
 $sf_ty=!isset($_REQUEST['sf_ty'])?'':$_REQUEST['sf_ty'];
 $kq_sj=empty($_REQUEST['kq_sj'])?array():$_REQUEST['kq_sj'];
 $xm=empty($_REQUEST['xm'])?'':$_REQUEST['xm'];
-$where=' FROM zjzz_qj zk,zjzz_dhbmd zb,zjzz_js zj WHERE zk.xs_id=zb.xh and zk.js_bm=zj.js_bm';
+$where=' FROM zjzz_qj zk,zjzz_dhbmd zb,zjzz_js zj WHERE zk.xs_id=zb.sjhm and zk.js_bm=zj.js_bm';
 if($bj_mc!=''){
     $where.=" AND zb.bj_mc like '%$bj_mc%'";
 }

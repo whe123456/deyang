@@ -16,8 +16,8 @@ $conn=Database::Connect();
 $sql="SELECT zdb.bjbm FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneStr($sql,$conn,array($wxid));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此学生信息");
 }
-$sql="SELECT zj.js_bm as `key`,zj.xm as `value` from zjzz_js zj where zj.bj_bm=?";
+$sql="SELECT zj.js_bm as `key`,zj.xm as `value` from zjzz_js zj where zj.bjbm=?";
 $date=Database::Readall($sql,$conn,array($user));
 echo json_encode(array('state'=>'true','list'=>$date));

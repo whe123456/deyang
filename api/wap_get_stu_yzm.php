@@ -10,17 +10,15 @@ include_once $dii_ctx_root_dir . '/include/code.php';
 if(!isset($_SESSION)){
     session_start();
 }
-checkRequestKeyHtml("xh", "学号不能为空");
 checkRequestKeyHtml("name", "姓名不能为空");
 checkRequestKeyHtml("tel", "手机号码不能为空");
-$xh = $_REQUEST['xh'];
 $name = $_REQUEST['name'];
 $tel = $_REQUEST['tel'];
 $conn=Database::Connect();
-$sql="SELECT * from zjzz_dhbmd where xh=?";
-$user=Database::ReadoneRow($sql,$conn,array($xh));
+$sql="SELECT * from zjzz_dhbmd where sjhm=?";
+$user=Database::ReadoneRow($sql,$conn,array($tel));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此学生信息");
 }
 if($name!=$user['xm']){
 	alertExitHtml("学生姓名信息错误");

@@ -87,12 +87,12 @@ if(array_key_exists($ii, $_FILES)===false){
         $cl='';
         foreach ($grs as $k => $al) {
             $sqladd .= '"' . $al . '",';
-            if($k==2){
+            if($k==0){
                 $cl=$al;
             }
         }
         if($cl!='') {
-            $sql = "SELECT COUNT(*) FROM zjzz_dhbmd WHERE xh=?";
+            $sql = "SELECT COUNT(*) FROM zjzz_dhbmd WHERE sjhm=?";
             $count = Database::ReadoneStr($sql, $conn, array($cl));
             if ($count > 0) {
                 continue;

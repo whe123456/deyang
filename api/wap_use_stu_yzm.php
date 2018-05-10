@@ -10,21 +10,19 @@ include_once $dii_ctx_root_dir . '/include/code.php';
 if(!isset($_SESSION)){
     session_start();
 }
-checkRequestKeyHtml("xh", "学号不能为空");
 checkRequestKeyHtml("name", "姓名不能为空");
 checkRequestKeyHtml("tel", "手机号码不能为空");
 checkRequestKeyHtml("yzm", "验证码不能为空");
 checkRequestKeyHtml("wxid", "微信id不能为空");
-$xh = $_REQUEST['xh'];
 $name = $_REQUEST['name'];
 $tel = $_REQUEST['tel'];
 $yzm = $_REQUEST['yzm'];
 $wxid = $_REQUEST['wxid'];
 $conn=Database::Connect();
-$sql="SELECT * from zjzz_dhbmd where xh=?";
-$user=Database::ReadoneRow($sql,$conn,array($xh));
+$sql="SELECT * from zjzz_dhbmd where sjhm=?";
+$user=Database::ReadoneRow($sql,$conn,array($tel));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此学生信息");
 }
 if($name!=$user['xm']){
 	alertExitHtml("学生姓名信息错误");
@@ -44,8 +42,8 @@ if($info['create_ts']<$min_ago){
 }
 $sql="UPDATE zjzz_yzm set is_use=1 where sjhm=?";
 @Database::Update_pre($sql,$conn,array($tel));
-$bmd_sql="UPDATE zjzz_dhbmd SET yz_ts=?,sf_yz='1',yzm=?,yzsj=? where xh=?";
-$arr=array($now,$yzm,$now,$xh);
+$bmd_sql="UPDATE zjzz_dhbmd SET yz_ts=?,sf_yz='1',yzm=?,yzsj=? where sjhm=?";
+$arr=array($now,$yzm,$now,$tel);
 @Database::Update_pre($bmd_sql,$conn,$arr);
 $xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
 $have=Database::ReadoneStr($xs_sql,$conn,array($user['id']));
@@ -55,7 +53,7 @@ if($have==0){
 	include_once $dii_ctx_root_dir . '/include/phpqrcode.php';
 	// $des = new Crypt_DES();
 	// $des->setKey('98765432');
-	$ewm_str=$url."api/wap_use_stu_qd.php?wxid=$wxid&type=1&address=周末签到&gps=周末签到";//周末签到二维码字符串
+	// $ewm_str=$url."api/wap_use_stu_qd.php?wxid=$wxid&type=1&address=周末签到&gps=周末签到";//周末签到二维码字符串
 	// $str = base64_encode($des->encrypt($ewm_str));
 	$str="aaa".$wxid;
 	$filePath=scerweima($str);

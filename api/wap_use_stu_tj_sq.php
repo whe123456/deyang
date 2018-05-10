@@ -19,14 +19,14 @@ if(empty($array['qj_bt'])||empty($array['value'])||empty($array['value1'])||empt
 	alertExitHtml("请填写完整信息");
 }
 $conn=Database::Connect();
-$sql="SELECT zdb.xh FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
+$sql="SELECT zdb.sjhm FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneStr($sql,$conn,array($wxid));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此学生信息");
 }
 $now=date('Y-m-d H:i:s');
-$sql="INSERT into zjzz_qj VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-@Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img']),'','','',$now,''));
+$sql="INSERT into zjzz_qj VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+@Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img']),'','','',$now));
 
 $wx = new JSSDK($appid, $secret);
 $token = $wx->getAccessToken1();

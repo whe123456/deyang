@@ -22,7 +22,6 @@ if(!$bmd){
     echo json_encode(array('state'=>'false'));exit;
 }
 $data=array(
-    'xh'=>$bmd['xh'],
     'xm'=>$bmd['xm'],
     'sjhm'=>$bmd['sjhm'],
 );

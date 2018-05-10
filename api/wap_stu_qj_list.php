@@ -13,10 +13,10 @@ if(!isset($_SESSION)){
 checkRequestKeyHtml("wxid", "用户信息不能为空");
 $wxid = $_REQUEST['wxid'];
 $conn=Database::Connect();
-$sql="SELECT zdb.xh FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
+$sql="SELECT zdb.sjhm FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneStr($sql,$conn,array($wxid));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此学生信息");
 }
 $where='';
 if(!empty($_REQUEST['minid'])){

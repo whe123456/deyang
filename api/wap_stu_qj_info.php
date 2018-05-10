@@ -19,10 +19,10 @@ $info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
     alertExitHtml("无此请假信息");
 }
-$sql="SELECT xm FROM zjzz_dhbmd WHERE xh=?";
+$sql="SELECT xm FROM zjzz_dhbmd WHERE sjhm=?";
 $user=Database::ReadoneStr($sql,$conn,array($info['xs_id']));
 if(!$user){
-    alertExitHtml("无此学号信息");
+    alertExitHtml("无此学生信息");
 }
 $info['stu_xm']=$user;
 $sql="SELECT xm FROM zjzz_js WHERE js_bm=?";

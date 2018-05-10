@@ -32,12 +32,10 @@ if($id!=''){
     $msg='白名单信息修改成功';
     Database::Update_pre($sql,$conn,$arr);
 }else{
-    if($xh!='') {
-        $sql = "SELECT COUNT(*) FROM zjzz_dhbmd WHERE xh=?";
-        $sfcz = Database::ReadoneStr($sql, $conn, array($xh));
-        if ($sfcz > 0) {
-            alertExit('已有该学号白名单');
-        }
+    $sql = "SELECT COUNT(*) FROM zjzz_dhbmd WHERE sjhm=?";
+    $sfcz = Database::ReadoneStr($sql, $conn, array($form['sjhm']));
+    if ($sfcz > 0) {
+        alertExit('已有该联系方式白名单');
     }
     $sql="INSERT INTO zjzz_dhbmd VALUES('',?,?,?,?,?,?,?,?,?,?,?,?)";
     $msg='白名单信息增加成功';

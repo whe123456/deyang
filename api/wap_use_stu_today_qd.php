@@ -16,14 +16,14 @@ checkRequestKeyHtml("url", "地址不能为空");
 $wxid = $_REQUEST['wxid'];
 $url = urldecode($_REQUEST['url']);
 $conn=Database::Connect();
-$sql="SELECT zdb.xh,zx.ewm_url FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
+$sql="SELECT zdb.sjhm,zx.ewm_url FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneRow($sql,$conn,array($wxid));
 if(!$user){
-	alertExitHtml("无此学号信息");
+	alertExitHtml("无此学生信息");
 }
 $now=date('Y-m-d');
 $sql="SELECT count(*) from zjzz_kq where xs_id=? and kq_lx=0 and create_ts like	'$now%'";
-$jrkq=Database::ReadoneStr($sql,$conn,array($user['xh']));
+$jrkq=Database::ReadoneStr($sql,$conn,array($user['sjhm']));
 //$sql="SELECT count(*) from zjzz_kq where xs_id=? and kq_lx=1 and create_ts like	'$now%'";
 //$zmkq=Database::ReadoneStr($sql,$conn,array($user));
 //if(isset($_SESSION['ticket']) && !empty($_SESSION['ticket'])){

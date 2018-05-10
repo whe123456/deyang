@@ -35,7 +35,7 @@ if($info['sf_ty']==0) {
 	$sql = "UPDATE zjzz_qj SET sf_ty=?,sh_yj=?,ewm_url=?,sh_sj=? WHERE id=?";
 	$user = Database::Update_pre($sql, $conn, array($zt, $yj, $url, $now, $id));
 	if (!$user) {
-		alertExitHtml("无此学号信息");
+		alertExitHtml("无此学生信息");
 	}
 	$wx = new JSSDK($appid, $secret);
 	$token = $wx->getAccessToken1();
@@ -79,7 +79,7 @@ if($info['sf_ty']==0) {
 //		$filePath = scerweima($str);
 //		$url = 'http://xs.17189.net/api/' . $filePath;
 	} else {
-		$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.xh=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
+		$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.sjhm=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
 		$openid = Database::ReadoneRow($sql, $conn, array($info['xs_id']));
 		if ($openid) {
 			$post_data = array(
@@ -139,9 +139,9 @@ if($info['sf_ty']==0) {
 	$sql = "UPDATE zjzz_qj SET jdc_ty=?,jdc_yj=?,ewm_url=?,ec_sj=?,jdc_teacher=? WHERE id=?";
 	$user = Database::Update_pre($sql, $conn, array($zt, $yj, $url, $now,$jdc_bm, $id));
 	if (!$user) {
-		alertExitHtml("无此学号信息");
+		alertExitHtml("无此学生信息");
 	}
-	$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.xh=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
+	$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.sjhm=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
 	$openid = Database::ReadoneRow($sql, $conn, array($info['xs_id']));
 	if ($openid) {
 		$wx = new JSSDK($appid, $secret);

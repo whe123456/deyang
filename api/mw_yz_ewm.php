@@ -19,7 +19,7 @@ if($type!='sm'){
     alertExit('非法访问');
 }
 $conn=Database::Connect();
-$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.xh=zq.xs_id";
+$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.sjhm=zq.xs_id";
 $info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
     alertExit('非法访问');
@@ -29,7 +29,7 @@ if($info['sf_ty']!='1'){
 }
 $now=date('Y-m-d H:i:s');
 $qj_ts=str_replace(".","至",$info['qj_sj']);
-$msg=$info['name']." ".$info['bj_mc']." 学号".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 离校记录成功！";
+$msg=$info['grade']." ".$info['bj_mc']." 手机号码".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 离校记录成功！";
 $sql="INSERT INTO saoma_list VALUES (?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now));
 // $ewm_str = $url . "api/mw_yz_ewm.php?id=$id&type=sm";//周末签到二维码字符串

@@ -46,7 +46,7 @@ if($info['create_ts']<$min_ago){
 }
 $sql="UPDATE zjzz_yzm set is_use=1 where sjhm=?";
 @Database::Update_pre($sql,$conn,array($tel));
-$bmd_sql="UPDATE zjzz_js SET dl_mm=?,wxid=?,zc_ts=?,ewm_url=?,sf_zc=? WHERE js_bm=?";
-$arr=array(md5($dlmm),$wxid,$now,'','1',$js_bm);
+$bmd_sql="UPDATE zjzz_js SET dl_mm=?,wxid=?,zc_ts=?,sf_zc=? WHERE js_bm=?";
+$arr=array(md5($dlmm),$wxid,$now,'1',$js_bm);
 @Database::Update_pre($bmd_sql,$conn,$arr);
 echo json_encode(array('state'=>'true'));
