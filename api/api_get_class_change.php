@@ -17,6 +17,4 @@ $dhbmd=array();
 if($id!=''){
     $dhbmd=Database::ReadoneRow("SELECT * FROM zjzz_dhbmd WHERE id=$id",$conn,array());
 }
-//$sql="SELECT bj_bm,bj_mc FROM zjzz_Bj";
-//$list=Database::Readall($sql,$conn,array());
 echo json_encode(array('state'=>'true'/*,'list'=>$list*/,'bmd'=>$dhbmd));

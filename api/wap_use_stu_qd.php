@@ -18,7 +18,7 @@ $wxid = $_REQUEST['wxid'];
 $address = $_REQUEST['address'];
 $gps = $_REQUEST['gps'];
 $conn=Database::Connect();
-$sql="SELECT zdb.xh,zdb.xm,zb.bj_mc,g.`name` FROM zjzz_xs zx,zjzz_dhbmd zdb,zjzz_bj zb,grade g where zx.wxid=? and zx.dhbmd_id=zdb.id and zdb.bjbm=zb.bj_bm and zb.grade_id=g.id";
+$sql="SELECT zdb.xh,zdb.xm,zdb.bj_mc,zdb.`grade` FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneRow($sql,$conn,array($wxid));
 if(!$user){
 	alertExitHtml("无此学号信息");

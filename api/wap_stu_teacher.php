@@ -18,6 +18,6 @@ $user=Database::ReadoneStr($sql,$conn,array($wxid));
 if(!$user){
 	alertExitHtml("无此学号信息");
 }
-$sql="SELECT zj.js_bm as `key`,zj.xm as `value` from zjzz_bj zb,zjzz_js zj where zb.bj_bm=? and zb.js_bm=zj.js_bm";
+$sql="SELECT zj.js_bm as `key`,zj.xm as `value` from zjzz_js zj where zj.bj_bm=?";
 $date=Database::Readall($sql,$conn,array($user));
 echo json_encode(array('state'=>'true','list'=>$date));
