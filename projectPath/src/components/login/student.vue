@@ -74,7 +74,7 @@
         const that = this
         const url = localStorage.getItem('url')
         // xh: xh,
-        that.axios.get(url + 'api/wap_get_stu_yzm.php', {name: name, tel: tel }, function (res) {
+        that.axios.get(url + 'api/wap_get_stu_yzm.php', { name: name, tel: tel }, function (res) {
           if (res.state === 'true') {
             that.xs_yf = true
             that.change_ms()

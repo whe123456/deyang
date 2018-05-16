@@ -17,6 +17,6 @@ $js_list=array();
 if($id!=''){
     $js_list=Database::ReadoneRow("SELECT * FROM zjzz_js WHERE id=$id",$conn,array());
 }
-//$sql="SELECT id,name FROM zjzz_juese";
-//$list=Database::Readall($sql,$conn,array());
-echo json_encode(array('state'=>'true'/*,'list'=>$list*/,'bmd'=>$js_list));
+$sql="SELECT id,name FROM zjzz_juese";
+$list=Database::Readall($sql,$conn,array());
+echo json_encode(array('state'=>'true','list'=>$list,'bmd'=>$js_list));
