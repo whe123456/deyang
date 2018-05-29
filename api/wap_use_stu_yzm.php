@@ -45,9 +45,11 @@ $sql="UPDATE zjzz_yzm set is_use=1 where sjhm=?";
 $bmd_sql="UPDATE zjzz_dhbmd SET yz_ts=?,sf_yz='1',yzm=?,yzsj=? where sjhm=?";
 $arr=array($now,$yzm,$now,$tel);
 @Database::Update_pre($bmd_sql,$conn,$arr);
-$xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
-$have=Database::ReadoneStr($xs_sql,$conn,array($user['id']));
-if($have==0){
+	$sql="DELETE FROM zjzz_xs WHERE dhbmd_id=?";
+	@Database::InsertOrUpdate($sql,$conn,array($user['id']));
+// $xs_sql="SELECT count(*) from zjzz_xs WHERE dhbmd_id=?";
+// $have=Database::ReadoneStr($xs_sql,$conn,array($user['id']));
+// if($have==0){
 //des加密二维码
 	// require_once $dii_ctx_root_dir . '/include/DES.php';
 	include_once $dii_ctx_root_dir . '/include/phpqrcode.php';
@@ -60,5 +62,5 @@ if($have==0){
 	$url = 'http://xs.17189.net/api/' . $filePath;
 	$sql="INSERT INTO zjzz_xs VALUES (?,?,?,?,?)";
 	@Database::InsertOrUpdate($sql,$conn,array(NULL,$user['id'],$wxid,$now,$url));
-}
+// }
 echo json_encode(array('state'=>'true'));
