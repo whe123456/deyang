@@ -18,7 +18,7 @@ if($type!='sm'){
     alertExit('非法访问');
 }
 $conn=Database::Connect();
-$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.sjhm=zq.xs_id";
+$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.id=zq.xs_id";
 $info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
     alertExit('非法访问');
