@@ -15,7 +15,7 @@ $wxid = $_REQUEST['wxid'];
 checkRequestKeyHtml("ts", "月份信息不能为空");
 $ts = $_REQUEST['ts'];
 $conn=Database::Connect();
-$sql="SELECT zdb.sjhm FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
+$sql="SELECT zdb.id FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
 $user=Database::ReadoneStr($sql,$conn,array($wxid));
 if(!$user){
 	alertExitHtml("无此学生信息");

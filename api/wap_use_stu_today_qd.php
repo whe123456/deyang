@@ -38,6 +38,8 @@ $jrkq=Database::ReadoneStr($sql,$conn,array($user['sjhm']));
 //    $_SESSION['ticket']=$ticket;
 //    $_SESSION['access_token']=$access_token;
 //}
+$sql="update user_kq_ts set ts=? where wxid=?";
+@Database::Update_pre($sql,$conn,array(date('Y-m-d H:i:s'),$wxid));
 if(empty($_SESSION['ticket'])||$_SESSION['ticket']['jsapi_ticket']==NULL) {
     $wx = new JSSDK($appid, $secret);
     $ticket = $wx->getSignPackage();

@@ -96,7 +96,7 @@ if(array_key_exists($ii, $_FILES)===false){
         if($count>0){
             continue;
         }
-        $sql = "INSERT INTO zjzz_js (js_bm,xm,sjhm,dl_mm,wxid,zc_ts,ewm_url,sf_zc,js_id)VALUES($sqladd'".md5('123456')."','','$now','','0','1')";
+        $sql = "INSERT INTO zjzz_js (js_bm,xm,sjhm,dl_mm,wxid,zc_ts,sf_zc,js_id)VALUES($sqladd'".md5('123456')."','','$now','0','1')";
         $aac = Database::InsertOrUpdate($sql, $conn,array());
         if ($aac === false) {
             alertExit('导入失败，数据格式错误');

@@ -15,9 +15,9 @@
           <el-button type="primary" @click="onSubmit">查询</el-button>
           <el-button type="primary" @click="oncancle">取消查询</el-button>
         </el-form-item>
-        <el-form-item class="right">
-          <el-button type="primary" @click="onAdd">新增</el-button>
-        </el-form-item>
+        <!--<el-form-item class="right">-->
+          <!--<el-button type="primary" @click="onAdd">新增</el-button>-->
+        <!--</el-form-item>-->
       </el-form>
     </div>
     <div v-loading="loading">
@@ -41,16 +41,16 @@
           prop="create_ts"
           label="创建时间">
         </el-table-column>
-        <el-table-column
-          prop="coin"
-          label="操作">
-          <template slot-scope="scope">
-            <div v-if="scope.row.id !== 1 && scope.row.id !== 4">
-              <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
-              <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
-            </div>
-          </template>
-        </el-table-column>
+        <!--<el-table-column-->
+          <!--prop="coin"-->
+          <!--label="操作">-->
+          <!--<template slot-scope="scope">-->
+            <!--<div v-if="scope.row.id !== 1 && scope.row.id !== 4">-->
+              <!--<el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>-->
+              <!--<el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>-->
+            <!--</div>-->
+          <!--</template>-->
+        <!--</el-table-column>-->
       </el-table>
       <el-pagination
         @current-change="handleCurrentChange"

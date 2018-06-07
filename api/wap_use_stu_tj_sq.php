@@ -25,8 +25,8 @@ if(!$user){
 	alertExitHtml("无此学生信息");
 }
 $now=date('Y-m-d H:i:s');
-$sql="INSERT into zjzz_qj VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-@Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img']),'','','',$now));
+$sql="INSERT into zjzz_qj VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+@Database::InsertOrUpdate($sql,$conn,array(NULL,$user,$array['value'].'.'.$array['value1'],$array['qj_bt'],$array['qj_nr'],$array['teacher'],'0','','',$now,$now,json_encode($array['xz_img']),'','','',$now,''));
 
 $wx = new JSSDK($appid, $secret);
 $token = $wx->getAccessToken1();

@@ -21,12 +21,12 @@
       <el-form-item label="班级名称">
         <el-input v-model="form.bj_mc" class="width300"></el-input>
       </el-form-item>
-      <el-form-item label="教室编号">
-        <el-input v-model="form.js_bh" class="width300"></el-input>
-      </el-form-item>
-      <el-form-item label="年级名称">
-        <el-input v-model="form.grade" class="width300"></el-input>
-      </el-form-item>
+      <!--<el-form-item label="教室编号">-->
+        <!--<el-input v-model="form.js_bh" class="width300"></el-input>-->
+      <!--</el-form-item>-->
+      <!--<el-form-item label="年级名称">-->
+        <!--<el-input v-model="form.grade" class="width300"></el-input>-->
+      <!--</el-form-item>-->
       <el-form-item label="学号">
         <el-input v-model="form.xh" class="width300"></el-input>
       </el-form-item>
@@ -51,8 +51,8 @@ export default {
       form: {
         bjbm: '',
         bj_mc: '',
-        js_bh: '',
-        grade: '',
+        // js_bh: '',
+        // grade: '',
         xh: '',
         xm: '',
         sjhm: ''
@@ -113,8 +113,8 @@ export default {
         if (id !== '') {
           that.form.bjbm = res.bmd.bjbm
           that.form.bj_mc = res.bmd.bj_mc
-          that.form.js_bh = res.bmd.js_bh
-          that.form.grade = res.bmd.grade
+          // that.form.js_bh = res.bmd.js_bh
+          // that.form.grade = res.bmd.grade
           that.form.xh = res.bmd.xh
           that.form.xm = res.bmd.xm
           that.form.sjhm = res.bmd.sjhm

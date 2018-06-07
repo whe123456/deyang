@@ -62,5 +62,9 @@ $arr=array($now,$yzm,$now,$tel);
 	$url = 'http://xs.17189.net/api/' . $filePath;
 	$sql="INSERT INTO zjzz_xs VALUES (?,?,?,?,?)";
 	@Database::InsertOrUpdate($sql,$conn,array(NULL,$user['id'],$wxid,$now,$url));
+	$sql="DELETE FROM user_kq_ts WHERE wxid=?";
+	@Database::InsertOrUpdate($sql,$conn,array($wxid));
+	$sql="INSERT INTO user_kq_ts VALUES (?,?,?)";
+	@Database::InsertOrUpdate($sql,$conn,array(NULL,$wxid,$now));
 // }
 echo json_encode(array('state'=>'true'));
