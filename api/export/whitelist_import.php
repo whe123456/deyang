@@ -98,7 +98,7 @@ if(array_key_exists($ii, $_FILES)===false){
                 continue;
             }
         }
-        $sql = "INSERT INTO zjzz_dhbmd (sjhm,xm,xh,bjbm,bj_mc,js_bh,grade,cj_time,sf_yz,yzm,yzsj)VALUES($sqladd'$now','0','','')";
+        $sql = "INSERT INTO zjzz_dhbmd (sjhm,xm,xh,bjbm,bj_mc,sex,js_bh,grade,cj_time,sf_yz,yzm,yzsj)VALUES($sqladd'','$now','0','','')";
         $aac = Database::InsertOrUpdate($sql, $conn,array());
         if ($aac === false) {
             alertExit('导入失败，数据格式错误');

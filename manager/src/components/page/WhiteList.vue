@@ -31,6 +31,17 @@
           <el-form-item class="right">
             <el-upload
               class="upload-demo"
+              :action="address2"
+              :limit="1"
+              accept=".zip"
+              :on-progress="zip_upload"
+              :on-success="upload_zip"
+              :show-file-list="false"
+              :file-list="zip_fileList">
+              <el-button type="primary">导入zip图片压缩包</el-button>
+            </el-upload>
+            <el-upload
+              class="upload-demo"
               :action="address"
               :limit="1"
               accept=".xls,.xlsx"
@@ -122,10 +133,20 @@ export default {
       jz_loading: false,
       page: 5,
       total: 0,
-      now_page: 1
+      now_page: 1,
+      zip_fileList: [],
+      address2: ''
     }
   },
   methods: {
+    zip_upload () {
+      this.jz_loading = true
+    },
+    upload_zip () {
+      this.jz_loading = false
+      this.fileList = []
+      getList(1, this)
+    },
     onSubmit () {
       getList(1, this)
     },
@@ -180,6 +201,7 @@ export default {
     const that = this
     const url = localStorage.getItem('url')
     this.address = url + 'api/export/whitelist_import.php'
+    this.address2 = url + 'api/export/white_zip_import.php'
     getList(1, that)
   }
 }
