@@ -60,47 +60,72 @@
         <el-table
           :data="tableData"
           stripe
+          border
           v-loading="loading"
           style="width: 100%">
           <el-table-column
+            fixed
             prop="sjhm"
-            label="手机号">
+            label="手机号"
+            width="120">
           </el-table-column>
           <el-table-column
             prop="xm"
-            label="姓名">
+            label="姓名"
+            width="120">
           </el-table-column>
           <el-table-column
             prop="cj_time"
-            label="创建时间">
+            label="创建时间"
+            width="220">
           </el-table-column>
           <el-table-column
             prop="sf_yz"
-            label="是否验证">
+            label="是否验证"
+            width="100">
             <template slot-scope="scope">
               <label v-if="scope.row.sf_yz===0">未验证</label>
               <label v-else>已验证</label>
             </template>
           </el-table-column>
           <el-table-column
+            prop="sex"
+            label="性别"
+            width="100">
+          </el-table-column>
+          <el-table-column
+            prop="photo"
+            label="照片"
+            width="200">
+            <template slot-scope="scope">
+              <div style="width: 200px;"><img :src="scope.row.photo" style="width: 100%;"/></div>
+            </template>
+          </el-table-column>
+          <el-table-column
             prop="yzm"
-            label="验证码">
+            label="验证码"
+            width="100">
           </el-table-column>
           <el-table-column
             prop="yzsj"
-            label="验证时间">
+            label="验证时间"
+            width="200">
           </el-table-column>
           <el-table-column
             prop="bjbm"
-            label="班级编码">
+            label="班级编码"
+            width="100">
           </el-table-column>
           <el-table-column
             prop="xh"
-            label="学号">
+            label="学号"
+            width="200">
           </el-table-column>
           <el-table-column
             prop="coin"
-            label="功能">
+            fixed="right"
+            label="功能"
+            width="200">
             <template slot-scope="scope">
               <el-button @click="ChangeClick(scope.row)" type="text" size="small">修改</el-button>
               <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
@@ -142,7 +167,8 @@ export default {
     zip_upload () {
       this.jz_loading = true
     },
-    upload_zip () {
+    upload_zip (e) {
+      console.log(e)
       this.jz_loading = false
       this.fileList = []
       getList(1, this)

@@ -12,47 +12,47 @@ include_once $dii_ctx_root_dir . '/include/class.Database.php';
 if(!isset($_SESSION)){
     session_start();
 }
-// $ii='file';
-// if(array_key_exists($ii, $_FILES)===false){
-//     exit;
-// }else {
-//     foreach ($_FILES as $f) {
-//         $aa = $f["name"];
-//         $aa = explode(".", $aa);
-//         $extension = end($aa);
-//         if ($extension!='zip') {
-//             alertExit('请上传zip文件');
-//         }
-//         $file = fopen($f['tmp_name'], "rb");
-//         $bin = fread($file, 2); //只读2字节
-//         fclose($file);
-//         $strInfo = @unpack("C2chars", $bin);
-//         $typeCode = intval($strInfo['chars1'] . $strInfo['chars2']);
-//         if (!in_array($typeCode, $all_upload_file_type_arry)) {
-//             alertExit('上传文件类型不合法');
-//         }
-//     }
-//     $namefile = explode('.', $_FILES[$ii]['name']);
+$ii='file';
+if(array_key_exists($ii, $_FILES)===false){
+    exit;
+}else {
+    foreach ($_FILES as $f) {
+        $aa = $f["name"];
+        $aa = explode(".", $aa);
+        $extension = end($aa);
+        if ($extension!='zip') {
+            alertExit('请上传zip文件');
+        }
+        $file = fopen($f['tmp_name'], "rb");
+        $bin = fread($file, 2); //只读2字节
+        fclose($file);
+        $strInfo = @unpack("C2chars", $bin);
+        $typeCode = intval($strInfo['chars1'] . $strInfo['chars2']);
+        if (!in_array($typeCode, $all_upload_file_type_arry)) {
+            alertExit('上传文件类型不合法');
+        }
+    }
+    $namefile = explode('.', $_FILES[$ii]['name']);
 
 
-//     $filePath = 'upload/' . date('YmdHis') . rand(0000, 9999) . '.' . end($namefile);
-//     $aa = $_FILES[$ii]['tmp_name'];
-//     move_uploaded_file($aa, $filePath);
-	// $info=get_zip_originalsize($filePath,"user_photo/");
-	// @unlink($filePath);
-	// $conn=Database::Connect();
-	$info=get_zip_originalsize('open.zip',"user_photo/");
+    $filePath = 'upload/' . date('YmdHis') . rand(0000, 9999) . '.' . end($namefile);
+    $aa = $_FILES[$ii]['tmp_name'];
+    move_uploaded_file($aa, $filePath);
+	$info=get_zip_originalsize($filePath,"user_photo/");
+	@unlink($filePath);
+	$conn=Database::Connect();
+	// $info=get_zip_originalsize('open.zip',"user_photo/");
 	if($info['state']=='true'){
 		foreach ($info['img'] as $key => $value) {
 			$url='http://xs.17189.net/api/export/user_photo/'.$value;
-			$name=reset(explode('.',$value));
+      $data=explode('.',$value);
+			$name=reset($data);
 			$sql="update zjzz_dhbmd set photo=? where sjhm=?";
-
-			echo $name;exit;
+      Database::Update_pre($sql,$conn,array($url,$name));
 		}
 	}
 	echo json_encode($info);
-// }
+}
 
 function get_zip_originalsize($filename, $path) {
   //先判断待解压的文件是否存在
@@ -106,6 +106,6 @@ function get_zip_originalsize($filename, $path) {
   if($str==''){
   	return array('state'=>'true','msg'=>"解压完毕！，本次解压花费：$thistime 秒",'img'=>$img);
   }else{
-  	return array('state'=>'false','msg'=>$str);
+  	return array('state'=>'true','msg'=>$str,'img'=>$img);
   }
 }
