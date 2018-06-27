@@ -49,6 +49,20 @@ export default new Router({
           }
         },
         {
+          path: '/teacher',
+          component: resolve => require(['../components/page/TeacherList.vue'], resolve),
+          meta: {
+            keepAlive: true // 需要缓存
+          }
+        },
+        {
+          path: '/teacheradd',
+          component: resolve => require(['../components/page/TeacherListAdd.vue'], resolve),
+          meta: {
+            keepAlive: false // 需要缓存
+          }
+        },
+        {
           path: '/userkq',
           component: resolve => require(['../components/page/GetKqJl.vue'], resolve),
           meta: {

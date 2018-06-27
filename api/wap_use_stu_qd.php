@@ -18,7 +18,7 @@ $wxid = $_REQUEST['wxid'];
 $address = $_REQUEST['address'];
 $gps = $_REQUEST['gps'];
 $conn=Database::Connect();
-$sql="SELECT zdb.id,zdb.sjhm,zdb.xm,zdb.bj_mc FROM zjzz_xs zx,zjzz_dhbmd zdb where zx.wxid=? and zx.dhbmd_id=zdb.id";
+$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.sex,zdb.photo,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.id=zq.xs_id";
 $user=Database::ReadoneRow($sql,$conn,array($wxid));
 if(!$user){
 	alertExitHtml("无此学生信息");
@@ -37,8 +37,8 @@ $today=date('Y-m-d');
 $sql="SELECT count(*) from zjzz_kq where xs_id=? and kq_lx=? and create_ts like	'$today%'";
 $jrkq=Database::ReadoneStr($sql,$conn,array($user['id'],$type));
 if($jrkq>0){
-	alertExitHtml($user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm']."今日已考勤");
+echo json_encode(array('state'=>'false','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm']."今日已考勤",'stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'])));
 }
 $sql="INSERT into zjzz_kq VALUES (NULL,?,?,?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array($user['id'],$type,$now,$gps,$address));
-echo json_encode(array('state'=>'true','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm'].'考勤成功'));
+echo json_encode(array('state'=>'true','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm'].'考勤成功','stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'])));

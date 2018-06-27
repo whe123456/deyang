@@ -29,6 +29,9 @@ $js_bh=empty($form['js_bh'])?'':$form['js_bh'];
 $grade=empty($form['grade'])?'':$form['grade'];
 $conn=Database::Connect();
 $now=date('Y-m-d H:i:s');
+$sql="update zjzz_js set bjbm='', bj_mc='' where bjbm=?";
+$arr=array($bjbm);
+Database::Update_pre($sql,$conn,$arr);
 if($id!=''){
     $sql="UPDATE zjzz_js SET xm=?,dl_mm=?,sjhm=?,wxid=?,zc_ts=?,sf_zc=?,js_id=?,bjbm=?,bj_mc=?,js_bh=?,grade=? WHERE id=?";
     $arr=array($form['xm'],md5('123456'),$form['sjhm'],'',$now,'0',$form['classs'],$bjbm,$bj_mc,$js_bh,$grade,$id);

@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7239c3e-5de2-4b0b-998b-a9ee27604dce" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/api_get_bzr.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/api_get_bzr_add_change.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/api_get_bzr_change.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/api_get_teacher_add_change.php" afterPath="$PROJECT_DIR$/api/api_get_teacher_add_change.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/api_get_teacher_change.php" afterPath="$PROJECT_DIR$/api/api_get_teacher_change.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/wap_use_stu_qd.php" afterPath="$PROJECT_DIR$/api/wap_use_stu_qd.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/index.html" afterPath="$PROJECT_DIR$/manager/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/src/components/page/MangerUser.vue" afterPath="$PROJECT_DIR$/manager/src/components/page/MangerUser.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/src/components/page/WhiteList.vue" afterPath="$PROJECT_DIR$/manager/src/components/page/WhiteList.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/src/components/page/WhiteListAdd.vue" afterPath="$PROJECT_DIR$/manager/src/components/page/WhiteListAdd.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manager/src/router/index.js" afterPath="$PROJECT_DIR$/manager/src/router/index.js" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,22 +33,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wap_use_stu_tj_sq.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/wap_use_stu_tj_sq.php">
+      <file leaf-file-name="api_get_bzr_add_change.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/api_get_bzr_add_change.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.964285">
-              <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-              <folding />
+            <state vertical-scroll-proportion="-17.892857">
+              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="33" selection-end-column="38" />
+              <folding>
+                <marker date="1530068084177" expanded="true" signature="881:951" placeholder="select bjbm,..zjzz_dhbmd..." />
+                <marker date="1530068084177" expanded="true" signature="1045:1087" placeholder="select count..zjzz_js..." />
+                <marker date="1530068084177" expanded="true" signature="1161:1210" placeholder="update zjzz_..." />
+                <marker date="1530068084177" expanded="true" signature="1293:1341" placeholder="update zjzz_..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wap_use_stu_yzm.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/wap_use_stu_yzm.php">
+      <file leaf-file-name="api_get_teacher_add_change.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/api_get_teacher_add_change.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74068767">
-              <caret line="42" column="45" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="45" />
-              <folding />
+            <state vertical-scroll-proportion="0.5375">
+              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding>
+                <marker date="1530069844341" expanded="true" signature="1178:1227" placeholder="update zjzz_..." />
+                <marker date="1530069844341" expanded="true" signature="1311:1365" placeholder="UPDATE zjzz_..." />
+                <marker date="1530069844341" expanded="true" signature="1311:1422" placeholder="UPDATE zjzz_..." />
+                <marker date="1530069844341" expanded="true" signature="1622:1664" placeholder="SELECT COUNT..zjzz_js..." />
+                <marker date="1530069844341" expanded="true" signature="1796:1852" placeholder="INSERT INTO zjzz_js..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,7 +105,6 @@
         <option value="$PROJECT_DIR$/api/export/class_list_import.php" />
         <option value="$PROJECT_DIR$/api/export/whitelist_import.php" />
         <option value="$PROJECT_DIR$/api/api_get_white_add_change.php" />
-        <option value="$PROJECT_DIR$/api/api_get_teacher_change.php" />
         <option value="$PROJECT_DIR$/api/api_get_kq_list.php" />
         <option value="$PROJECT_DIR$/api/export/export_kq_jl.php" />
         <option value="$PROJECT_DIR$/api/api_get_qj_list.php" />
@@ -94,8 +115,12 @@
         <option value="$PROJECT_DIR$/api/mw_yz_ewm.php" />
         <option value="$PROJECT_DIR$/api/wap_stu_teacher.php" />
         <option value="$PROJECT_DIR$/api/wap_use_stu_qd.php" />
-        <option value="$PROJECT_DIR$/api/api_get_teacher_add_change.php" />
         <option value="$PROJECT_DIR$/api/wap_use_stu_tj_sq.php" />
+        <option value="$PROJECT_DIR$/api/api_get_bzr_change.php" />
+        <option value="$PROJECT_DIR$/api/api_get_bzr_add_change.php" />
+        <option value="$PROJECT_DIR$/api/api_get_bzr.php" />
+        <option value="$PROJECT_DIR$/api/api_get_teacher_change.php" />
+        <option value="$PROJECT_DIR$/api/api_get_teacher_add_change.php" />
       </list>
     </option>
   </component>
@@ -143,7 +168,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -178,6 +202,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -261,10 +286,11 @@
     <frame x="-8" y="-8" width="1456" height="886" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3366762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -276,7 +302,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980132" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -302,34 +327,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/upload/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7360115">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_get_stu_info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49067432">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/rk/get_weixinid.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.10903874">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/rk/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.027259685">
-          <caret line="1" column="34" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/setting.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.821428">
@@ -463,13 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_teacher_check_info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.321429">
-          <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/api_get_grade_list.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -509,13 +499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9612625">
           <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/api_get_teacher_change.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.25">
-          <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -561,13 +544,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/api_get_bmd.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/api_get_class_add_change.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.7857143">
@@ -600,11 +576,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="21" column="111" selection-start-line="21" selection-start-column="111" selection-end-line="21" selection-end-column="111" />
-          <folding>
-            <marker date="1526017149814" expanded="true" signature="753:847" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
-            <marker date="1526017149814" expanded="true" signature="1185:1222" placeholder="INSERT INTO saoma_list..." />
-            <marker date="1526017149814" expanded="true" signature="1503:1541" placeholder="UPDATE zjzz_..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -623,11 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="47" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="47" />
-          <folding>
-            <marker date="1526017149836" expanded="true" signature="792:803" placeholder="SELECT zdb.x..zjzz_xs..." />
-            <marker date="1526017149836" expanded="true" signature="1054:1137" placeholder="SELECT count..zjzz_kq..." />
-            <marker date="1526017149836" expanded="true" signature="1318:1361" placeholder="INSERT into zjzz_kq..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -635,10 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="94" column="35" selection-start-line="94" selection-start-column="35" selection-end-line="94" selection-end-column="35" />
-          <folding>
-            <marker date="1525830217207" expanded="true" signature="3186:3228" placeholder="SELECT COUNT..zjzz_bj..." />
-            <marker date="1525830217207" expanded="true" signature="3361:3426" placeholder="INSERT INTO zjzz_bj..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -646,9 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding>
-            <marker date="1524903720732" expanded="true" signature="698:733" placeholder="UPDATE grade..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -664,19 +624,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/api_get_teacher_add_change.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34670487">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-          <folding>
-            <marker date="1526017149758" expanded="true" signature="1195:1249" placeholder="UPDATE zjzz_..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/wap_use_stu_tj_sq.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.964285">
+        <state vertical-scroll-proportion="0.0">
           <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
           <folding />
         </state>
@@ -684,9 +634,111 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/wap_use_stu_yzm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74068767">
+        <state vertical-scroll-proportion="0.7416667">
           <caret line="42" column="45" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_bmd.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18194444">
+          <caret line="8" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="101" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/wap_teacher_check_info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-78.03571">
+          <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+          <folding>
+            <marker date="1526017149834" expanded="true" signature="967:1055" placeholder="SELECT zq.*,..zjzz_qj..." />
+            <marker date="1526017149834" expanded="true" signature="1281:1344" placeholder="UPDATE zjzz_..." />
+            <marker date="1526017149834" expanded="true" signature="1660:1732" placeholder="SELECT w.wxi..zjzz_js..." />
+            <marker date="1526017149834" expanded="true" signature="2769:2882" placeholder="select zd.xm..zjzz_dhbmd..." />
+            <marker date="1526017149834" expanded="true" signature="3799:3833" placeholder="SELECT * FRO..zjzz_js..." />
+            <marker date="1526017149834" expanded="true" signature="4357:4395" placeholder="SELECT js_bm..zjzz_js..." />
+            <marker date="1526017149834" expanded="true" signature="4427:4506" placeholder="UPDATE zjzz_..." />
+            <marker date="1526017149834" expanded="true" signature="4649:4762" placeholder="select zd.xm..zjzz_dhbmd..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_role_add_change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.178571">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="41" selection-end-column="53" />
+          <folding>
+            <marker date="1523841170567" expanded="true" signature="1085:1139" placeholder="UPDATE zjzz_..." />
+            <marker date="1523841170567" expanded="true" signature="1287:1330" placeholder="INSERT INTO zjzz_juese..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_bzr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.928572">
+          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
+          <folding>
+            <marker date="1530068496811" expanded="true" signature="788:826" placeholder="select count..zjzz_dhbmd..." />
+            <marker date="1530068496811" expanded="true" signature="885:928" placeholder="select disti..zjzz_dhbmd..." />
+            <marker date="1530068496811" expanded="true" signature="885:934" placeholder="select disti..zjzz_dhbmd..." />
+            <marker date="1530068496811" expanded="true" signature="885:968" placeholder="select disti..zjzz_dhbmd..." />
+            <marker date="1530068496811" expanded="true" signature="1145:1181" placeholder="select * fro..zjzz_js..." />
+            <marker date="1530068496811" expanded="true" signature="1598:1638" placeholder="select bjbm,..zjzz_dhbmd..." />
+            <marker date="1530068496811" expanded="true" signature="1598:1644" placeholder="select bjbm,..zjzz_dhbmd..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_teacher_change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60694444">
+          <caret line="23" column="97" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
+          <folding>
+            <marker date="1530069488390" expanded="true" signature="681:712" placeholder="SELECT * FRO..zjzz_js..." />
+            <marker date="1530069488390" expanded="true" signature="741:771" placeholder="SELECT id,na..zjzz_juese..." />
+            <marker date="1530069488390" expanded="true" signature="825:872" placeholder="SELECT bjbm,..zjzz_dhbmd..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_bzr_change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4486111">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="52" />
+          <folding>
+            <marker date="1530067118652" expanded="true" signature="681:727" placeholder="SELECT bjbm,..zjzz_dhbmd..." />
+            <marker date="1530067118652" expanded="true" signature="756:824" placeholder="SELECT js_bm..zjzz_js..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_bzr_add_change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.892857">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="33" selection-end-column="38" />
+          <folding>
+            <marker date="1530068084177" expanded="true" signature="881:951" placeholder="select bjbm,..zjzz_dhbmd..." />
+            <marker date="1530068084177" expanded="true" signature="1045:1087" placeholder="select count..zjzz_js..." />
+            <marker date="1530068084177" expanded="true" signature="1161:1210" placeholder="update zjzz_..." />
+            <marker date="1530068084177" expanded="true" signature="1293:1341" placeholder="update zjzz_..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_teacher_add_change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5375">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <marker date="1530069844341" expanded="true" signature="1178:1227" placeholder="update zjzz_..." />
+            <marker date="1530069844341" expanded="true" signature="1311:1365" placeholder="UPDATE zjzz_..." />
+            <marker date="1530069844341" expanded="true" signature="1311:1422" placeholder="UPDATE zjzz_..." />
+            <marker date="1530069844341" expanded="true" signature="1622:1664" placeholder="SELECT COUNT..zjzz_js..." />
+            <marker date="1530069844341" expanded="true" signature="1796:1852" placeholder="INSERT INTO zjzz_js..." />
+          </folding>
         </state>
       </provider>
     </entry>

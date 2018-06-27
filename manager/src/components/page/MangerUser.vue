@@ -24,12 +24,22 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="班级编码">
-        <el-input v-model="form.bjbm" class="width300"></el-input>
+      <el-form-item label="班级选择">
+        <el-select v-model="form.bjbm" clearable filterable placeholder="请选择" class="width300">
+          <el-option
+            v-for="item in bjlist"
+            :key="item.bjbm"
+            :label="item.bj_mc"
+            :value="item.bjbm">
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="班级名称">
-        <el-input v-model="form.bj_mc" class="width300"></el-input>
-      </el-form-item>
+      <!--<el-form-item label="班级编码">-->
+        <!--<el-input v-model="form.bjbm" class="width300"></el-input>-->
+      <!--</el-form-item>-->
+      <!--<el-form-item label="班级名称">-->
+        <!--<el-input v-model="form.bj_mc" class="width300"></el-input>-->
+      <!--</el-form-item>-->
       <!--<el-form-item label="教室编号">-->
         <!--<el-input v-model="form.js_bh" class="width300"></el-input>-->
       <!--</el-form-item>-->
@@ -62,6 +72,7 @@ export default {
       sf_ds: true,
       loading: true,
       options: [],
+      bjlist: [],
       ClassName: '',
       id: '',
       wb_text: '立即创建'
@@ -115,6 +126,7 @@ export default {
       that.loading = false
       if (res.state === 'true') {
         that.options = res.list
+        that.bjlist = res.class_list
         if (id !== '') {
           that.form.classs = res.bmd.js_id
           that.form.xm = res.bmd.xm

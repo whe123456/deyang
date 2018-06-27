@@ -96,9 +96,9 @@
           <el-table-column
             prop="photo"
             label="照片"
-            width="200">
-            <template slot-scope="scope">
-              <div style="width: 200px;"><img :src="scope.row.photo" style="width: 100%;"/></div>
+            width="100">
+            <template slot-scope="scope" v-if="scope.row.photo!==null&&scope.row.photo!==''">
+              <div style="width: 80px;height: 80px;"><img :src="scope.row.photo" style="width: 100%;height: 100%;"/></div>
             </template>
           </el-table-column>
           <el-table-column

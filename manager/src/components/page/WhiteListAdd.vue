@@ -97,7 +97,7 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       address: '',
-      fileList2: [{url: ''}]
+      fileList2: []
     }
   },
   methods: {
@@ -169,7 +169,10 @@ export default {
       if (res.state === 'true') {
         // that.options = res.list
         if (id !== '') {
-          that.fileList2 = [{url: res.bmd.photo}]
+          console.log(res.bmd.photo)
+          if (res.bmd.photo !== '' && res.bmd.photo !== null) {
+            that.fileList2 = [{url: res.bmd.photo}]
+          }
           that.form.bjbm = res.bmd.bjbm
           that.form.sex = res.bmd.sex
           that.form.bj_mc = res.bmd.bj_mc
