@@ -25,6 +25,6 @@ $page_count=10;
 $conn=Database::Connect();
 $count=Database::ReadoneStr("SELECT count(*) FROM $where",$conn,array());
 $qz_count=$page*$page_count;
-$sql="SELECT zj.*,zjs.`name` FROM $where ORDER BY zj.id DESC LIMIT $qz_count,$page_count";
+$sql="SELECT zj.*,zjs.`name` FROM $where ORDER BY zj.sf_zc desc,zj.id DESC LIMIT $qz_count,$page_count";
 $user_list=Database::Readall($sql,$conn,array());
 echo json_encode(array('state'=>'true','list'=>$user_list,'count'=>$count,'page_size'=>$page_count));

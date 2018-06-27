@@ -26,8 +26,8 @@ if(!$user){
 }
 $info['stu_xm']=$user;
 $sql="SELECT xm FROM zjzz_js WHERE js_bm=?";
-$js=Database::ReadoneStr($sql,$conn,array($info['jdc_teacher']));
-if(!$user){
+$js=Database::ReadoneStr($sql,$conn,array($info['js_bm']));
+if(!$js){
     alertExitHtml("无此教师信息");
 }
 $info['js_xm']=$js;

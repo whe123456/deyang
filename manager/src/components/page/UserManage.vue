@@ -61,8 +61,12 @@
           label="角色">
         </el-table-column>
         <el-table-column
-          prop="zc_ts"
-          label="注册时间">
+          prop="sf_zc"
+          label="是否绑定">
+          <template slot-scope="scope">
+            <span v-if="scope.row.sf_zc === 1">是</span>
+            <span v-else>否</span>
+          </template>
         </el-table-column>
         <!--<el-table-column-->
           <!--prop="ewm_url"-->

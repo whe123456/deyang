@@ -17,6 +17,7 @@ $js_list=array();
 if($id!=''){
     $js_list=Database::ReadoneRow("SELECT bjbm,bj_mc FROM zjzz_dhbmd WHERE bjbm=?",$conn,array($id));
 }
-$sql="SELECT js_bm,xm FROM zjzz_js where bjbm='' or bjbm is null or bjbm=?";
-$list=Database::Readall($sql,$conn,array($id));
+// $sql="SELECT js_bm,xm FROM zjzz_js where sf_zc=1 and (bjbm='' or bjbm is null or bjbm=?)";
+$sql="SELECT js_bm,xm FROM zjzz_js where sf_zc=1";
+$list=Database::Readall($sql,$conn,array());
 echo json_encode(array('state'=>'true','list'=>$list,'bmd'=>$js_list));

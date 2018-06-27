@@ -1,7 +1,7 @@
 <template>
   <div class="crumbs">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/white' }"><i class="el-icon-tickets"></i> 白名单</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/white' }"><i class="el-icon-tickets"></i> 班主任管理</el-breadcrumb-item>
       <el-breadcrumb-item> {{ClassName}}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-form ref="form" :model="form" label-width="80px" v-loading="loading">
@@ -12,7 +12,7 @@
         <el-input v-model="form.bj_mc" class="width300" disabled></el-input>
       </el-form-item>
       <el-form-item label="教师选择">
-        <el-select v-model="form.js_bm" placeholder="请选择">
+        <el-select v-model="form.js_bm" filterable placeholder="请选择">
           <el-option
             v-for="item in teacher"
             :key="item.js_bm"
@@ -75,9 +75,9 @@ export default {
     if (this.$route.query.bm !== undefined) {
       this.bm = this.$route.query.bm
       this.wb_text = '立即修改'
-      this.ClassName = '白名单修改'
+      this.ClassName = '班主任修改'
     } else {
-      this.ClassName = '新增白名单'
+      this.ClassName = '新增班主任'
       this.wb_text = '立即创建'
     }
     if (this.$route.query.js !== undefined) {

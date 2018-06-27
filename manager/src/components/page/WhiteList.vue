@@ -32,13 +32,19 @@
             <el-upload
               class="upload-demo"
               :action="address2"
-              :limit="1"
               accept=".zip"
               :on-progress="zip_upload"
               :on-success="upload_zip"
               :show-file-list="false"
               :file-list="zip_fileList">
-              <el-button type="primary">导入zip图片压缩包</el-button>
+              <el-popover
+                placement="top-start"
+                title="提示"
+                width="200"
+                trigger="hover"
+                content="请将所需上传的图片文件放至所需上传文件夹内再行打包上传">
+              <el-button type="primary" slot="reference">导入zip图片压缩包</el-button>
+              </el-popover>
             </el-upload>
             <el-upload
               class="upload-demo"

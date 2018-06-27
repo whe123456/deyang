@@ -19,7 +19,7 @@ if($type!='sm'){
     alertExit('非法访问');
 }
 $conn=Database::Connect();
-$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.sex,zdb.photo,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.id=zq.xs_id";
+$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.sex,zdb.photo,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.sjhm=zq.xs_id";
 $info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
     alertExit('非法访问');
@@ -39,4 +39,4 @@ $filePath = scerweima($str);
 $url = 'http://xs.17189.net/api/' . $filePath;
 $sql = "UPDATE zjzz_qj SET fx_url=? WHERE id=?";
 $user = Database::Update_pre($sql, $conn, array($url, $id));
-echo json_encode(array('state'=>0,'msg'=>$msg,'stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'])));
+echo json_encode(array('state'=>0,'msg'=>$msg,'stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'],'bj_mc'=>$info['bj_mc'])));

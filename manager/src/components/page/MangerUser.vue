@@ -24,16 +24,16 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="班级选择">
-        <el-select v-model="form.bjbm" clearable filterable placeholder="请选择" class="width300">
-          <el-option
-            v-for="item in bjlist"
-            :key="item.bjbm"
-            :label="item.bj_mc"
-            :value="item.bjbm">
-          </el-option>
-        </el-select>
-      </el-form-item>
+      <!--<el-form-item label="班级选择">-->
+        <!--<el-select v-model="form.bjbm" clearable filterable placeholder="请选择" class="width300">-->
+          <!--<el-option-->
+            <!--v-for="item in bjlist"-->
+            <!--:key="item.bjbm"-->
+            <!--:label="item.bj_mc"-->
+            <!--:value="item.bjbm">-->
+          <!--</el-option>-->
+        <!--</el-select>-->
+      <!--</el-form-item>-->
       <!--<el-form-item label="班级编码">-->
         <!--<el-input v-model="form.bjbm" class="width300"></el-input>-->
       <!--</el-form-item>-->
@@ -63,16 +63,16 @@ export default {
         classs: '',
         xm: '',
         sjhm: '',
-        js_bm: '',
-        bjbm: '',
-        bj_mc: ''
+        js_bm: ''
+        // bjbm: '',
+        // bj_mc: ''
         // js_bh: '',,
         // grade: ''
       },
       sf_ds: true,
       loading: true,
       options: [],
-      bjlist: [],
+      // bjlist: [],
       ClassName: '',
       id: '',
       wb_text: '立即创建'
@@ -126,14 +126,14 @@ export default {
       that.loading = false
       if (res.state === 'true') {
         that.options = res.list
-        that.bjlist = res.class_list
+        // that.bjlist = res.class_list
         if (id !== '') {
           that.form.classs = res.bmd.js_id
           that.form.xm = res.bmd.xm
           that.form.sjhm = res.bmd.sjhm
           that.form.js_bm = res.bmd.js_bm
-          that.form.bjbm = res.bmd.bjbm
-          that.form.bj_mc = res.bmd.bj_mc
+          // that.form.bjbm = res.bmd.bjbm
+          // that.form.bj_mc = res.bmd.bj_mc
           // that.form.js_bh = res.bmd.js_bh
           // that.form.grade = res.bmd.grade
         }

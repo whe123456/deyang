@@ -18,7 +18,7 @@ $wxid = $_REQUEST['wxid'];
 $address = $_REQUEST['address'];
 $gps = $_REQUEST['gps'];
 $conn=Database::Connect();
-$sql="SELECT zq.*,zdb.xm,zdb.bj_mc,zdb.sex,zdb.photo,zdb.`grade` FROM zjzz_dhbmd zdb,zjzz_qj zq where zq.id=? and zdb.id=zq.xs_id";
+$sql="SELECT zdb.* FROM zjzz_dhbmd zdb,zjzz_xs zq where zq.wxid=? and zdb.id=zq.dhbmd_id";
 $user=Database::ReadoneRow($sql,$conn,array($wxid));
 if(!$user){
 	alertExitHtml("无此学生信息");
@@ -28,7 +28,7 @@ $ts_info=Database::ReadoneRow($sql,$conn,array($wxid));
 if(!$ts_info){
 	alertExitHtml("无此二维码信息");
 }
-$min_ago=date('Y-m-d H:i:s',strtotime('-10 minutes'));
+$min_ago=date('Y-m-d H:i:s',strtotime('-30 minutes'));
 if($min_ago>$ts_info['ts']){
 	alertExitHtml("二维码已过期，请重新登录获取二维码");
 }
@@ -37,8 +37,8 @@ $today=date('Y-m-d');
 $sql="SELECT count(*) from zjzz_kq where xs_id=? and kq_lx=? and create_ts like	'$today%'";
 $jrkq=Database::ReadoneStr($sql,$conn,array($user['id'],$type));
 if($jrkq>0){
-echo json_encode(array('state'=>'false','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm']."今日已考勤",'stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'])));
+echo json_encode(array('state'=>'false','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm']."今日已考勤",'stu_info'=>array('name'=>$user['xm'],'sex'=>$user['sex'],'photo'=>$user['photo'],'bj_mc'=>$user['bj_mc'])));exit;
 }
 $sql="INSERT into zjzz_kq VALUES (NULL,?,?,?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array($user['id'],$type,$now,$gps,$address));
-echo json_encode(array('state'=>'true','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm'].'考勤成功','stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'])));
+echo json_encode(array('state'=>'true','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm'].'考勤成功','stu_user'=>array('name'=>$user['xm'],'sex'=>$user['sex'],'photo'=>$user['photo'],'bj_mc'=>$user['bj_mc'])));

@@ -19,7 +19,7 @@ if($bm!=''){
 }
 $page_count=10;
 $conn=Database::Connect();
-$count=Database::ReadoneStr("select count(*) from zjzz_dhbmd where $where",$conn,array());
+$count=Database::ReadoneStr("select count(distinct bjbm) from zjzz_dhbmd where $where",$conn,array());
 $qz_count=$page*$page_count;
 $sql="select distinct bjbm from zjzz_dhbmd where $where ORDER BY id DESC LIMIT $qz_count,$page_count";
 $bjbm=Database::Readall($sql,$conn,array());
@@ -28,7 +28,7 @@ if(count($bjbm)>0) {
     $user_list=$bjbm;
     $i=0;
     foreach ($bjbm as $k=>$v){
-        $sql="select * from zjzz_js where bjbm = ?";
+        $sql="select * from zjzz_js where find_in_set(?, bjbm)";
         $t_info=Database::Readall($sql,$conn,array($v['bjbm']));
         if(count($t_info)>0){
             foreach($t_info as $val){
@@ -39,7 +39,7 @@ if(count($bjbm)>0) {
                 $i++;
             }
         }else{
-            $sql="select bjbm,bj_mc from zjzz_dhbmd where bjbm=?";
+            $sql="select bjbm,bj_mc from zjzz_dhbmd where bjbm=? limit 1";
             $info=Database::ReadoneRow($sql,$conn,array($v['bjbm']));
             if($info){
                 $user_list[$i]['bj_mc']=$info['bj_mc'];

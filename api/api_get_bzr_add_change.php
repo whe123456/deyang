@@ -28,10 +28,16 @@ $have=Database::ReadoneStr("select count(*) from zjzz_js where js_bm=?",$conn,ar
 if($have==0){
     alertExitHtml('无此教师信息');
 }
-$sql="update zjzz_js set bjbm='', bj_mc='' where bjbm=?";
+$sql="update zjzz_js set bjbm=REPLACE(bjbm,'$bjbm,',''), bj_mc='' where bjbm=?";
 $arr=array($bjbm);
 $msg='班主任设置成功';
 Database::Update_pre($sql,$conn,$arr);
-$sql="update zjzz_js set bjbm=?, bj_mc=? where js_bm=?";
-Database::Update_pre($sql,$conn,array($info['bjbm'],$info['bj_mc'],$jsbm));
+$have=Database::ReadoneStr("select bjbm from zjzz_js where js_bm=?",$conn,array($jsbm));
+if($have==''){
+	$sql="update zjzz_js set bjbm='$bjbm,' where js_bm=?";
+	Database::Update_pre($sql,$conn,array($jsbm));
+}else{
+	$sql="update zjzz_js set bjbm=CONCAT(bjbm,'$bjbm,','') where js_bm=?";
+	Database::Update_pre($sql,$conn,array($jsbm));
+}
 echo json_encode(array('state'=>'true','msg'=>$msg));
