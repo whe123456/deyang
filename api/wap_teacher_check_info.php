@@ -41,6 +41,39 @@ if($info['sf_ty']==0) {
 	$token = $wx->getAccessToken1();
 	$url_token = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" . $token;
 	if ($zt == 1) {
+		$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.sjhm=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
+		$stuid = Database::ReadoneRow($sql, $conn, array($info['xs_id']));
+		if ($stuid) {
+			$post_data = array(
+					'touser' => $stuid['wxid'],//推送给谁,openid
+					'template_id' => $jgtz, //微信后台的模板信息id
+					"url" => "http://xs.17189.net/api/tz_yd/stu_rk.php?id=".$id,
+					"data" => array(
+							"first" => array(
+									"value" => "您好，您的请假申请未通过！",
+									"color" => "#173177"
+							),
+							"keyword1" => array(
+									"value" => $stuid['xm'],
+									"color" => "#173177"
+							),
+							"keyword2" => array(
+									"value" => '不同意',
+									"color" => "#173177"
+							),
+							"keyword3" => array(
+									"value" => $now,
+									"color" => "#173177"
+							),
+							"remark" => array(
+									"value" => "请及时查看哦！",
+									"color" => "#173177"
+							),
+					)
+			);
+			$post_data = json_encode($post_data);
+			post($url_token, $post_data);
+		}
 		$sql="SELECT w.wxid FROM zjzz_js zj,wxid_b w WHERE zj.js_id=4 AND w.id=zj.wxid";
 		$openid=Database::Readall($sql,$conn,array());
 		if(count($openid)>0){

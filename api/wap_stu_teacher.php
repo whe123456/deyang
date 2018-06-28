@@ -20,4 +20,7 @@ if(!$user){
 }
 $sql="SELECT zj.js_bm as `key`,zj.xm as `value` from zjzz_js zj where find_in_set(?, zj.bjbm)";
 $date=Database::Readall($sql,$conn,array($user));
+if(count($date)==0){
+    alertExitHtml("该班级未设置班主任，无法提交请假申请");
+}
 echo json_encode(array('state'=>'true','list'=>$date));

@@ -34,7 +34,6 @@ if(count($bjbm)>0) {
             foreach($t_info as $val){
                 $user_list[$i]['js_bm']=$val['js_bm'];
                 $user_list[$i]['xm']=$val['xm'];
-                $user_list[$i]['bjbm']=$val['bjbm'];
                 $user_list[$i]['bj_mc']=$val['bj_mc'];
                 $i++;
             }
