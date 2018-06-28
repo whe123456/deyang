@@ -50,7 +50,7 @@ if($info['sf_ty']==0) {
 					"url" => "http://xs.17189.net/api/tz_yd/stu_rk.php?id=".$id,
 					"data" => array(
 							"first" => array(
-									"value" => "您好，您的请假申请未通过！",
+									"value" => "您好，您的请假申请已提交学生处审核！",
 									"color" => "#173177"
 							),
 							"keyword1" => array(
@@ -58,7 +58,7 @@ if($info['sf_ty']==0) {
 									"color" => "#173177"
 							),
 							"keyword2" => array(
-									"value" => '不同意',
+									"value" => '同意',
 									"color" => "#173177"
 							),
 							"keyword3" => array(
