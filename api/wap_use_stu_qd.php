@@ -41,4 +41,4 @@ echo json_encode(array('state'=>'false','msg'=>$user['bj_mc']." 手机号码".$u
 }
 $sql="INSERT into zjzz_kq VALUES (NULL,?,?,?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array($user['id'],$type,$now,$gps,$address));
-echo json_encode(array('state'=>'true','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm'].'考勤成功','stu_user'=>array('name'=>$user['xm'],'sex'=>$user['sex'],'photo'=>$user['photo'],'bj_mc'=>$user['bj_mc'])));
+echo json_encode(array('state'=>'true','msg'=>$user['bj_mc']." 手机号码".$user['sjhm']." ".$user['xm'].'考勤成功','stu_info'=>array('name'=>$user['xm'],'sex'=>$user['sex'],'photo'=>$user['photo'],'bj_mc'=>$user['bj_mc'])));
