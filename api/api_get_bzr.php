@@ -30,22 +30,26 @@ if(count($bjbm)>0) {
     foreach ($bjbm as $k=>$v){
         $sql="select * from zjzz_js where find_in_set(?, bjbm)";
         $t_info=Database::Readall($sql,$conn,array($v['bjbm']));
+        $sql="select bjbm,bj_mc from zjzz_dhbmd where bjbm=? limit 1";
+        $info=Database::ReadoneRow($sql,$conn,array($v['bjbm']));
+        $bj_mc_info='';
+        if($info){
+            $bj_mc_info=$info['bj_mc'];
+        }
         if(count($t_info)>0){
             foreach($t_info as $val){
                 $user_list[$i]['js_bm']=$val['js_bm'];
                 $user_list[$i]['xm']=$val['xm'];
-                $user_list[$i]['bj_mc']=$val['bj_mc'];
+                $user_list[$i]['bj_mc']=$bj_mc_info;
+                $user_list[$i]['bjbm']=$v['bjbm'];
                 $i++;
             }
         }else{
-            $sql="select bjbm,bj_mc from zjzz_dhbmd where bjbm=? limit 1";
-            $info=Database::ReadoneRow($sql,$conn,array($v['bjbm']));
-            if($info){
-                $user_list[$i]['bj_mc']=$info['bj_mc'];
-                $user_list[$i]['js_bm']='';
-                $user_list[$i]['xm']='';
-                $i++;
-            }
+            $user_list[$i]['bj_mc']=$bj_mc_info;
+            $user_list[$i]['js_bm']='';
+            $user_list[$i]['xm']='';
+            $user_list[$i]['bjbm']=$v['bjbm'];
+            $i++;
         }
     }
 }
