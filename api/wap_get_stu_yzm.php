@@ -32,6 +32,11 @@ $sql="UPDATE zjzz_yzm set is_use=1 where sjhm=?";
 @Database::Update_pre($sql,$conn,array($tel));
 $sql="INSERT into zjzz_yzm VALUES (?,?,?,?,?)";
 $code=rand(100000,999999);
-$code=123456;
-Database::InsertOrUpdate($sql,$conn,array(NULL,$code,$tel,$now,'0'));
-echo json_encode(array('state'=>'true'));
+$send=send($tel,"【中江职业中专学校】验证码：".$code."，如非本人操作，请忽略本短信。");
+$send_info=explode(',',$send);
+if($send_info[0]==0){
+	Database::InsertOrUpdate($sql,$conn,array(NULL,$code,$tel,$now,'0'));
+	echo json_encode(array('state'=>'true'));
+}else{
+	alertExitHtml("发送失败");
+}
