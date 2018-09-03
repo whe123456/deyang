@@ -190,7 +190,12 @@ export default {
     on_upload () {
       this.jz_loading = true
     },
-    upload_ok () {
+    upload_ok (e) {
+      if (e.state === 'false') {
+        this.$alert(e.msg, '提示', {
+          confirmButtonText: '确定'
+        })
+      }
       this.jz_loading = false
       this.fileList = []
       getList(1, this)

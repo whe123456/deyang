@@ -16,7 +16,7 @@ $bj_mc=empty($_REQUEST['bj_mc'])?'':$_REQUEST['bj_mc'];
 $kq_lx=!isset($_REQUEST['kq_lx'])?'':$_REQUEST['kq_lx'];
 $kq_sj=empty($_REQUEST['kq_sj'])?array():$_REQUEST['kq_sj'];
 $xm=empty($_REQUEST['xm'])?'':$_REQUEST['xm'];
-$where=' zk.xs_id=zb.sjhm';
+$where=' zk.xs_id=zb.id';
 if($bj_mc!=''){
     $where.=" AND zb.bj_mc like '%$bj_mc%'";
 }

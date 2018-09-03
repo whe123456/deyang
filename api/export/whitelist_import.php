@@ -85,10 +85,54 @@ if(array_key_exists($ii, $_FILES)===false){
         $grs = explode(',', $sj);
         $sqladd = '';
         $cl='';
+        $name='';
+        $bjmc='';
         foreach ($grs as $k => $al) {
+            if($k==7){
+                $teacher=$al;
+                continue;
+            }
+            if($k==6){
+                $name=$al;
+                continue;
+            }
+            if($k==3){
+                $bjbm=$al;
+            }
+            if($k==4){
+                $bjmc=$al;
+            }
             $sqladd .= '"' . $al . '",';
             if($k==0){
                 $cl=$al;
+            }
+        }
+        if(!$bjbm){
+            alertExit('导入失败，无班级编码');
+        }
+        if(!$teacher){
+            alertExit('导入失败，无教师编码');
+        }
+        if($teacher!='') {
+
+            $bjsql="SELECT count(*) FROM zjzz_js WHERE find_in_set(?, bjbm)";
+            $bjcz=Database::ReadoneStr($bjsql,$conn,array($bjbm));
+            if($bjcz>0){
+                alertExit('导入失败，'.$bjmc.'已有管理教师');
+            }
+            $sql="SELECT * FROM zjzz_js WHERE js_bm=?";
+            $sfcz=Database::ReadoneRow($sql,$conn,array($teacher));
+            if($sfcz){
+                if($sfcz['bjbm']==''){
+                    $sql="update zjzz_js set bjbm='$bjbm,' where js_bm=?";
+                    Database::Update_pre($sql,$conn,array($teacher));
+                }else{
+                    $sql="update zjzz_js set bjbm=CONCAT(bjbm,'$bjbm,','') where js_bm=?";
+                    Database::Update_pre($sql,$conn,array($teacher));
+                }
+            }else{
+                $sql="INSERT INTO zjzz_js VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?)";
+                Database::InsertOrUpdate($sql,$conn,array($teacher,$name,md5('123456'),'','',$now,'0',1,$bjbm,$bjmc,'',''));
             }
         }
         if($cl!='') {
@@ -98,7 +142,8 @@ if(array_key_exists($ii, $_FILES)===false){
                 continue;
             }
         }
-        $sql = "INSERT INTO zjzz_dhbmd (sjhm,xm,xh,bjbm,bj_mc,sex,js_bh,grade,cj_time,sf_yz,yzm,yzsj)VALUES($sqladd'','$now','0','','')";
+
+        $sql = "INSERT INTO zjzz_dhbmd (sjhm,xm,xh,bjbm,bj_mc,sex,js_bh,grade,cj_time,sf_yz,yzm,yzsj)VALUES($sqladd'','','$now','0','','')";
         $aac = Database::InsertOrUpdate($sql, $conn,array());
         if ($aac === false) {
             alertExit('导入失败，数据格式错误');
