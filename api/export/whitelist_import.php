@@ -120,10 +120,12 @@ if(array_key_exists($ii, $_FILES)===false){
         }
         if($teacher!='') {
 
-            $bjsql="SELECT count(*) FROM zjzz_js WHERE find_in_set(?, bjbm)";
+            $bjsql="SELECT js_bm FROM zjzz_js WHERE find_in_set(?, bjbm)";
             $bjcz=Database::ReadoneStr($bjsql,$conn,array($bjbm));
-            if($bjcz>0){
-                alertExit('导入失败，'.$bjmc.'已有管理教师');
+            if($bjcz){
+                if($bjcz!=$teacher) {
+                    alertExit('导入失败，' . $bjmc . '已有管理教师');
+                }
             }
             $sql="SELECT * FROM zjzz_js WHERE js_bm=?";
             $sfcz=Database::ReadoneRow($sql,$conn,array($teacher));
@@ -132,12 +134,14 @@ if(array_key_exists($ii, $_FILES)===false){
                     $sql="update zjzz_js set bjbm='$bjbm,' where js_bm=?";
                     Database::Update_pre($sql,$conn,array($teacher));
                 }else{
-                    $sql="update zjzz_js set bjbm=CONCAT(bjbm,'$bjbm,','') where js_bm=?";
-                    Database::Update_pre($sql,$conn,array($teacher));
+                    if(!$bjcz) {
+                        $sql = "update zjzz_js set bjbm=CONCAT(bjbm,'$bjbm,','') where js_bm=?";
+                        Database::Update_pre($sql, $conn, array($teacher));
+                    }
                 }
             }else{
                 $sql="INSERT INTO zjzz_js VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?)";
-                Database::InsertOrUpdate($sql,$conn,array($teacher,$name,md5('123456'),$tel,'',$now,'0',1,$bjbm,$bjmc,'',''));
+                Database::InsertOrUpdate($sql,$conn,array($teacher,$name,md5('123456'),$tel,'',$now,'0',1,$bjbm.',',$bjmc,'',''));
             }
         }
         if($cl!='') {
