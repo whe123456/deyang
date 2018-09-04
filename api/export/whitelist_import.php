@@ -87,6 +87,7 @@ if(array_key_exists($ii, $_FILES)===false){
         $cl='';
         $name='';
         $bjmc='';
+        $tel='';
         foreach ($grs as $k => $al) {
             if($k==7){
                 $teacher=$al;
@@ -94,6 +95,10 @@ if(array_key_exists($ii, $_FILES)===false){
             }
             if($k==6){
                 $name=$al;
+                continue;
+            }
+            if($k==8){
+                $tel=$al;
                 continue;
             }
             if($k==3){
@@ -132,7 +137,7 @@ if(array_key_exists($ii, $_FILES)===false){
                 }
             }else{
                 $sql="INSERT INTO zjzz_js VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?,?)";
-                Database::InsertOrUpdate($sql,$conn,array($teacher,$name,md5('123456'),'','',$now,'0',1,$bjbm,$bjmc,'',''));
+                Database::InsertOrUpdate($sql,$conn,array($teacher,$name,md5('123456'),$tel,'',$now,'0',1,$bjbm,$bjmc,'',''));
             }
         }
         if($cl!='') {
