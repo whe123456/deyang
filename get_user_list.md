@@ -6,7 +6,8 @@ http://xs.17189.net/api/get_user_list.php?phone=18190068381
 		"name": "学生A",//学生姓名
 		"sex": "女",//学生性别
 		"photo": "http:\/\/xs.17189.net\/api\/export\/user_photo\/201806291116566738.jpg",//学生头像
-		"bj_mc": "计算机应用1班"//班级名称
+		"bj_mc": "计算机应用1班"//班级名称,
+        "teacher_name": "教师A"//教师姓名
 	},
 	"kq_list": [{//考勤记录 最新20条数据
 		"id": 30,
