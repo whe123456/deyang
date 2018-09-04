@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f7239c3e-5de2-4b0b-998b-a9ee27604dce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/fx_yzm.php" afterPath="$PROJECT_DIR$/api/fx_yzm.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/get_user_list.php" afterPath="$PROJECT_DIR$/api/get_user_list.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/mw_yz_ewm.php" afterPath="$PROJECT_DIR$/api/mw_yz_ewm.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_user_list.md" afterPath="$PROJECT_DIR$/get_user_list.md" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,56 +22,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="get_user_list.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/get_user_list.php">
+      <file leaf-file-name="api_get_bzr.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/api_get_bzr.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.571428">
-              <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.5716332">
+              <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
               <folding>
-                <marker date="1536029193668" expanded="true" signature="616:665" placeholder="SELECT zdb.*..zjzz_dhbmd..." />
-                <marker date="1536029193668" expanded="true" signature="766:815" placeholder="select xm fr..zjzz_js..." />
-                <marker date="1536029193668" expanded="true" signature="934:993" placeholder="SELECT * fro..zjzz_kq..." />
-                <marker date="1536029193668" expanded="true" signature="1093:1152" placeholder="SELECT * FRO..zjzz_qj..." />
-                <marker date="1536029193668" expanded="true" signature="1338:1421" placeholder="select creat..saoma_list..." />
-                <marker date="1536029193668" expanded="true" signature="1499:1582" placeholder="select creat..saoma_list..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_user_list.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/get_user_list.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86389685">
-              <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mw_yz_ewm.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/mw_yz_ewm.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.357142">
-              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-              <folding>
-                <marker date="1536028918780" expanded="true" signature="753:878" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
-                <marker date="1536028918780" expanded="true" signature="1253:1292" placeholder="INSERT INTO saoma_list..." />
-                <marker date="1536028918780" expanded="true" signature="1575:1613" placeholder="UPDATE zjzz_..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fx_yzm.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/fx_yzm.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.178572">
-              <caret line="33" column="76" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
-              <folding>
-                <marker date="1536028918806" expanded="true" signature="694:819" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
-                <marker date="1536028918806" expanded="true" signature="1144:1183" placeholder="INSERT INTO saoma_list..." />
-                <marker date="1536028918806" expanded="true" signature="1269:1306" placeholder="update zjzz_..." />
+                <marker date="1530251926663" expanded="true" signature="788:838" placeholder="select count..zjzz_dhbmd..." />
+                <marker date="1530251926663" expanded="true" signature="897:980" placeholder="select disti..zjzz_dhbmd..." />
+                <marker date="1530251926663" expanded="true" signature="1157:1205" placeholder="select * fro..zjzz_js..." />
+                <marker date="1530251926663" expanded="true" signature="1287:1341" placeholder="select bjbm,..zjzz_dhbmd..." />
               </folding>
             </state>
           </provider>
@@ -677,19 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/api_get_bzr.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="31" selection-end-column="64" />
-          <folding>
-            <marker date="1530251926663" expanded="true" signature="788:838" placeholder="select count..zjzz_dhbmd..." />
-            <marker date="1530251926663" expanded="true" signature="897:980" placeholder="select disti..zjzz_dhbmd..." />
-            <marker date="1530251926663" expanded="true" signature="1157:1205" placeholder="select * fro..zjzz_js..." />
-            <marker date="1530251926663" expanded="true" signature="1287:1341" placeholder="select bjbm,..zjzz_dhbmd..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/get_user_list.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.571428">
@@ -707,7 +650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/fx_yzm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.178572">
+        <state vertical-scroll-proportion="0.8495702">
           <caret line="33" column="76" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
           <folding>
             <marker date="1536028918806" expanded="true" signature="694:819" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
@@ -719,7 +662,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/mw_yz_ewm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.357142">
+        <state vertical-scroll-proportion="0.495702">
           <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
           <folding>
             <marker date="1536028918780" expanded="true" signature="753:878" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
@@ -731,9 +674,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/get_user_list.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86389685">
+        <state vertical-scroll-proportion="0.9455587">
           <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_bzr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5716332">
+          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+          <folding>
+            <marker date="1530251926663" expanded="true" signature="788:838" placeholder="select count..zjzz_dhbmd..." />
+            <marker date="1530251926663" expanded="true" signature="897:980" placeholder="select disti..zjzz_dhbmd..." />
+            <marker date="1530251926663" expanded="true" signature="1157:1205" placeholder="select * fro..zjzz_js..." />
+            <marker date="1530251926663" expanded="true" signature="1287:1341" placeholder="select bjbm,..zjzz_dhbmd..." />
+          </folding>
         </state>
       </provider>
     </entry>
