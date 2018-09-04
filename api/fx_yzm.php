@@ -29,6 +29,7 @@ if($info['sf_ty']!='1'){
 $now=date('Y-m-d H:i:s');
 $qj_ts=str_replace(".","至",$info['qj_sj']);
 $msg=$info['grade']." ".$info['bj_mc']." 手机号码".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 返校记录成功！";
-$sql="INSERT INTO saoma_list VALUES (?,?,?)";
-Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now));
+$sql="INSERT INTO saoma_list VALUES (?,?,?,?)";
+Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now,2));
+Database::Update_pre("update zjzz_qj set state=2 where id=?",$conn,array($id));
 echo json_encode(array('state'=>0,'msg'=>$msg,'stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'],'bj_mc'=>$info['bj_mc'])));

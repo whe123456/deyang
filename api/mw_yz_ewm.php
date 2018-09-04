@@ -27,11 +27,14 @@ if(!$info){
 if($info['sf_ty']!='1'){
     alertExit('此申请未被同意');
 }
+if($info['state']==2){
+    alertExit('此申请已完成');
+}
 $now=date('Y-m-d H:i:s');
 $qj_ts=str_replace(".","至",$info['qj_sj']);
 $msg=$info['grade']." ".$info['bj_mc']." 手机号码".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 离校记录成功！";
-$sql="INSERT INTO saoma_list VALUES (?,?,?)";
-Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now));
+$sql="INSERT INTO saoma_list VALUES (?,?,?,?)";
+Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now,1));
 // $ewm_str = $url . "api/mw_yz_ewm.php?id=$id&type=sm";//周末签到二维码字符串
 // $str = base64_encode($des->encrypt($ewm_str));
 $str="ccc".$id;

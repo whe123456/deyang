@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f7239c3e-5de2-4b0b-998b-a9ee27604dce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/fx_yzm.php" afterPath="$PROJECT_DIR$/api/fx_yzm.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/get_user_list.php" afterPath="$PROJECT_DIR$/api/get_user_list.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/mw_yz_ewm.php" afterPath="$PROJECT_DIR$/api/mw_yz_ewm.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_user_list.md" afterPath="$PROJECT_DIR$/get_user_list.md" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -27,13 +29,15 @@
       <file leaf-file-name="get_user_list.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/get_user_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.178572">
-              <caret line="34" column="169" selection-start-line="34" selection-start-column="169" selection-end-line="34" selection-end-column="169" />
+            <state vertical-scroll-proportion="-23.571428">
+              <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
               <folding>
-                <marker date="1536026191160" expanded="true" signature="616:665" placeholder="SELECT zdb.*..zjzz_dhbmd..." />
-                <marker date="1536026191160" expanded="true" signature="766:815" placeholder="select xm fr..zjzz_js..." />
-                <marker date="1536026191160" expanded="true" signature="934:993" placeholder="SELECT * fro..zjzz_kq..." />
-                <marker date="1536026191160" expanded="true" signature="1093:1152" placeholder="SELECT * FRO..zjzz_qj..." />
+                <marker date="1536029193668" expanded="true" signature="616:665" placeholder="SELECT zdb.*..zjzz_dhbmd..." />
+                <marker date="1536029193668" expanded="true" signature="766:815" placeholder="select xm fr..zjzz_js..." />
+                <marker date="1536029193668" expanded="true" signature="934:993" placeholder="SELECT * fro..zjzz_kq..." />
+                <marker date="1536029193668" expanded="true" signature="1093:1152" placeholder="SELECT * FRO..zjzz_qj..." />
+                <marker date="1536029193668" expanded="true" signature="1338:1421" placeholder="select creat..saoma_list..." />
+                <marker date="1536029193668" expanded="true" signature="1499:1582" placeholder="select creat..saoma_list..." />
               </folding>
             </state>
           </provider>
@@ -42,50 +46,36 @@
       <file leaf-file-name="get_user_list.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/get_user_list.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24498567">
-              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.86389685">
+              <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api_get_bzr_add_change.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_get_bzr_add_change.php">
+      <file leaf-file-name="mw_yz_ewm.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/mw_yz_ewm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.214286">
-              <caret line="22" column="5" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="5" />
+            <state vertical-scroll-proportion="-12.357142">
+              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
               <folding>
-                <marker date="1530252041617" expanded="true" signature="881:951" placeholder="select bjbm,..zjzz_dhbmd..." />
-                <marker date="1530252041617" expanded="true" signature="1045:1087" placeholder="select count..zjzz_js..." />
-                <marker date="1530252041617" expanded="true" signature="1161:1247" placeholder="update zjzz_..." />
-                <marker date="1530252041617" expanded="true" signature="1352:1390" placeholder="select bjbm ..zjzz_js..." />
-                <marker date="1530252041617" expanded="true" signature="1435:1481" placeholder="update zjzz_..." />
-                <marker date="1530252041617" expanded="true" signature="1546:1608" placeholder="update zjzz_..." />
+                <marker date="1536028918780" expanded="true" signature="753:878" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
+                <marker date="1536028918780" expanded="true" signature="1253:1292" placeholder="INSERT INTO saoma_list..." />
+                <marker date="1536028918780" expanded="true" signature="1575:1613" placeholder="UPDATE zjzz_..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api_get_bzr_change.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_get_bzr_change.php">
+      <file leaf-file-name="fx_yzm.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/fx_yzm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.535714">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api_get_bzr.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/api_get_bzr.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.428572">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="31" selection-end-column="64" />
+            <state vertical-scroll-proportion="-21.178572">
+              <caret line="33" column="76" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
               <folding>
-                <marker date="1530251926663" expanded="true" signature="788:838" placeholder="select count..zjzz_dhbmd..." />
-                <marker date="1530251926663" expanded="true" signature="897:980" placeholder="select disti..zjzz_dhbmd..." />
-                <marker date="1530251926663" expanded="true" signature="1157:1205" placeholder="select * fro..zjzz_js..." />
-                <marker date="1530251926663" expanded="true" signature="1287:1341" placeholder="select bjbm,..zjzz_dhbmd..." />
+                <marker date="1536028918806" expanded="true" signature="694:819" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
+                <marker date="1536028918806" expanded="true" signature="1144:1183" placeholder="INSERT INTO saoma_list..." />
+                <marker date="1536028918806" expanded="true" signature="1269:1306" placeholder="update zjzz_..." />
               </folding>
             </state>
           </provider>
@@ -136,8 +126,6 @@
         <option value="$PROJECT_DIR$/api/export/export_qj_jl.php" />
         <option value="$PROJECT_DIR$/api/api_get_user_del.php" />
         <option value="$PROJECT_DIR$/api/api_get_class_change.php" />
-        <option value="$PROJECT_DIR$/api/fx_yzm.php" />
-        <option value="$PROJECT_DIR$/api/mw_yz_ewm.php" />
         <option value="$PROJECT_DIR$/api/wap_use_stu_tj_sq.php" />
         <option value="$PROJECT_DIR$/api/api_get_bzr_change.php" />
         <option value="$PROJECT_DIR$/api/api_get_teacher_change.php" />
@@ -148,6 +136,8 @@
         <option value="$PROJECT_DIR$/api/api_get_bzr.php" />
         <option value="$PROJECT_DIR$/api/api_get_bzr_add_change.php" />
         <option value="$PROJECT_DIR$/api/export/whitelist_import.php" />
+        <option value="$PROJECT_DIR$/api/fx_yzm.php" />
+        <option value="$PROJECT_DIR$/api/mw_yz_ewm.php" />
         <option value="$PROJECT_DIR$/api/get_user_list.php" />
         <option value="$PROJECT_DIR$/get_user_list.md" />
       </list>
@@ -315,10 +305,11 @@
     <frame x="-8" y="-8" width="1456" height="886" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25071633" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.254298" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -330,7 +321,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -636,20 +626,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/mw_yz_ewm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.642857">
-          <caret line="41" column="83" selection-start-line="41" selection-start-column="64" selection-end-line="41" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/fx_yzm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.392857">
-          <caret line="5" column="53" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/wap_use_stu_qd.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.285715">
@@ -668,7 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7005731">
           <caret line="148" column="22" selection-start-line="148" selection-start-column="22" selection-end-line="148" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -676,13 +651,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35959885">
           <caret line="18" column="73" selection-start-line="18" selection-start-column="73" selection-end-line="18" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/api_get_bzr_add_change.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.214286">
+        <state vertical-scroll-proportion="0.0">
           <caret line="22" column="5" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="5" />
           <folding>
             <marker date="1530252041617" expanded="true" signature="881:951" placeholder="select bjbm,..zjzz_dhbmd..." />
@@ -697,7 +671,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/api_get_bzr_change.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.535714">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="12" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="12" />
           <folding />
         </state>
@@ -705,7 +679,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/api_get_bzr.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.428572">
+        <state vertical-scroll-proportion="0.0">
           <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="31" selection-end-column="64" />
           <folding>
             <marker date="1530251926663" expanded="true" signature="788:838" placeholder="select count..zjzz_dhbmd..." />
@@ -718,21 +692,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/get_user_list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.178572">
-          <caret line="34" column="169" selection-start-line="34" selection-start-column="169" selection-end-line="34" selection-end-column="169" />
+        <state vertical-scroll-proportion="-23.571428">
+          <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
           <folding>
-            <marker date="1536026191160" expanded="true" signature="616:665" placeholder="SELECT zdb.*..zjzz_dhbmd..." />
-            <marker date="1536026191160" expanded="true" signature="766:815" placeholder="select xm fr..zjzz_js..." />
-            <marker date="1536026191160" expanded="true" signature="934:993" placeholder="SELECT * fro..zjzz_kq..." />
-            <marker date="1536026191160" expanded="true" signature="1093:1152" placeholder="SELECT * FRO..zjzz_qj..." />
+            <marker date="1536029193668" expanded="true" signature="616:665" placeholder="SELECT zdb.*..zjzz_dhbmd..." />
+            <marker date="1536029193668" expanded="true" signature="766:815" placeholder="select xm fr..zjzz_js..." />
+            <marker date="1536029193668" expanded="true" signature="934:993" placeholder="SELECT * fro..zjzz_kq..." />
+            <marker date="1536029193668" expanded="true" signature="1093:1152" placeholder="SELECT * FRO..zjzz_qj..." />
+            <marker date="1536029193668" expanded="true" signature="1338:1421" placeholder="select creat..saoma_list..." />
+            <marker date="1536029193668" expanded="true" signature="1499:1582" placeholder="select creat..saoma_list..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/fx_yzm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.178572">
+          <caret line="33" column="76" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
+          <folding>
+            <marker date="1536028918806" expanded="true" signature="694:819" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
+            <marker date="1536028918806" expanded="true" signature="1144:1183" placeholder="INSERT INTO saoma_list..." />
+            <marker date="1536028918806" expanded="true" signature="1269:1306" placeholder="update zjzz_..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/mw_yz_ewm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.357142">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+          <folding>
+            <marker date="1536028918780" expanded="true" signature="753:878" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
+            <marker date="1536028918780" expanded="true" signature="1253:1292" placeholder="INSERT INTO saoma_list..." />
+            <marker date="1536028918780" expanded="true" signature="1575:1613" placeholder="UPDATE zjzz_..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/get_user_list.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24498567">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.86389685">
+          <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
           <folding />
         </state>
       </provider>

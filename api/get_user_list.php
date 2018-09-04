@@ -32,4 +32,10 @@ $kq_list=Database::Readall($sql,$conn,array($info['id']));
 //sf_ty0待审核-1不同意1同意
 $sql="SELECT * FROM zjzz_qj WHERE xs_id=? ORDER BY id DESC LIMIT $page_count";
 $qj_list=Database::Readall($sql,$conn,array($phone));
+if(count($qj_list)>0&&$qj_list){
+    foreach($qj_list as $k=>$v){
+        $qj_list[$k]['lx_ts']=Database::ReadoneStr("select create_ts from saoma_list where qj_id=? and state=1 order by id desc limit 1",$conn,array($v['id']));
+        $qj_list[$k]['fx_ts']=Database::ReadoneStr("select create_ts from saoma_list where qj_id=? and state=2 order by id desc limit 1",$conn,array($v['id']));
+    }
+}
 echo json_encode(array('state'=>0,'stu_info'=>array('name'=>$info['xm'],'sex'=>$info['sex'],'photo'=>$info['photo'],'bj_mc'=>$info['bj_mc'],'teacher_name'=>$teacher_name),'kq_list'=>$kq_list,'qj_list'=>$qj_list));
