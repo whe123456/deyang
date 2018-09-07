@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f7239c3e-5de2-4b0b-998b-a9ee27604dce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/export/whitelist_import.php" afterPath="$PROJECT_DIR$/api/export/whitelist_import.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/wap_use_stu_tj_sq.php" afterPath="$PROJECT_DIR$/api/wap_use_stu_tj_sq.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,16 +27,19 @@
       <file leaf-file-name="whitelist_import.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/export/whitelist_import.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56446993">
-              <caret line="143" column="114" selection-start-line="143" selection-start-column="114" selection-end-line="143" selection-end-column="114" />
+            <state vertical-scroll-proportion="0.86389685">
+              <caret line="165" column="44" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
               <folding>
-                <marker date="1536051164474" expanded="true" signature="3804:3856" placeholder="SELECT js_bm..zjzz_js..." />
-                <marker date="1536051164474" expanded="true" signature="4096:4131" placeholder="SELECT * FRO..zjzz_js..." />
-                <marker date="1536051164474" expanded="true" signature="4290:4336" placeholder="update zjzz_..." />
-                <marker date="1536051164474" expanded="true" signature="4497:4559" placeholder="update zjzz_..." />
-                <marker date="1536051164474" expanded="true" signature="4719:4775" placeholder="INSERT INTO zjzz_js..." />
-                <marker date="1536051164474" expanded="true" signature="4975:5019" placeholder="SELECT COUNT..zjzz_dhbmd..." />
-                <marker date="1536051164474" expanded="true" signature="5187:5309" placeholder="INSERT INTO zjzz_dhbmd..." />
+                <element signature="e#618#1280#0#PHP" expanded="false" />
+                <element signature="e#1677#1878#0#PHP" expanded="false" />
+                <element signature="e#2181#2685#0#PHP" expanded="false" />
+                <marker date="1536300678873" expanded="true" signature="3822:3874" placeholder="SELECT js_bm..zjzz_js..." />
+                <marker date="1536300678873" expanded="true" signature="4114:4149" placeholder="SELECT * FRO..zjzz_js..." />
+                <marker date="1536300678873" expanded="true" signature="4308:4354" placeholder="update zjzz_..." />
+                <marker date="1536300678873" expanded="true" signature="4515:4577" placeholder="update zjzz_..." />
+                <marker date="1536300678873" expanded="true" signature="4737:4793" placeholder="INSERT INTO zjzz_js..." />
+                <marker date="1536300678873" expanded="true" signature="4993:5037" placeholder="SELECT COUNT..zjzz_dhbmd..." />
+                <marker date="1536300678873" expanded="true" signature="5250:5372" placeholder="INSERT INTO zjzz_dhbmd..." />
               </folding>
             </state>
           </provider>
@@ -85,7 +90,6 @@
         <option value="$PROJECT_DIR$/api/export/export_qj_jl.php" />
         <option value="$PROJECT_DIR$/api/api_get_user_del.php" />
         <option value="$PROJECT_DIR$/api/api_get_class_change.php" />
-        <option value="$PROJECT_DIR$/api/wap_use_stu_tj_sq.php" />
         <option value="$PROJECT_DIR$/api/api_get_bzr_change.php" />
         <option value="$PROJECT_DIR$/api/api_get_teacher_change.php" />
         <option value="$PROJECT_DIR$/api/api_get_teacher_add_change.php" />
@@ -98,6 +102,7 @@
         <option value="$PROJECT_DIR$/api/mw_yz_ewm.php" />
         <option value="$PROJECT_DIR$/api/get_user_list.php" />
         <option value="$PROJECT_DIR$/get_user_list.md" />
+        <option value="$PROJECT_DIR$/api/wap_use_stu_tj_sq.php" />
         <option value="$PROJECT_DIR$/api/export/whitelist_import.php" />
       </list>
     </option>
@@ -146,7 +151,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -163,6 +167,86 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="deyang" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manager" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -200,6 +284,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -207,6 +292,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="D:\node\node.exe" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/node/deyang/manager/src/components/page/WhiteList.vue" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -282,7 +368,7 @@
     <frame x="-8" y="-8" width="1456" height="886" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25787964" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26862463" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -323,52 +409,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/export/teacher_list_import.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6289398">
-          <caret line="96" column="21" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_get_teacher_info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5716332">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_get_stu_yzm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="36" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_get_teacher_yzm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.714286">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/rk/stu.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.071429">
           <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_use_teacher_yzm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8094556">
-          <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/tz_yd/teacher_rk.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08166189">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="5" selection-end-column="65" />
         </state>
       </provider>
     </entry>
@@ -547,20 +591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/api_get_teacher_change.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60694444">
-          <caret line="23" column="97" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_use_stu_tj_sq.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6785714">
-          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/wap_use_stu_qd_list.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -579,13 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6597222">
           <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/wap_teacher_check_info.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.79444444">
-          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -628,14 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.571428">
           <caret line="39" column="1" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
-          <folding>
-            <marker date="1536029193668" expanded="true" signature="616:665" placeholder="SELECT zdb.*..zjzz_dhbmd..." />
-            <marker date="1536029193668" expanded="true" signature="766:815" placeholder="select xm fr..zjzz_js..." />
-            <marker date="1536029193668" expanded="true" signature="934:993" placeholder="SELECT * fro..zjzz_kq..." />
-            <marker date="1536029193668" expanded="true" signature="1093:1152" placeholder="SELECT * FRO..zjzz_qj..." />
-            <marker date="1536029193668" expanded="true" signature="1338:1421" placeholder="select creat..saoma_list..." />
-            <marker date="1536029193668" expanded="true" signature="1499:1582" placeholder="select creat..saoma_list..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -643,11 +658,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8495702">
           <caret line="33" column="76" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
-          <folding>
-            <marker date="1536028918806" expanded="true" signature="694:819" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
-            <marker date="1536028918806" expanded="true" signature="1144:1183" placeholder="INSERT INTO saoma_list..." />
-            <marker date="1536028918806" expanded="true" signature="1269:1306" placeholder="update zjzz_..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,11 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.495702">
           <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-          <folding>
-            <marker date="1536028918780" expanded="true" signature="753:878" placeholder="SELECT zq.*,..zjzz_dhbmd..." />
-            <marker date="1536028918780" expanded="true" signature="1253:1292" placeholder="INSERT INTO saoma_list..." />
-            <marker date="1536028918780" expanded="true" signature="1575:1613" placeholder="UPDATE zjzz_..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -667,7 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9455587">
           <caret line="39" column="44" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,12 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5716332">
           <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
-          <folding>
-            <marker date="1530251926663" expanded="true" signature="788:838" placeholder="select count..zjzz_dhbmd..." />
-            <marker date="1530251926663" expanded="true" signature="897:980" placeholder="select disti..zjzz_dhbmd..." />
-            <marker date="1530251926663" expanded="true" signature="1157:1205" placeholder="select * fro..zjzz_js..." />
-            <marker date="1530251926663" expanded="true" signature="1287:1341" placeholder="select bjbm,..zjzz_dhbmd..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -688,14 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3323782">
           <caret line="22" column="5" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <marker date="1530252041617" expanded="true" signature="881:951" placeholder="select bjbm,..zjzz_dhbmd..." />
-            <marker date="1530252041617" expanded="true" signature="1045:1087" placeholder="select count..zjzz_js..." />
-            <marker date="1530252041617" expanded="true" signature="1161:1247" placeholder="update zjzz_..." />
-            <marker date="1530252041617" expanded="true" signature="1352:1390" placeholder="select bjbm ..zjzz_js..." />
-            <marker date="1530252041617" expanded="true" signature="1435:1481" placeholder="update zjzz_..." />
-            <marker date="1530252041617" expanded="true" signature="1546:1608" placeholder="update zjzz_..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -703,27 +693,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.5">
           <caret line="47" column="88" selection-start-line="47" selection-start-column="88" selection-end-line="47" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api_get_teacher_change.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.607142">
+          <caret line="23" column="97" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/wap_get_teacher_yzm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.642858">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/wap_get_teacher_info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.25">
+          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/wap_teacher_check_info.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0071633">
+          <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/wap_use_teacher_yzm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3882521">
+          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
           <folding>
-            <marker date="1530069844341" expanded="true" signature="1178:1227" placeholder="update zjzz_..." />
-            <marker date="1530069844341" expanded="true" signature="1311:1422" placeholder="UPDATE zjzz_..." />
-            <marker date="1530069844341" expanded="true" signature="1622:1664" placeholder="SELECT COUNT..zjzz_js..." />
-            <marker date="1530069844341" expanded="true" signature="1796:1852" placeholder="INSERT INTO zjzz_js..." />
+            <marker date="1526017149848" expanded="true" signature="1604:1667" placeholder="UPDATE zjzz_..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/tz_yd/teacher_rk.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4627507">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <marker date="1524790877481" expanded="true" signature="92:126" placeholder="SELECT * FRO..zjzz_js..." />
+            <marker date="1524790877481" expanded="true" signature="479:511" placeholder="select * fro..zjzz_qj..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/projectPath/src/components/login/teacher.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9476584">
+          <caret line="92" column="31" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/wap_use_stu_tj_sq.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.857143">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+          <folding>
+            <marker date="1536300063808" expanded="true" signature="878:963" placeholder="SELECT zdb.s..zjzz_xs..." />
+            <marker date="1536300063808" expanded="true" signature="1091:1278" placeholder="INSERT into zjzz_qj..." />
+            <marker date="1536300063808" expanded="true" signature="1659:1731" placeholder="select w.wxi..zjzz_js..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manager/src/components/page/WhiteList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="192" column="13" selection-start-line="192" selection-start-column="4" selection-end-line="192" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/export/whitelist_import.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56446993">
-          <caret line="143" column="114" selection-start-line="143" selection-start-column="114" selection-end-line="143" selection-end-column="114" />
+        <state vertical-scroll-proportion="0.86389685">
+          <caret line="165" column="44" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
           <folding>
-            <marker date="1536051164474" expanded="true" signature="3804:3856" placeholder="SELECT js_bm..zjzz_js..." />
-            <marker date="1536051164474" expanded="true" signature="4096:4131" placeholder="SELECT * FRO..zjzz_js..." />
-            <marker date="1536051164474" expanded="true" signature="4290:4336" placeholder="update zjzz_..." />
-            <marker date="1536051164474" expanded="true" signature="4497:4559" placeholder="update zjzz_..." />
-            <marker date="1536051164474" expanded="true" signature="4719:4775" placeholder="INSERT INTO zjzz_js..." />
-            <marker date="1536051164474" expanded="true" signature="4975:5019" placeholder="SELECT COUNT..zjzz_dhbmd..." />
-            <marker date="1536051164474" expanded="true" signature="5187:5309" placeholder="INSERT INTO zjzz_dhbmd..." />
+            <element signature="e#618#1280#0#PHP" expanded="false" />
+            <element signature="e#1677#1878#0#PHP" expanded="false" />
+            <element signature="e#2181#2685#0#PHP" expanded="false" />
+            <marker date="1536300678873" expanded="true" signature="3822:3874" placeholder="SELECT js_bm..zjzz_js..." />
+            <marker date="1536300678873" expanded="true" signature="4114:4149" placeholder="SELECT * FRO..zjzz_js..." />
+            <marker date="1536300678873" expanded="true" signature="4308:4354" placeholder="update zjzz_..." />
+            <marker date="1536300678873" expanded="true" signature="4515:4577" placeholder="update zjzz_..." />
+            <marker date="1536300678873" expanded="true" signature="4737:4793" placeholder="INSERT INTO zjzz_js..." />
+            <marker date="1536300678873" expanded="true" signature="4993:5037" placeholder="SELECT COUNT..zjzz_dhbmd..." />
+            <marker date="1536300678873" expanded="true" signature="5250:5372" placeholder="INSERT INTO zjzz_dhbmd..." />
           </folding>
         </state>
       </provider>
