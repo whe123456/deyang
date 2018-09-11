@@ -15,12 +15,16 @@ $page=empty($_REQUEST['page'])?0:$_REQUEST['page']-1;
 $name=empty($_REQUEST['name'])?'':$_REQUEST['name'];
 $xh=empty($_REQUEST['xh'])?'':$_REQUEST['xh'];
 $bm=empty($_REQUEST['bj_bm'])?'':$_REQUEST['bj_bm'];
+$sjhm=empty($_REQUEST['sjhm'])?'':$_REQUEST['sjhm'];
 $where=' 1=1';
 if($name!=''){
     $where.=" AND xm LIKE '%$name%' ";
 }
 if($xh!=''){
     $where.=" AND xh LIKE '%$xh%'";
+}
+if($sjhm!=''){
+    $where.=" AND sjhm LIKE '%$sjhm%'";
 }
 if($bm!=''){
     $where.=" AND bjbm = '$bm'";

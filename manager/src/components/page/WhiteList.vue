@@ -16,6 +16,13 @@
               class="sr_input"
               clearable>
             </el-input>
+            <span class="demonstration">手机号码查询</span>
+            <el-input
+              placeholder="请输入手机号码"
+              v-model="formInline.sjhm"
+              class="sr_input"
+              clearable>
+            </el-input>
             <span class="demonstration">学号</span>
             <el-input
               placeholder="请输入学号"
@@ -157,7 +164,8 @@ export default {
       address: '',
       formInline: {
         name: '',
-        xh: ''
+        xh: '',
+        sjhm: ''
       },
       tableData: [],
       loading: true,
@@ -252,7 +260,8 @@ const getList = function (page, that) {
   const url = localStorage.getItem('url')
   const name = that.formInline.name
   const xh = that.formInline.xh
-  that.axios.get(url + 'api/api_get_bmd.php', { username: usersName, page: page, name: name, xh: xh }, function (res) {
+  const sjhm = that.formInline.sjhm
+  that.axios.get(url + 'api/api_get_bmd.php', { username: usersName, page: page, name: name, xh: xh, sjhm: sjhm }, function (res) {
     that.now_page = page
     that.loading = false
     if (res.state === 'true') {

@@ -8,6 +8,8 @@
     <div>
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item>
+          <label>手机号码查询</label>
+          <el-input v-model="formInline.sjhm" placeholder="请输入手机号码查询"></el-input>
           <label>班级查询</label>
           <el-input v-model="formInline.bj_mc" placeholder="请输入班级查询"></el-input>
           <label>姓名查询</label>
@@ -124,6 +126,7 @@ export default {
   data () {
     return {
       formInline: {
+        sjhm: '',
         bj_mc: '',
         kq_lx: '',
         kq_sj: '',
@@ -181,6 +184,7 @@ export default {
       this.formInline.kq_lx = ''
       this.formInline.kq_sj = []
       this.formInline.xm = ''
+      this.formInline.sjhm = ''
       getList(1, this)
     },
     handleCurrentChange (e) {
@@ -197,7 +201,8 @@ export default {
       const KqLx = this.formInline.kq_lx
       const Kqsj = this.formInline.kq_sj
       const xm = this.formInline.xm
-      window.open(url + 'api/export/export_qj_jl.php?username=' + usersName + '&bj_mc=' + Bjmc + '&sf_ty=' + KqLx + '&kq_sj=' + Kqsj + '&xm=' + xm)
+      const sjhm = this.formInline.sjhm
+      window.open(url + 'api/export/export_qj_jl.php?username=' + usersName + '&bj_mc=' + Bjmc + '&sf_ty=' + KqLx + '&kq_sj=' + Kqsj + '&xm=' + xm + '&sjhm=' + sjhm)
     }
   },
   mounted () {
@@ -218,7 +223,8 @@ const getList = function (page, that) {
   const KqLx = that.formInline.kq_lx
   const Kqsj = that.formInline.kq_sj
   const xm = that.formInline.xm
-  that.axios.get(url + 'api/api_get_qj_list.php', {username: usersName, page: page, bj_mc: Bjmc, sf_ty: KqLx, kq_sj: Kqsj, xm: xm}, function (res) {
+  const sjhm = that.formInline.sjhm
+  that.axios.get(url + 'api/api_get_qj_list.php', {username: usersName, page: page, bj_mc: Bjmc, sf_ty: KqLx, kq_sj: Kqsj, xm: xm, sjhm: sjhm}, function (res) {
     that.loading = false
     if (res.state === 'true') {
       that.page = res.page
