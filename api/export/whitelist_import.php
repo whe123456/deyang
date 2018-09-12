@@ -89,6 +89,9 @@ if(array_key_exists($ii, $_FILES)===false){
         $bjmc='';
         $tel='';
         foreach ($grs as $k => $al) {
+            if($k>8){
+                continue;
+            }
             if($k==7){
                 $teacher=$al;
                 continue;
