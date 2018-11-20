@@ -77,6 +77,13 @@ export default new Router({
           }
         },
         {
+          path: '/getqjsp',
+          component: resolve => require(['../components/page/GetQjSp.vue'], resolve),
+          meta: {
+            keepAlive: false // 需要缓存
+          }
+        },
+        {
           path: '/force',
           component: resolve => require(['../components/page/ForceList.vue'], resolve),
           meta: {

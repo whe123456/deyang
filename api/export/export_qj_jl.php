@@ -30,7 +30,11 @@ if($sjhm!=''){
     $where.=" AND zb.sjhm LIKE '%$sjhm%'";
 }
 if($sf_ty!=''){
-    $where.=" AND zk.sf_ty='$sf_ty'";
+    if($sf_ty==1){
+        $where.=" AND zk.jdc_ty='$sf_ty'";
+    }elseif($sf_ty==-1){
+        $where.=" AND (zk.jdc_ty='$sf_ty' or zk.sf_ty='$sf_ty')";
+    }
 }
 if(count($kq_sj)>0){
     $where.=" AND zk.create_ts>'".$kq_sj[0]."' AND zk.create_ts<'".$kq_sj[1]."'";

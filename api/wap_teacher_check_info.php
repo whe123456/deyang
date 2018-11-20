@@ -13,14 +13,25 @@ include_once $dii_ctx_root_dir.'/include/wx_function.php';
 if(!isset($_SESSION)){
     session_start();
 }
-checkRequestKeyHtml("wxid", "用户信息不能为空");
-$wxid = $_REQUEST['wxid'];
+$from = empty($_REQUEST['from'])?'wap':$_REQUEST['from'];
+$conn=Database::Connect();
+if($from=='wap') {
+	checkRequestKeyHtml("wxid", "用户信息不能为空");
+	$wxid = $_REQUEST['wxid'];
+}else{
+	checkRequestKeyHtml("username", "用户名不能为空");
+	$user_name=$_REQUEST['username'];
+	$sql="SELECT wxid FROM zjzz_js WHERE js_bm=?";
+	$wxid=Database::ReadoneStr($sql,$conn,array($user_name));
+	if(!$wxid){
+		alertExitHtml("教师未绑定微信，请绑定后审核");
+	}
+}
 checkRequestKeyHtml("id", "请假信息不能为空");
 $id = $_REQUEST['id'];
 checkRequestKeyHtml("zt", "审核状态不能为空");
 $zt = empty($_REQUEST['zt'])?1:$_REQUEST['zt'];
 $yj = empty($_REQUEST['yj'])?'':$_REQUEST['yj'];
-$conn=Database::Connect();
 $sql="SELECT zq.*,zj.xm,zj.wxid from zjzz_qj zq,zjzz_js zj WHERE zq.id=? AND zj.js_bm=zq.js_bm";
 $info=Database::ReadoneRow($sql,$conn,array($id));
 if(!$info){
@@ -28,6 +39,9 @@ if(!$info){
 }
 $now = date('Y-m-d H:i:s');	
 if($info['sf_ty']==0) {
+	if($info['sf_ty']!=0){
+		alertExitHtml("已审核");
+	}
 	if($wxid!=$info['wxid']){
 		alertExitHtml("无权审核");
 	}
@@ -40,7 +54,7 @@ if($info['sf_ty']==0) {
 	$wx = new JSSDK($appid, $secret);
 	$token = $wx->getAccessToken1();
 	$url_token = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" . $token;
-	if ($zt == 1) {
+	/*if ($zt == 1) {
 		$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.sjhm=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
 		$stuid = Database::ReadoneRow($sql, $conn, array($info['xs_id']));
 		if ($stuid) {
@@ -145,10 +159,13 @@ if($info['sf_ty']==0) {
 			$post_data = json_encode($post_data);
 			post($url_token, $post_data);
 		}
-	}
+	}*/
 
 	$info['stu_xm'] = $user;
 }else{
+	if($info['jdc_ty']!=0){
+		alertExitHtml("已审核");
+	}
 	$sql="SELECT * FROM zjzz_js WHERE wxid=?";
 	$js=Database::ReadoneRow($sql,$conn,array($wxid));
 	if($js['js_id']!=4){
@@ -176,7 +193,7 @@ if($info['sf_ty']==0) {
 	}
 	$sql = "select zd.xm,w.wxid from zjzz_dhbmd zd,zjzz_xs zx,wxid_b w where zd.sjhm=? and zx.dhbmd_id=zd.id and w.id=zx.wxid";
 	$openid = Database::ReadoneRow($sql, $conn, array($info['xs_id']));
-	if ($openid) {
+	/*if ($openid) {
 		$wx = new JSSDK($appid, $secret);
 		$token = $wx->getAccessToken1();
 		$url_token = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" . $token;
@@ -209,6 +226,6 @@ if($info['sf_ty']==0) {
 		);
 		$post_data = json_encode($post_data);
 		post($url_token, $post_data);
-	}
+	}*/
 }
 echo json_encode(array('state'=>'true'));
