@@ -18,14 +18,14 @@ $configuration = array(
    'host'		=> 'localhost',
    'port'		=> '3306'
 );
-//  $configuration = array(
-//      'pdoDriver'=>'mysql',
-//      'user'		=> 'root',
-//      'pass'	=> 'diipo_dev8',
-//      'db'	=> 'Deyang_Occupation',
-//      'host'		=> '192.168.0.195',
-//      'port'		=> '3306'
-//  );
+  $configuration = array(
+      'pdoDriver'=>'mysql',
+      'user'		=> 'root',
+      'pass'	=> 'diipo_dev8',
+      'db'	=> 'Deyang_Occupation',
+      'host'		=> '192.168.0.195',
+      'port'		=> '3306'
+  );
  // $configuration = array(
  //     'pdoDriver'=>'mysql',
  //     'user'   => 'root',

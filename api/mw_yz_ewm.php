@@ -27,12 +27,19 @@ if(!$info){
 if($info['sf_ty']!='1'){
     alertExit('此申请未被同意');
 }
+if($info['jdc_ty']!='1'){
+    alertExit('此申请未被同意');
+}
 if($info['state']==2){
     alertExit('此申请已完成');
 }
 $now=date('Y-m-d H:i:s');
-$qj_ts=str_replace(".","至",$info['qj_sj']);
-$msg=$info['grade']." ".$info['bj_mc']." 手机号码".$info['xs_id']." ".$info['xm']." 请假时间".$qj_ts." 离校记录成功！";
+// $qj_ts=str_replace(".","至",$info['qj_sj']);
+$qj_ts=explode(".", $info['qj_sj']);
+$teacher=Database::ReadoneStr("select xm from zjzz_js where js_bm=?",$conn,array($info['js_bm']));
+$jdc=Database::ReadoneStr("select xm from zjzz_js where js_bm=?",$conn,array($info['jdc_teacher']));
+
+$msg=$info['grade']." ".$info['bj_mc']." 学生".$info['xm']." 手机号码".$info['xs_id']." 因 ".$info['qj_yy']." 需请假外出 预计出校时间".$qj_ts[0]." 预计返校时间".$qj_ts[1]." 班主任:".$teacher."已同意 学生处:".$jdc."已同意 离校记录成功！";
 $sql="INSERT INTO saoma_list VALUES (?,?,?,?)";
 Database::InsertOrUpdate($sql,$conn,array(NULL,$id,$now,1));
 // $ewm_str = $url . "api/mw_yz_ewm.php?id=$id&type=sm";//周末签到二维码字符串

@@ -16,12 +16,16 @@ $bj_mc=empty($_REQUEST['bj_mc'])?'':$_REQUEST['bj_mc'];
 $kq_lx=!isset($_REQUEST['kq_lx'])?'':$_REQUEST['kq_lx'];
 $kq_sj=empty($_REQUEST['kq_sj'])?array():$_REQUEST['kq_sj'];
 $xm=empty($_REQUEST['xm'])?'':$_REQUEST['xm'];
+$sjhm=empty($_REQUEST['sjhm'])?'':$_REQUEST['sjhm'];
 $where=' zk.xs_id=zb.id';
 if($bj_mc!=''){
     $where.=" AND zb.bj_mc like '%$bj_mc%'";
 }
 if($xm!=''){
     $where.=" AND zb.xm like '%$xm%'";
+}
+if($sjhm!=''){
+    $where.=" AND zb.sjhm LIKE '%$sjhm%'";
 }
 if($kq_lx!=''){
     $where.=" AND zk.kq_lx='$kq_lx'";

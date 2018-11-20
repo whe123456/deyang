@@ -2,7 +2,7 @@
   <div>
     <div class="crumbs">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item><i class="el-icon-tickets"></i> 请假记录查询</el-breadcrumb-item>
+        <el-breadcrumb-item><i class="el-icon-tickets"></i> 请假记录审批</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div>
@@ -40,9 +40,6 @@
         <el-form-item>
           <el-button type="primary" @click="onSubmit">查询</el-button>
           <el-button type="primary" @click="oncancle">取消查询</el-button>
-        </el-form-item>
-        <el-form-item class="right">
-          <el-button type="primary" @click="onExcel">导出</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -111,6 +108,16 @@
           label="审核时间"
           width="200">
         </el-table-column>
+        <el-table-column
+          prop="change"
+          fixed
+          label="操作" >
+          <template slot-scope="scope">
+            <el-button @click="ChangeClick(scope.row)" type="text" size="small" v-if="scope.row.sf_ty === 0">待审核</el-button>
+            <el-button @click="ChangeClick(scope.row)" type="text" size="small" v-else-if="scope.row.sf_ty === 1&&scope.row.jdc_ty === 0&& js_id===4">待审核</el-button>
+            <label v-else>已审核</label>
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
         @current-change="handleCurrentChange"
@@ -119,6 +126,53 @@
         :total="total">
       </el-pagination>
     </div>
+    <el-dialog title="审核" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="请假内容" :label-width="formLabelWidth">
+          <el-input v-model="form.qj_yy" auto-complete="off" :disabled="true"></el-input>
+        </el-form-item>
+        <div v-if="sfksp===0">
+          <el-form-item label="审批状态" :label-width="formLabelWidth">
+            <el-select v-model="form.spzt" placeholder="请选择审批状态">
+              <el-option
+                v-for="item in optionzt"
+                :key="item.key"
+                :label="item.value"
+                :value="item.key"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="审批意见" :label-width="formLabelWidth">
+            <el-input v-model="form.spyj" auto-complete="off"></el-input>
+          </el-form-item>
+        </div>
+        <div v-else>
+          <el-form-item label="审批状态" :label-width="formLabelWidth">
+            <el-input v-model="form.spzt" auto-complete="off" :disabled="true"></el-input>
+          </el-form-item>
+          <el-form-item label="审批意见" :label-width="formLabelWidth">
+            <el-input v-model="form.spyj" auto-complete="off" :disabled="true"></el-input>
+          </el-form-item>
+        </div>
+        <div v-if="js_id===4">
+          <el-form-item label="学生处审批状态" :label-width="formLabelWidth">
+            <el-select v-model="form.spjdc" placeholder="请选择审批状态">
+              <el-option
+                v-for="item in optionzt"
+                :key="item.key"
+                :label="item.value"
+                :value="item.key"></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="学生处审批意见" :label-width="formLabelWidth">
+            <el-input v-model="form.jdcyj" auto-complete="off"></el-input>
+          </el-form-item>
+        </div>
+      </el-form>
+      <div slot="footer" class="dialog-center">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="fh">确认</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -299,7 +353,7 @@ const getList = function (page, that) {
   const Kqsj = that.formInline.kq_sj
   const xm = that.formInline.xm
   const sjhm = that.formInline.sjhm
-  that.axios.get(url + 'api/api_get_qj_list.php', {username: usersName, page: page, bj_mc: Bjmc, sf_ty: KqLx, kq_sj: Kqsj, xm: xm, sjhm: sjhm}, function (res) {
+  that.axios.get(url + 'api/api_get_qj_ysp.php', {username: usersName, page: page, bj_mc: Bjmc, sf_ty: KqLx, kq_sj: Kqsj, xm: xm, sjhm: sjhm}, function (res) {
     that.loading = false
     if (res.state === 'true') {
       that.page = res.page

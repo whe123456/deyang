@@ -77,6 +77,7 @@ if(array_key_exists($ii, $_FILES)===false){
     $conn = Database::Connect();
     $whitelist = explode(';', $aa);
     $now=date('Y-m-d H:i:s');
+    $msg='完成导入;';
     foreach ($whitelist as $key => $value) {
         if ($value == '') {
             continue;
@@ -151,6 +152,7 @@ if(array_key_exists($ii, $_FILES)===false){
             $sql = "SELECT COUNT(*) FROM zjzz_dhbmd WHERE sjhm=?";
             $count = Database::ReadoneStr($sql, $conn, array($cl));
             if ($count > 0) {
+                $msg.='手机号码:'.$cl.'重复，未导入;';
                 continue;
             }
         }
@@ -163,4 +165,8 @@ if(array_key_exists($ii, $_FILES)===false){
     }
 }
 @unlink($filePath);
-echo json_encode(array('state'=>'true','msg'=>'完成导入'));
+if($msg!='完成导入;'){
+    echo json_encode(array('state' => 'false', 'msg' => $msg));
+}else {
+    echo json_encode(array('state' => 'true', 'msg' => $msg));
+}
