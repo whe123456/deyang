@@ -361,3 +361,13 @@ function getRandstr($length = 16){
     }
     return $str;
 }
+function send($tel,$msg){
+    $tel=18308465172;
+    $appid='IfkkPZPcO0PerGnIFwDfsyWlhUBy7Jey';
+    $appkey='UeLPqY4YglhtBbFiIkV8XuO9MCNKaNIj';
+    $sign=md5($appid.$tel.$msg.$appkey);
+    $msg=urlencode($msg);
+    $url="https://sms.189ek.com/yktsms/send?appid=$appid&mobile=$tel&msg=$msg&sign=$sign";
+    $info=file_get_contents($url);
+    return $info;
+}
