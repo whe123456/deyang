@@ -88,7 +88,7 @@ if($info['sf_ty']==0) {
 			$post_data = json_encode($post_data);
 			post($url_token, $post_data);
 		}
-		$sql="SELECT w.wxid FROM zjzz_js zj,wxid_b w WHERE zj.js_id=4 AND w.id=zj.wxid";
+		$sql="SELECT w.wxid FROM zjzz_js zj,wxid_b w WHERE zj.js_id in (4,5) AND w.id=zj.wxid";
 		$openid=Database::Readall($sql,$conn,array());
 		if(count($openid)>0){
 			foreach($openid as $v){

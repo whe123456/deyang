@@ -362,8 +362,7 @@ function getRandstr($length = 16){
     return $str;
 }
 function send($tel,$msg){
-    $tel=18308465172;
-    $appid='IfkkPZPcO0PerGnIFwDfsyWlhUBy7Jey';
+    $appid='IfkkPZPcO0PerGnIFwDfsyW1hUBy7Jey';
     $appkey='UeLPqY4YglhtBbFiIkV8XuO9MCNKaNIj';
     $sign=md5($appid.$tel.$msg.$appkey);
     $msg=urlencode($msg);

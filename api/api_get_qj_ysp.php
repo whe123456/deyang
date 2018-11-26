@@ -48,7 +48,7 @@ if(!$user){
     alertExitHtml("无此教师信息");
 }
 
-if($user['js_id']==4){
+if($user['js_id']==4||$user['js_id']==5){
     $where .= " AND (zq.js_bm = zj.js_bm OR zq.jdc_teacher = zj.js_bm OR (zq.`sf_ty`=1 AND zq.`jdc_ty`=0))";
 }else{
     $where .= " AND zq.js_bm=zj.js_bm";

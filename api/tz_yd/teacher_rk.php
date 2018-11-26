@@ -17,7 +17,7 @@ if(!$info){
 }
 if($info['sf_ty']==0){
 	header("location:$urls/projectPath/#/leavesp?id=$id&url=$urls&wxid=$wid");exit;
-}elseif($info['jdc_ty']==0&&$xs['js_id']==4){
+}elseif($info['jdc_ty']==0&&($xs['js_id']==4||$xs['js_id']==5){
 	header("location:$urls/projectPath/#/leavesp?id=$id&url=$urls&wxid=$wid");exit;
 }else{
 	header("location:$urls/projectPath/#/leaveinfo?id=$id&url=$urls&wxid=$wid");exit;

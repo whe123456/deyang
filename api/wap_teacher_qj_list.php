@@ -21,13 +21,13 @@ if(!$user){
 }
 $where='';
 if($type==0) {
-    if($user['js_id']==4){
+    if($user['js_id']==4||$user['js_id']==5){
         $where .= " and ((zq.sf_ty=0 AND zq.js_bm=zj.js_bm) or ((zq.jdc_teacher='' OR zq.jdc_teacher IS NULL) and zq.sf_ty=1)) and zq.sf_ty!=-1 AND zq.jdc_ty=0";
     }else{
         $where .= " AND zq.js_bm=zj.js_bm and zq.sf_ty =0";
     }
 }else{
-    if($user['js_id']==4){
+    if($user['js_id']==4||$user['js_id']==5){
         $where .= "  and ( zq.js_bm=zj.js_bm AND zq.sf_ty!=0) or (zj.js_bm='{$user['js_bm']}' AND zq.jdc_teacher=zj.js_bm AND jdc_ty!=0)";
     }else{
         $where .= " AND zq.js_bm=zj.js_bm and zq.sf_ty !=0";
