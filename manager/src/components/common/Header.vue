@@ -2,14 +2,15 @@
   <div class="header">
     <div class="logo">后台管理系统</div>
     <div class="user-info">
-      <el-dropdown trigger="click" @command="handleCommand">
-                <span class="el-dropdown-link">
-                    {{username}}
-                </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="loginout">退出</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      <span class="el-dropdown-link">
+          {{username}}
+      </span>
+      <span class="el-dropdown-link" @click="change_pass">
+          密码修改
+      </span>
+      <span class="el-dropdown-link" @click="loginout">
+          退出
+      </span>
     </div>
   </div>
 </template>
@@ -31,11 +32,12 @@ export default {
     }
   },
   methods: {
-    handleCommand (command) {
-      if (command === 'loginout') {
-        sessionStorage.removeItem('ms_username')
-        this.$router.push('/login')
-      }
+    loginout () {
+      sessionStorage.removeItem('ms_username')
+      this.$router.push('/login')
+    },
+    change_pass () {
+      this.$router.push('/change_pass')
     }
   }
 }

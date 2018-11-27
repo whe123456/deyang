@@ -138,6 +138,13 @@ export default new Router({
           meta: {
             keepAlive: false // 需要缓存
           }
+        },
+        {
+          path: '/change_pass',
+          component: resolve => require(['../components/page/ChangePass.vue'], resolve),
+          meta: {
+            keepAlive: false // 需要缓存
+          }
         }
       ]
     },
