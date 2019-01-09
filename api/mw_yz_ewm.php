@@ -33,6 +33,9 @@ if($info['jdc_ty']!='1'){
 if($info['state']==2){
     alertExit('此申请已完成');
 }
+if($info['fx_url']!=''){
+    alertExit('该二维码已失效');
+}
 $now=date('Y-m-d H:i:s');
 // $qj_ts=str_replace(".","至",$info['qj_sj']);
 $qj_ts=explode(".", $info['qj_sj']);
